@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<pcToLineNum>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficView.mc" id="3" lineNum="6" pc="268435456" symbol="initialize"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficView.mc" id="3" lineNum="7" pc="268435460" symbol="initialize"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficView.mc" id="3" lineNum="8" pc="268435478" symbol="initialize"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficView.mc" id="4" lineNum="15" pc="268435492" symbol="compute"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficView.mc" id="4" lineNum="17" pc="268435496" symbol="compute"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="6" lineNum="7" pc="268435512" symbol="initialize"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="6" lineNum="8" pc="268435516" symbol="initialize"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="7" lineNum="13" pc="268435535" symbol="onBikeRadarUpdate"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="7" lineNum="14" pc="268435539" symbol="onBikeRadarUpdate"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="7" lineNum="15" pc="268435559" symbol="onBikeRadarUpdate"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="8" lineNum="19" pc="268435579" symbol="onStart"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="9" lineNum="23" pc="268435584" symbol="onStop"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="10" lineNum="27" pc="268435589" symbol="getInitialView"/>
+<entry filename="C:\\Users\\kartoone\\Dropbox\\web\\mybiketraffic.com\\connectiq\\eclipseproject\\source\\MyBikeTrafficApp.mc" id="10" lineNum="28" pc="268435593" symbol="getInitialView"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="9" object="true" symbol="MyBikeTrafficView"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry field="true" id="14" symbol="AppName"/>
+<entry field="true" id="13" symbol="LauncherIcon"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry id="10" object="true" symbol="MyBikeTrafficApp"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389137" method="true" symbol="compute"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry id="8390643" method="true" symbol="onBikeRadarUpdate"/>
+<entry id="12" module="true" symbol="Layouts"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry field="true" id="8389850" symbol="count"/>
+<entry id="11" module="true" symbol="Menus"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry id="8388635" module="true" symbol="Application"/>
+</symbolTable>
+<localVars>
+<entry endPc="268435512" name="info" stackId="1" startPc="268435492"/>
+<entry endPc="268435579" name="data" stackId="1" startPc="268435535"/>
+<entry endPc="268435584" name="state" stackId="1" startPc="268435579"/>
+<entry endPc="268435589" name="state" stackId="1" startPc="268435584"/>
+</localVars>
+<annotations/>
+<functions>
+<functionEntry accessMode="public" name="initialize" parent="MyBikeTrafficView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="compute" parent="MyBikeTrafficView">
+<param id="info"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="MyBikeTrafficApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onBikeRadarUpdate" parent="MyBikeTrafficApp">
+<param id="data"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStart" parent="MyBikeTrafficApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStop" parent="MyBikeTrafficApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getInitialView" parent="MyBikeTrafficApp">
+<documentation/>
+</functionEntry>
+</functions>
+<dataEntryOffsetMappings>
+<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry offset="166" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="245" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="284" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="315" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="346" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="377" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="408" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="447" parentId="globals" symbolId="MyBikeTrafficView" type="class"/>
+<dataEntry offset="502" parentId="globals" symbolId="MyBikeTrafficApp" type="class"/>
+</dataEntryOffsetMappings>
+</debugInfo>
