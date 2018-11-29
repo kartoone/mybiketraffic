@@ -2,18 +2,9 @@ using Toybox.Application;
 
 class MyBikeTrafficApp extends Application.AppBase  {
 
-	var count = 0;
-
     function initialize() {
         AppBase.initialize();
-//        Sensor.setEnabledSensors( [Sensor.SENSOR_BIKECADENCE ] );
-//    	Sensor.enableSensorEvents( method( :onSensor ) );
     }
-
-	function onBikeRadarUpdate(data) {
-		System.println(data);
-		count++;
-	}
 
     // onStart() is called on application start up
     function onStart(state) {
@@ -25,7 +16,17 @@ class MyBikeTrafficApp extends Application.AppBase  {
 
     // Return the initial view of your application here
     function getInitialView() {
+//	    if(Toybox.System has :ServiceDelegate) {
+//            Background.registerForTemporalEvent(new Time.Duration(60*5));
+//        } 
         return [ new MyBikeTrafficView() ];
     }
 
+//	function onBackgroundData(data) {
+//        count++;
+//    }
+
+//    function getServiceDelegate(){
+//        return [new RadarBgServiceDelegate()];
+//    }        
 }
