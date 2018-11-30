@@ -7,7 +7,6 @@ class MyBikeRadarListener extends Toybox.AntPlus.BikeRadarListener {
     }
 
     function onBikeRadarUpdate(data) {
-        BikeRadarListener.onBikeRadarUpdate(data);
-        System.println(radarInfo);
+        System.println(data);
     }
 }

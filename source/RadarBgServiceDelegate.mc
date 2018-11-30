@@ -13,13 +13,15 @@ class RadarBgServiceDelegate extends Toybox.System.ServiceDelegate {
         Sys.ServiceDelegate.initialize();
     }
 
+	// this eventually should send a webrequest if available so that data can be processed "online"
+	// without relying on a user to manually upload .FIT file with sensor data embedded
+	// it also should be how we register our bikeradar listener, but apparently that part of the API isn't enabled yet
     function onTemporalEvent() {
     	try {
+    		Sys.println("onTemporalEvent");
 			// Initialize the AntPlus.BikePowerListener object
-			var listener = new MyBikeRadarListener();
-			// Initialize the AntPlus.BikePower object with a listener
-			var bikeRadar = new AntPlus.BikeRadar(listener);
-			var radarInfo = bikeRadar.getRadarInfo();
+//			var listener = new MyBikeRadarListener();
+//			Sensor.registerSensorDataListener(listener,{:enableBikeRadar=>true});
         } catch (ex) {
           Sys.println("ex");
         }

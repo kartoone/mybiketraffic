@@ -1,6 +1,9 @@
 using Toybox.Application;
+using Toybox.Position;
 
 class MyBikeTrafficApp extends Application.AppBase  {
+
+    var radarview;
 
     function initialize() {
         AppBase.initialize();
@@ -16,17 +19,8 @@ class MyBikeTrafficApp extends Application.AppBase  {
 
     // Return the initial view of your application here
     function getInitialView() {
-//	    if(Toybox.System has :ServiceDelegate) {
-//            Background.registerForTemporalEvent(new Time.Duration(60*5));
-//        } 
-        return [ new MyBikeTrafficView() ];
+		radarview = new MyBikeTrafficView();
+        return [ radarview ];
     }
 
-//	function onBackgroundData(data) {
-//        count++;
-//    }
-
-//    function getServiceDelegate(){
-//        return [new RadarBgServiceDelegate()];
-//    }        
 }
