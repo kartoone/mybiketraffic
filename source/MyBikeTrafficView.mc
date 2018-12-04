@@ -20,6 +20,8 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 	var countSessionField;
 //	var threatDataField;
 //	var threatsideDataField; 
+	const RANGETARGETS=5;
+	const SPEEDTARGETS=3;
 	
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
@@ -38,7 +40,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
             "radar_ranges",
             BT_RANGE_FIELD_ID,
             FitContributor.DATA_TYPE_FLOAT,
-            {:count=>4,:mesgType=>FitContributor.MESG_TYPE_RECORD}
+            {:count=>RANGETARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
 // not enough room to store this data ... field limited to 32 bytes of data per message ... 4*4 + 4*4 = 32bytes
 //		threatDataField = createField(
@@ -51,7 +53,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
             "radar_speeds",
             BT_SPEED_FIELD_ID,
             FitContributor.DATA_TYPE_FLOAT,
-            {:count=>4,:mesgType=>FitContributor.MESG_TYPE_RECORD}
+            {:count=>SPEEDTARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
 		countSessionField = createField(
             "radar_count",
@@ -76,16 +78,18 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
     //   	the only way we don't miss cars is if the radar itself has some grace period with a car passing and keeps it in track position number 1 and puts the next one in number 2
     //   	also, about false positives ... car could come in range but then turn well before reaching us
     ///  storing custom data field ...
-    //   	encode 4 range targets and 4 speeds targets b/c field limited to 32bytes
-    //      consider using second field if running into limits ... preliminary results have never gone above 3 cars at one time
+    //   	encode 5 range targets and 3 speed targets b/c field limited to 32bytes
+    //   import note - even though only 5/3 are encoded - all 8 targets are used in the vehicle count algorithm
     function compute(info) { 
         var radarInfo = bikeRadar.getRadarInfo();
         if (radarInfo) {
-			var rangeInfo = new [4];
-			var speedInfo = new [rangeInfo.size()];
-			for (var i=0;i<rangeInfo.size();i++) {
+			var rangeInfo = new [RANGETARGETS];
+			var speedInfo = new [SPEEDTARGETS];
+			for (var i=0;i<RANGETARGETS;i++) {
 			  rangeInfo[i] = radarInfo[i].range;
-			  speedInfo[i] = radarInfo[i].speed;
+			}
+			for (var i=0;i<SPEEDTARGETS;i++) {
+		  	  speedInfo[i] = radarInfo[i].speed;
 			}
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);

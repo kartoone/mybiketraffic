@@ -4,7 +4,7 @@ using Toybox.Position;
 class MyBikeTrafficApp extends Application.AppBase  {
 
     var radarview;
-
+	
     function initialize() {
         AppBase.initialize();
     }
