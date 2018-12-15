@@ -82,9 +82,9 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
     //   import note - even though only 5/3 are encoded - all 8 targets are used in the vehicle count algorithm
     function compute(info) { 
         var radarInfo = bikeRadar.getRadarInfo();
+		var rangeInfo = new [RANGETARGETS];
+		var speedInfo = new [SPEEDTARGETS];
         if (radarInfo) {
-			var rangeInfo = new [RANGETARGETS];
-			var speedInfo = new [SPEEDTARGETS];
 			for (var i=0;i<RANGETARGETS;i++) {
 			  rangeInfo[i] = radarInfo[i].range;
 			}
@@ -107,6 +107,17 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			countSessionField.setData(count);
 	        return count;
 		} else {
+			// only way to indicate when the radar isn't active is to set the range and speed to bogus (negative) values
+			// this prevents us from false negatives in our mapping where we would include "zero cars" on a stretch
+			// of road that actually had a bunch of cars, but the radar was off.
+			for (var i=0;i<RANGETARGETS;i++) {
+			  rangeInfo[i] = -1.0;
+			}
+			for (var i=0;i<SPEEDTARGETS;i++) {
+		  	  speedInfo[i] = -1.0;
+			}
+			rangeDataField.setData(rangeInfo);
+			speedDataField.setData(speedInfo);
 			return "--";
 		}		
     }
