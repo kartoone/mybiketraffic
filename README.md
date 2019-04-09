@@ -6,4 +6,4 @@ The vehicle count algorithm relies on the radar data which already does a pretty
 
 The total vehicle count is stored in the Session data at the end of the .FIT file.
 
-Individual records within the .FIT file are also modified by adding two DeveloperFields. The first is FOUR of the tracked vehicle ranges. The second is FOUR of the tracked vehicle speeds. All EIGHT vehicles are not stored because an app can only store 32bytes of data per record. To store all EIGHT vehicles would require a second data field, which is possible but future work for now. 
+Individual records within the .FIT file are also modified by adding two DeveloperFields. The first is FIVE of the tracked vehicle ranges. The second is THREE of the tracked vehicle speeds. All EIGHT vehicles are not stored but even on super busy roads it is rare for the radar to pick up that many cars. To store all EIGHT vehicles would require a second data field, which is possible but future work for now. 
