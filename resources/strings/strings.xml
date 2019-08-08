@@ -1,3 +1,5 @@
 <strings>
     <string id="AppName">MyBikeTraffic</string>
+    <string id="mybiketraffic_count_label">Vehicle Count</string>
+    <string id="mybiketraffic_units_label"> </string>
 </strings>

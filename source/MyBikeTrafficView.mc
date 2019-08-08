@@ -19,15 +19,17 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 	// datafield attributes and constants for custom data written into FIT files
 	var rangeDataField;
 	var speedDataField;
+	var countDataField;
 	var countSessionField;
 //	var threatDataField;
 //	var threatsideDataField; 
-	const RANGETARGETS=8;
-	const SPEEDTARGETS=8;
+	const RANGETARGETS=7;
+	const SPEEDTARGETS=7;
 	
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
 	const BT_COUNT_FIELD_ID = 2; // total count recorded to session
+	const BT_COUNTDATA_FIELD_ID = 3; // total count recorded to session
 //	const BT_THREAT_FIELD_ID = 2;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 3; 	threat side 0-left, 1-right
 	
@@ -58,10 +60,16 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
             {:count=>SPEEDTARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
 		countSessionField = createField(
-            "radar_count",
+            "radar_total",
             BT_COUNT_FIELD_ID,
             FitContributor.DATA_TYPE_UINT16,
             {:mesgType=>FitContributor.MESG_TYPE_SESSION}
+        );
+		countDataField = createField(
+            "radar_current",
+            BT_COUNTDATA_FIELD_ID,
+            FitContributor.DATA_TYPE_UINT16,
+            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
 //		threatsideDataField = createField(
 //            "radar_threatsides",
@@ -76,12 +84,11 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
     // Radar algorithm -
     //   counting ... 
     //		check how many targets we were tracking last update ... 
-    //   	if number has gone up then increment count ... i'm 100% sure this will lead to missed cars (i.e, one car passes RIGHT when another car comes in range)
-    //   	the only way we don't miss cars is if the radar itself has some grace period with a car passing and keeps it in track position number 1 and puts the next one in number 2
-    //   	also, about false positives ... car could come in range but then turn well before reaching us
+    //   	if number has gone up and range is within threshold meters then set thresh flag and increment count when count goes back down 
+    //      ... flast negatives - missed cars when another car appears right when car passes so that count never goes down ... happens primarily on busy roads
+    //   	... false positives - car could come in range but then turn well before reaching us ... UPDATE - addressed with threshold param
     ///  storing custom data field ...
-    //   	encode 5 range targets and 3 speed targets b/c field limited to 32bytes
-    //   import note - even though only 5/3 are encoded - all 8 targets are used in the vehicle count algorithm
+    //   	encode 8 range targets and 8 speed targets but convert to 16bit integer instead of float b/c field limited to 32bytes
  
     // start here - convert floats to two byte ints
     function compute(info) { 
@@ -112,6 +119,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			}
 			crossedthresh = rangeInfo[0] < THRESH;
 			lasttrackcnt=trackcnt;
+			countDataField.setData(count);			
 			countSessionField.setData(count);
 	        return count;
 		} else {
@@ -126,8 +134,10 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			}
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
+			countDataField.setData(count);			
+			countSessionField.setData(count);			
 			return "--";
 		}		
     }
- 
+    
 }
