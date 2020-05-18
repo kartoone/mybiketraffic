@@ -51,17 +51,18 @@
 <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="10" lineNum="137" pc="268436560" symbol="compute"/>
 <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="10" lineNum="138" pc="268436586" symbol="compute"/>
 <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="10" lineNum="139" pc="268436612" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="12" lineNum="8" pc="268436619" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="12" lineNum="9" pc="268436623" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="13" lineNum="13" pc="268436642" symbol="onStart"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="14" lineNum="17" pc="268436647" symbol="onStop"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="21" pc="268436652" symbol="getInitialView"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="22" pc="268436656" symbol="getInitialView"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="23" pc="268436686" symbol="getInitialView"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="12" lineNum="9" pc="268436619" symbol="initialize"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="12" lineNum="10" pc="268436623" symbol="initialize"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="13" lineNum="14" pc="268436642" symbol="onStart"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="14" lineNum="18" pc="268436647" symbol="onStop"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="22" pc="268436652" symbol="getInitialView"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="23" pc="268436656" symbol="getInitialView"/>
+<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="15" lineNum="24" pc="268436686" symbol="getInitialView"/>
 </pcToLineNum>
 <symbolTable>
 <entry field="true" id="21" symbol="crossedthresh"/>
 <entry field="true" id="22" symbol="THRESH"/>
+<entry field="true" id="34" symbol="speedview"/>
 <entry id="11" object="true" symbol="MyBikeTrafficView"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
 <entry field="true" id="20" symbol="lasttrackcnt"/>
@@ -92,7 +93,7 @@
 <entry field="true" id="16" symbol="mybiketraffic_units_label"/>
 <entry id="8390148" method="true" symbol="onTemporalEvent"/>
 <entry id="8390643" method="true" symbol="onBikeRadarUpdate"/>
-<entry id="14" module="true" symbol="Layouts"/>
+<entry id="13" module="true" symbol="Layouts"/>
 <entry id="8388642" module="true" symbol="Position"/>
 <entry field="true" id="28" symbol="SPEEDTARGETS"/>
 <entry field="true" id="29" symbol="BT_RANGE_FIELD_ID"/>
@@ -102,7 +103,7 @@
 <entry field="true" id="8389850" symbol="count"/>
 <entry field="true" id="19" symbol="bikeRadar"/>
 <entry id="9" object="true" symbol="MyBikeRadarListener"/>
-<entry id="13" module="true" symbol="Menus"/>
+<entry id="14" module="true" symbol="Menus"/>
 <entry field="true" id="32" symbol="BT_COUNTDATA_FIELD_ID"/>
 <entry id="8389847" symbol="mesgType"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
@@ -124,6 +125,20 @@
 <entry endPc="268436652" name="state" stackId="1" startPc="268436647"/>
 </localVars>
 <annotations/>
+<dataEntryOffsetMappings>
+<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry offset="166" parentId="globals" symbolId="MyBikeRadarListener" type="class"/>
+<dataEntry offset="221" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="300" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="339" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="370" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="401" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="432" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="463" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="518" parentId="globals" symbolId="RadarBgServiceDelegate" type="class"/>
+<dataEntry offset="573" parentId="globals" symbolId="MyBikeTrafficView" type="class"/>
+<dataEntry offset="748" parentId="globals" symbolId="MyBikeTrafficApp" type="class"/>
+</dataEntryOffsetMappings>
 <functions>
 <functionEntry accessMode="public" name="initialize" parent="MyBikeRadarListener">
 <documentation/>
@@ -160,18 +175,4 @@
 <documentation/>
 </functionEntry>
 </functions>
-<dataEntryOffsetMappings>
-<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
-<dataEntry offset="198" parentId="globals" symbolId="MyBikeRadarListener" type="class"/>
-<dataEntry offset="253" parentId="globals" symbolId="Rez" type="module"/>
-<dataEntry offset="332" parentId="Rez" symbolId="Drawables" type="module"/>
-<dataEntry offset="371" parentId="Rez" symbolId="Menus" type="module"/>
-<dataEntry offset="402" parentId="Rez" symbolId="Fonts" type="module"/>
-<dataEntry offset="433" parentId="Rez" symbolId="JsonData" type="module"/>
-<dataEntry offset="464" parentId="Rez" symbolId="Layouts" type="module"/>
-<dataEntry offset="495" parentId="Rez" symbolId="Strings" type="module"/>
-<dataEntry offset="550" parentId="globals" symbolId="RadarBgServiceDelegate" type="class"/>
-<dataEntry offset="605" parentId="globals" symbolId="MyBikeTrafficView" type="class"/>
-<dataEntry offset="780" parentId="globals" symbolId="MyBikeTrafficApp" type="class"/>
-</dataEntryOffsetMappings>
 </debugInfo>

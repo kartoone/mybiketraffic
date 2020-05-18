@@ -43,10 +43,10 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 		rangeDataField = createField(
             "radar_ranges",
             BT_RANGE_FIELD_ID,
-            FitContributor.DATA_TYPE_UINT16,
+            FitContributor.DATA_TYPE_SINT16,
             {:count=>RANGETARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
-// not enough room to store this data ... field limited to 32 bytes of data per message ... 4*4 + 4*4 = 32bytes
+// not enough room to store this data ... field limited to 32 bytes of data per message ... 7*2 + 7*2 + 1*2 = 30 bytes ... so technically we can store 2 more bytes per record
 //		threatDataField = createField(
 //            "radar_threats",
 //            BT_THREAT_FIELD_ID,
@@ -56,7 +56,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 		speedDataField = createField(
             "radar_speeds",
             BT_SPEED_FIELD_ID,
-            FitContributor.DATA_TYPE_UINT16,
+            FitContributor.DATA_TYPE_SINT16,
             {:count=>SPEEDTARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
 		countSessionField = createField(
@@ -71,6 +71,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
             FitContributor.DATA_TYPE_UINT16,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
+// not enough room to store this data ... field limited to 32 bytes of data per message ... 7*2 + 7*2 + 1*2 = 30 bytes ... so technically we can store 2 more bytes per record
 //		threatsideDataField = createField(
 //            "radar_threatsides",
 //            BT_THREATSIDE_FIELD_ID,
@@ -85,10 +86,10 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
     //   counting ... 
     //		check how many targets we were tracking last update ... 
     //   	if number has gone up and range is within threshold meters then set thresh flag and increment count when count goes back down 
-    //      ... flast negatives - missed cars when another car appears right when car passes so that count never goes down ... happens primarily on busy roads
+    //      ... false negatives - missed cars when another car appears right when car passes so that current tracking count never goes down which is the cue to increment total count ... since the incoming car exactly replaces the passings car, the number of cars tracked never changes ... happens primarily on busy roads
     //   	... false positives - car could come in range but then turn well before reaching us ... UPDATE - addressed with threshold param
-    ///  storing custom data field ...
-    //   	encode 8 range targets and 8 speed targets but convert to 16bit integer instead of float b/c field limited to 32bytes
+    ///  storing custom data fields ...
+    //   	encode 7 range targets and 7 speed targets but convert to 16bit signed integer instead of float b/c total data per record limited to 32bytes
  
     // start here - convert floats to two byte ints
     function compute(info) { 
