@@ -93,6 +93,11 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
  
     // start here - convert floats to two byte ints
     function compute(info) { 
+    	// do nothing if activity is not running
+    	// just return the current count
+    	if (info.timerState != 3) {
+    		return count; 
+    	}
         var radarInfo = bikeRadar.getRadarInfo();
 		var rangeInfo = new [RANGETARGETS];
 		var speedInfo = new [SPEEDTARGETS];
@@ -139,6 +144,14 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			countSessionField.setData(count);			
 			return "--";
 		}		
+    }
+    
+    // activity has ended
+    // handle resetting count to 0 after activity has ended
+    function onTimerReset() {
+		count=0;
+		lasttrackcnt=0;
+		crossedthresh = false;
     }
     
 }
