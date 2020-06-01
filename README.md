@@ -4,6 +4,6 @@ The app is a simpledatafield (single data field) app so once you have it loaded 
 
 The vehicle count algorithm relies on the radar data which already does a pretty good job of separating and splitting up multiple vehicles into multiple objects in the radarinfo array. My counting algorithm looks for a change in the number of "active" vehicles to increase the total vehicle count for the ride.
 
-The total vehicle count is stored in the Session data at the end of the .FIT file.
+The total vehicle count and closest passing speed are both stored in the .FIT file in a manner that makes them appear on Garmin Connect. 
 
-Individual records within the .FIT file are also modified by adding two DeveloperFields. The first is FIVE of the tracked vehicle ranges. The second is THREE of the tracked vehicle speeds. All EIGHT vehicles are not stored but even on super busy roads it is rare for the radar to pick up that many cars. To store all EIGHT vehicles would require a second data field, which is possible but future work for now. 
+Individual records within the .FIT file are also modified by adding two DeveloperFields. The first is all EIGHT of the tracked vehicle ranges. The second is all EIGHT of the tracked vehicle speeds. I was able to squeeze this many into the app by converting the storage from floating point numbers to signed and unsigned half words and bytes. 
