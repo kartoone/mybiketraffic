@@ -2,17 +2,31 @@
 	<fitContributions>
 	    <fitField id="2"
 	    displayInActivitySummary="true"
-	    sortOrder = "0"
-	    dataLabel="@Strings.mybiketraffic_count_label"
-	    unitLabel="@Strings.mybiketraffic_units_label"
-	    />
-	    <fitField id="3"
 	    displayInChart="true"
 	    sortOrder = "0"
-	    precision = "0"
 	    chartTitle="@Strings.mybiketraffic_count_label"
 	    dataLabel="@Strings.mybiketraffic_count_label"
 	    unitLabel="@Strings.mybiketraffic_units_label"
+	    fillColor="#FF0000"
+	    />
+ 	    <fitField id="3"
+	    displayInActivitySummary="false"
+	    displayInChart="true"
+	    sortOrder = "1"
+	    precision = "0"
+	    chartTitle="@Strings.mybiketraffic_speedkph_label"
+	    dataLabel="@Strings.mybiketraffic_speedkph_label"
+	    unitLabel="@Strings.mybiketraffic_unitskph_label"
+	    fillColor="#FF0000"
+	    />
+	    <fitField id="4"
+	    displayInActivitySummary="false"
+	    displayInChart="true"
+	    sortOrder = "2"
+	    precision = "0"
+	    chartTitle="@Strings.mybiketraffic_speedmph_label"
+	    dataLabel="@Strings.mybiketraffic_speedmph_label"
+	    unitLabel="@Strings.mybiketraffic_unitsmph_label"
 	    fillColor="#FF0000"
 	    />
 	</fitContributions>
