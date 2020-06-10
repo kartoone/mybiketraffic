@@ -11,6 +11,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 	
 	// vehicle count related attributes
 	// raw count of number of vehicles
+	var lapcount=0;
 	var count=0;
 	var lasttrackcnt=0;
 	var crossedthresh = false;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
@@ -20,8 +21,12 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 	var rangeDataField;
 	var speedDataField;
 	var countDataField;
-	var passingSpeedDataFieldKPH;
-	var passingSpeedDataFieldMPH;
+	var countSessionField;
+	var countLapField;
+	var passingSpeedDataField;
+	var metric = true;
+//	var passingSpeedDataFieldMPH;
+//	var passingSpeedDataFieldMPH;
 //	var threatDataField;
 //	var threatsideDataField; 
 
@@ -31,8 +36,10 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
 	const BT_COUNT_FIELD_ID = 2; // current total count
-	const BT_PASSINGSPEED_KPH_FIELD_ID = 3; // speed of closest car (KPH) ... 0 if no cars currently on radar being tracked
-	const BT_PASSINGSPEED_MPH_FIELD_ID = 4; // speed of closest car (MPH) ... 0 if no cars currently on radar being tracked
+	const BT_COUNT_SESSION_FIELD_ID = 3; // current total count (same as regular count but the session field for activity summary)
+	const BT_COUNT_LAP_FIELD_ID = 4; // current lap count
+	const BT_PASSINGSPEED_KPH_FIELD_ID = 5; // speed of closest car (KPH) ... 0 if no cars currently on radar being tracked
+	const BT_PASSINGSPEED_MPH_FIELD_ID = 6; // speed of closest car (MPH) ... 0 if no cars currently on radar being tracked
 //	const BT_THREAT_FIELD_ID = 4;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 5; 	threat side 0-left, 1-right
 	
@@ -43,37 +50,57 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
         SimpleDataField.initialize();
         label = "VehicleCount";
 		bikeRadar = new AntPlus.BikeRadar(null); // no need for listener b/c listener only fires at same rate as compute method
-		rangeDataField = createField(
+		rangeDataField = createField( // 16 bytes
             "radar_ranges",
             BT_RANGE_FIELD_ID,
             FitContributor.DATA_TYPE_SINT16,
             {:count=>RANGETARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
-		speedDataField = createField(
+		speedDataField = createField( // 8 bytes
             "radar_speeds",
             BT_SPEED_FIELD_ID,
             FitContributor.DATA_TYPE_UINT8,
             {:count=>SPEEDTARGETS,:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
-		countDataField = createField(
-            "radar_current",
+		countDataField = createField( // 2 bytes
+            "radar_current",			
             BT_COUNT_FIELD_ID,
             FitContributor.DATA_TYPE_UINT16,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
-		passingSpeedDataFieldMPH = createField( 
-            "passing_speed",
-            BT_PASSINGSPEED_MPH_FIELD_ID,
-            FitContributor.DATA_TYPE_UINT8,
-            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+		countSessionField = createField( // 2 bytes
+            "radar_total",
+            BT_COUNT_SESSION_FIELD_ID,
+            FitContributor.DATA_TYPE_UINT16,
+            {:mesgType=>FitContributor.MESG_TYPE_SESSION}
         );
-		passingSpeedDataFieldKPH = createField(
-            "passing_speed",
-            BT_PASSINGSPEED_KPH_FIELD_ID,
-            FitContributor.DATA_TYPE_UINT8,
-            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+		countLapField = createField( // 2 bytes
+            "radar_lap",
+            BT_COUNT_LAP_FIELD_ID,
+            FitContributor.DATA_TYPE_UINT16,
+            {:mesgType=>FitContributor.MESG_TYPE_LAP}
         );
-// not enough room to store this data ... field limited to 32 bytes of data per message ... 8*2 + 8*1 + 1*2 + 2*1 = 28 bytes ... so technically we can store the threat level for 4 cars using single byte ... maybe next version?
+        var sys = System.getDeviceSettings();
+        if (sys.distanceUnits == System.UNIT_STATUTE) {
+        	metric = false;
+			passingSpeedDataField = createField( // 1 byte (either this one or the else clause)
+	            "passing_speed",
+	            BT_PASSINGSPEED_MPH_FIELD_ID,
+	            FitContributor.DATA_TYPE_UINT8,
+	            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+	        );
+	    } else {
+			passingSpeedDataField = createField( // 1 byte (either this one or the if clause)
+	            "passing_speed",
+	            BT_PASSINGSPEED_KPH_FIELD_ID,
+	            FitContributor.DATA_TYPE_UINT8,
+	            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+	        );
+        }
+        
+        // data total: 8*2(ranges) + 8*1(speeds) + 3*2(count record, count session, count lap) + 1*1(passing speed) = 31 bytes ... 1 byte left to do something with
+        
+// not enough room to store this data ... field limited to 32 bytes of data per message ... 
 //		threatDataField = createField(
 //            "radar_threats",
 //            BT_THREAT_FIELD_ID,
@@ -105,7 +132,7 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 
     	// do nothing if activity is not running
     	// just return the current count
-    	if (info.timerState != 3) {
+    	if (info.timerState != 3) { 
     		if (radarInfo) {
     			return count;
     		} else {
@@ -126,8 +153,11 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			speedDataField.setData(speedInfo);
 
 			// this will cause speed to be 0 when no cars tracked which is perfect
-	  		passingSpeedDataFieldKPH.setData(Math.round(speedInfo[0]*3.6));
-	  		passingSpeedDataFieldMPH.setData(Math.round(speedInfo[0]*2.23694));
+			if (metric) {
+	  			passingSpeedDataField.setData(Math.round(speedInfo[0]*3.6));
+	  		} else {
+	  			passingSpeedDataField.setData(Math.round(speedInfo[0]*2.23694));
+	  		}
 
 			var trackcnt = 0;
         	for(var i=0;i<radarInfo.size();i++) {
@@ -137,13 +167,17 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			}			
 			if (trackcnt<lasttrackcnt) {
 				// car has disappeared, so if we should count it if it crossed the threshold of "closeness" before disappearing
+				// also, there is no difference in how counting works for total vs lap ... just need to reset lap count whenever lap button pressed
 				if (crossedthresh) {
 					count = count + (lasttrackcnt-trackcnt);
+					lapcount = lapcount + (lasttrackcnt-trackcnt);
 				}
 			}
 			crossedthresh = rangeInfo[0] < THRESH;
 			lasttrackcnt=trackcnt;
 			countDataField.setData(count);			
+			countLapField.setData(lapcount);			
+			countSessionField.setData(count);			
 	        return count;
 		} else {
 			// only way to indicate when the radar isn't active is to set the range and speed to bogus (negative) values
@@ -151,15 +185,14 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
 			// of road that actually had a bunch of cars, but the radar was off.
 			for (var i=0;i<RANGETARGETS;i++) {
 			  rangeInfo[i] = -1;  // can keep this one as signed since taking up two bytes anyway ... so -1 still the "bogus" radar disabled value
-			}
-			for (var i=0;i<SPEEDTARGETS;i++) {
-		  	  speedInfo[i] = 255; // needed to update to unsigned so I can just use single byte ... consequently 255 is now the "bogus" value
+			  speedInfo[i] = 255;
 			}
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
 			countDataField.setData(count);	
-			passingSpeedDataFieldKPH.setData(0); 		
-			passingSpeedDataFieldMPH.setData(0); 		
+			countLapField.setData(lapcount);			
+			countSessionField.setData(count);			
+			passingSpeedDataField.setData(0); 		
 			return "--";
 		}		
     }
@@ -168,8 +201,14 @@ class MyBikeTrafficView extends WatchUi.SimpleDataField {
     // handle resetting count to 0 after activity has ended
     function onTimerReset() {
 		count=0;
+		lapcount=0;
 		lasttrackcnt=0;
 		crossedthresh = false;
+    }
+    
+    // simply reset the lapcount ... lap data already written out once per second (per documentation) overwriting previous lap message ... this is the way it's supposed to work!
+    function onTimerLap() {
+    	lapcount = 0;
     }
     
 }

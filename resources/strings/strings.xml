@@ -1,6 +1,7 @@
 <strings>
     <string id="AppName">MyBikeTraffic</string>
     <string id="mybiketraffic_count_label">Vehicle Count</string>
+    <string id="mybiketraffic_lapcount_label">Lap Vehicle Count</string>
     <string id="mybiketraffic_units_label"> </string>
     <string id="mybiketraffic_speedkph_label">KPH Passing Speeds (Relative)</string>
     <string id="mybiketraffic_speedmph_label">MPH Passing Speeds (Relative)</string>
