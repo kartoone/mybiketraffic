@@ -1,11 +1,7 @@
 using Toybox.Application;
-using Toybox.Position;
 
-class MyBikeTrafficApp extends Application.AppBase  {
+class MyBikeTrafficApp extends Application.AppBase {
 
-    var radarview;
-    var speedview;
-	
     function initialize() {
         AppBase.initialize();
     }
@@ -18,10 +14,9 @@ class MyBikeTrafficApp extends Application.AppBase  {
     function onStop(state) {
     }
 
-    // Return the initial view of your application here
+    //! Return the initial view of your application here
     function getInitialView() {
-		radarview = new MyBikeTrafficView();
-        return [ radarview ];
+        return [ new MyBikeTrafficView([self.getProperty("displayTotal"), self.getProperty("displayLap"), self.getProperty("displaySpeed")]) ];
     }
 
 }

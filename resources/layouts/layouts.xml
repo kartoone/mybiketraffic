@@ -1,0 +1,7 @@
+<layouts>
+    <!-- A generic, centered layout. -->
+    <layout id="MainLayout">
+        <drawable class="Background" />
+        <label id="label" x="95%" y="3" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
+    </layout>
+</layouts>
