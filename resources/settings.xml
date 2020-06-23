@@ -3,19 +3,22 @@
 <properties>
 <property id="displayTotal" type="boolean">true</property>
 <property id="displayLap" type="boolean">false</property>
-<property id="displaySpeed" type="boolean">false</property>
+<property id="displaySpeedRelative" type="boolean">false</property>
+<property id="displaySpeedAbsolute" type="boolean">false</property>
 </properties>
 
 <strings>
 <string id="totalTitle">Display vehicle total</string>
 <string id="lapTitle">Display lap total</string>
-<string id="speedTitle">Display approach speed</string>
+<string id="speedTitleRelative">Display approach speed (relative)</string>
+<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
 </strings>
 
 <settings>
 	<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
 	<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeed" title="@Strings.speedTitle"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displaySpeedRelative" title="@Strings.speedTitleRelative"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
 </settings>
 
 </resources>

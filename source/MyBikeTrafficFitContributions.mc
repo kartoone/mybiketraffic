@@ -12,7 +12,8 @@ class MyBikeTrafficFitContributions {
 	// public vars are directly accessed by the datafield for display purposes
 	var lapcount;
 	var count;
-	var approachspd;
+	var approachspd; // relative speed only
+	var absolutespd; // relative speed PLUS rider speed = absolute vehicle spd
 	var disabled;
 	hidden var lasttrackcnt;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
@@ -28,15 +29,16 @@ class MyBikeTrafficFitContributions {
 	var countDataField;
 	var countSessionField;
 	var countLapField;
-	var passingSpeedDataField;
+	var passingSpeedRelDataField;
+	var passingSpeedAbsDataField;
 
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
 	const BT_COUNT_FIELD_ID = 2; // current total count
 	const BT_COUNT_SESSION_FIELD_ID = 3; // current total count (same as regular count but the session field for activity summary)
 	const BT_COUNT_LAP_FIELD_ID = 4; // current lap count
-	const BT_PASSINGSPEED_KPH_FIELD_ID = 5; // speed of closest car (KPH) ... 0 if no cars currently on radar being tracked
-	const BT_PASSINGSPEED_MPH_FIELD_ID = 6; // speed of closest car (MPH) ... 0 if no cars currently on radar being tracked 
+	const BT_PASSINGSPEEDREL_FIELD_ID = 5; // relative speed of closest car (units based on device settings) ... 0 if no cars currently on radar being tracked
+	const BT_PASSINGSPEEDABS_FIELD_ID = 6; // absolute speed of closest car (units based on device settings) ... 0 if no cars currently on radar being tracked 
 //	const BT_THREAT_FIELD_ID = 4;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 5; 	threat side 0-left, 1-right
 	
@@ -47,6 +49,7 @@ class MyBikeTrafficFitContributions {
         count = 0;
         lasttrackcnt = 0;
         approachspd = 0;
+        absolutespd = 0;
         crossedthresh = false;
         disabled = true;
 		rangeDataField = datafield.createField( // 16 bytes
@@ -79,21 +82,18 @@ class MyBikeTrafficFitContributions {
             FitContributor.DATA_TYPE_UINT16,
             {:mesgType=>FitContributor.MESG_TYPE_LAP}
         );
-        if (metric) {
-			passingSpeedDataField = datafield.createField( // 1 byte (either this one or the if clause)
-	            "passing_speed",
-	            BT_PASSINGSPEED_KPH_FIELD_ID,
-	            FitContributor.DATA_TYPE_UINT8,
-	            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
-	        );
-	    } else {
-			passingSpeedDataField = datafield.createField( // 1 byte (either this one or the else clause)
-	            "passing_speed",
-	            BT_PASSINGSPEED_MPH_FIELD_ID,
-	            FitContributor.DATA_TYPE_UINT8,
-	            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
-	        );
-        }
+		passingSpeedRelDataField = datafield.createField( // 1 byte (either this one or the if clause)
+            "passing_speed",
+            BT_PASSINGSPEEDREL_FIELD_ID,
+            FitContributor.DATA_TYPE_UINT8,
+            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+        );
+		passingSpeedAbsDataField = datafield.createField( // 1 byte (either this one or the if clause)
+            "passing_speedabs",
+            BT_PASSINGSPEEDABS_FIELD_ID,
+            FitContributor.DATA_TYPE_UINT8,
+            {:mesgType=>FitContributor.MESG_TYPE_RECORD}
+        );
     }
    
     // The given info object contains all the current workout information.
@@ -121,9 +121,11 @@ class MyBikeTrafficFitContributions {
 		  	  speedInfo[i] = radarInfo[i].speed.toNumber();
 			}
 			approachspd = metric ? Math.round(speedInfo[0] * 3.6) : Math.round(speedInfo[0] * 2.23694);
+			absolutespd = approachspd > 0 ? (approachspd + (metric ? Math.round(info.currentSpeed * 3.6) : Math.round(info.currentSpeed * 2.23694))) : 0;
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
-			passingSpeedDataField.setData(approachspd);
+			passingSpeedRelDataField.setData(approachspd);
+			passingSpeedAbsDataField.setData(absolutespd);
 
 			var trackcnt = 0;
         	for(var i=0;i<radarInfo.size();i++) {
@@ -159,7 +161,8 @@ class MyBikeTrafficFitContributions {
 			countDataField.setData(count);	
 			countLapField.setData(lapcount);			
 			countSessionField.setData(count);			
-			passingSpeedDataField.setData(0); 		
+			passingSpeedRelDataField.setData(0); 		
+			passingSpeedAbsDataField.setData(0); 		
 		}		
 	}
 

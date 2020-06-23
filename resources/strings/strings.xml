@@ -1,11 +1,10 @@
 <strings>
-    <string id="AppName">MyBikeTrafficDeluxe</string>
+    <string id="AppName">MyBikeTraffic</string>
     <string id="label">VC</string>
     <string id="mybiketraffic_count_label">Vehicle Count</string>
     <string id="mybiketraffic_lapcount_label">Lap Vehicle Count</string>
     <string id="mybiketraffic_units_label"> </string>
-    <string id="mybiketraffic_speedkph_label">KPH Passing Speeds (Relative)</string>
-    <string id="mybiketraffic_speedmph_label">MPH Passing Speeds (Relative)</string>
-    <string id="mybiketraffic_unitskph_label">KPH</string>
-    <string id="mybiketraffic_unitsmph_label">MPH</string>
+    <string id="mybiketraffic_speedrel_label">Approach Speeds (Relative)</string>
+    <string id="mybiketraffic_speedabs_label">Vehicle Speeds (Absolute)</string>
+    <string id="mybiketraffic_speedunits_label">KPH/MPH</string>
 </strings>

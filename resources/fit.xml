@@ -22,22 +22,20 @@
 	    dataLabel="@Strings.mybiketraffic_lapcount_label"
 	    unitLabel="@Strings.mybiketraffic_units_label"
 	    />
-	    <fitField id="6"
-	    displayInChart="true"
-	    sortOrder = "3"
-	    precision = "0"
-	    chartTitle="@Strings.mybiketraffic_speedmph_label"
-	    dataLabel="@Strings.mybiketraffic_speedmph_label"
-	    unitLabel="@Strings.mybiketraffic_unitsmph_label"
-	    fillColor="#FF0000"
-	    />
    	    <fitField id="5"
 	    displayInChart="true"
 	    sortOrder = "3"
-	    precision = "0"
-	    chartTitle="@Strings.mybiketraffic_speedkph_label"
-	    dataLabel="@Strings.mybiketraffic_speedkph_label"
-	    unitLabel="@Strings.mybiketraffic_unitskph_label"
+	    chartTitle="@Strings.mybiketraffic_speedrel_label"
+	    dataLabel="@Strings.mybiketraffic_speedrel_label"
+	    unitLabel="@Strings.mybiketraffic_speedunits_label"
+	    fillColor="#FF0000"
+	    />
+   	    <fitField id="6"
+	    displayInChart="true"
+	    sortOrder = "4"
+	    chartTitle="@Strings.mybiketraffic_speedabs_label"
+	    dataLabel="@Strings.mybiketraffic_speedabs_label"
+	    unitLabel="@Strings.mybiketraffic_speedunits_label"
 	    fillColor="#FF0000"
 	    />
  	</fitContributions>
