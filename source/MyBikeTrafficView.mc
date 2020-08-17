@@ -3,7 +3,6 @@ using Toybox.Graphics;
 using Toybox.AntPlus;
 using Toybox.Sensor;
 
-const BORDER_PAD = 4;
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
 // ... so no need to reference the array (but probably should) once you have found the index for the font that fits
 var fonts = [Graphics.FONT_XTINY,Graphics.FONT_TINY,Graphics.FONT_SMALL,Graphics.FONT_MEDIUM,Graphics.FONT_LARGE,
@@ -21,7 +20,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var mLabelsTWO = ["VCnt", "Lap", "Relative", "Absolute"];
 	hidden var mLabelsTHREE = ["VC", "Lap", "Rel", "Abs"];
 	hidden var mLabelDebug;
-    hidden var mLabelY = 3; 
+    hidden var mLabelY = 2; 
     hidden var mLabelFont = Graphics.FONT_SMALL;
     hidden var mValueFont = Graphics.FONT_MEDIUM;
     hidden var mUnitsFont = Graphics.FONT_XTINY; // always use tiny font for kph/mph
@@ -29,6 +28,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var labelY; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
 	hidden var numFields = 0; // this ends up being a count of the array below which is read from the app settings
 	hidden var whichFields = [1, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed ... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
+	
+	hidden var testString = "8";   // start out using small text string for font layout ... change this as the counts get larger
+    hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
+    hidden var needLayout = false;  // flag to set if we need to manually re-layout b/c count has increased enough to increase number of digits
 	
 	// this is where all the real computational work happens - MyBikeTrafficFitConributions
 	hidden var mFitContributor; 
@@ -77,9 +80,13 @@ class MyBikeTrafficView extends WatchUi.DataField {
         
         mFitContributor = new MyBikeTrafficFitContributions(self, new AntPlus.BikeRadar(null), metric);
     }
+    
+    function countDigits(num) {
+      	return num<1000?num<100?num<10?1:2:num<1000?3:4:5;
+    }
 
     function selectFont(dc, width, height) {
-        var testString = "88.88"; //Dummy string to test data width
+        //var testString = "88.88"; //Dummy string to test data width
         var fontIdx;
         var dimensions;
         //Search through fonts from biggest to smallest
@@ -97,19 +104,21 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // 	1. displaying three fields, need to stack
     // 	2. displaying one or two fields, can go side-by-side, or (three fields if wide-layout)
     function onLayout(dc) {
+//    	System.println("onLayout");
         var width = dc.getWidth();
         var height = dc.getHeight();
-        var top = mLabelY + BORDER_PAD;
+        var top = 2;
 //        mLabelDebug = width + " " + height + " " + top;
         
         // lots of horizontal room for number of fields we are displaying ... more room if we do horizontal layout
 		if (numFields==1 || ((numFields < 3 || width > 180) && height<150)) {
 			vertical = false;
 			var vroom = height - top;
-			var vfontmax = Math.round(vroom*(2.0/3.0)); // allow the value to take up 2/3rds of vertical space
+			var labelDim = dc.getTextDimensions(testString, mLabelFont);
+			var vfontmax = vroom - labelDim[1];
 			var hfontmax = Math.round(width/numFields);
 			mValueFont = selectFont(dc, hfontmax, vfontmax);
-			labelY = [ top, top + (vroom*(1.0/3.0)) ];
+			labelY = [ top, labelDim[1] ];
 			// silly, but easiest way to do this is to simply handle all scenarios (1 field, 2 field, 3 fields, etc...) manually
 			switch (numFields) {
 				case 1: labelX = [ 0.5*width ]; break;
@@ -125,7 +134,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
         	var hfontmax = Math.round(width*(2.0/3.0));
         	labelX = [ Math.round(width*(1.15/3.0)) - 3, Math.round(width*(1.15/3.0)) + 3 ];
         	mValueFont = selectFont(dc, hfontmax, vfontmax);
-        	var dimensions = dc.getTextDimensions("88.88", mValueFont);
+        	var dimensions = dc.getTextDimensions(testString, mValueFont);
         	// dimensions[1] will have the height we need to space things out by
 			// silly, but easiest way to do this is to simply handle all scenarios (1 field, 2 field, 3 fields, etc...) manually
 			switch (numFields) {
@@ -150,6 +159,13 @@ class MyBikeTrafficView extends WatchUi.DataField {
 
     function compute(info) {
         mFitContributor.compute(info);
+        // see if we need to update fonts
+        var newtotalDigits = countDigits(whichFields[0]*mFitContributor.count)+countDigits(whichFields[1]*mFitContributor.lapcount);
+        if (newtotalDigits > totalDigits) {
+        	totalDigits = totalDigits + 1;
+        	testString = testString + "8"; // concatenate a digit onto the test string
+        	needLayout = true;
+        }
     }
 
     // Display the value you computed here. This will be called
@@ -175,6 +191,12 @@ class MyBikeTrafficView extends WatchUi.DataField {
     		spdstr = mFitContributor.approachspd.format("%d");
     		absstr = mFitContributor.absolutespd.format("%d");
     		unitsstr = metric?"kph":"mph"; 
+		}
+		
+		// see if we need to redo the layout (b/c font size needs to change)
+		if (needLayout) {
+		  needLayout = false;
+		  onLayout(dc);
 		}    	
 
         // Set the colors
@@ -255,8 +277,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately below speed value
-				   	var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
-	    	    	dc.drawText(labelX[valuei], labelY[1]+dimensions[1]-3, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
+				   	var fh = dc.getFontHeight(mValueFont);	    	    	
+	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    valuei = valuei + 1;
 	    	  }
