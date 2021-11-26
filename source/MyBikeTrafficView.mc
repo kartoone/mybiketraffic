@@ -1,6 +1,5 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
-using Toybox.AntPlus;
 using Toybox.Sensor;
 
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
@@ -16,9 +15,9 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	// layout related vars
 	// cannot use the strings file when drawing directly onto dc
 	hidden var mLabels;
-	hidden var mLabelsONE = ["VehicleCount", "LapVehicleCount", "Relative Vspd", "Absolute Vspd"];
-	hidden var mLabelsTWO = ["VCnt", "Lap", "Relative", "Absolute"];
-	hidden var mLabelsTHREE = ["VC", "Lap", "Rel", "Abs"];
+	hidden var mLabelsONE = ["VehicleCount", "LapVehicleCount", "Relative Vspd", "Absolute Vspd", "Last Vspd"];
+	hidden var mLabelsTWO = ["VCnt", "Lap", "Relative", "Absolute", "LAST"];
+	hidden var mLabelsTHREE = ["VC", "Lap", "Rel", "Abs", "Last"];
 	hidden var mLabelDebug;
     hidden var mLabelY = 2; 
     hidden var mLabelFont = Graphics.FONT_SMALL;
@@ -27,7 +26,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var labelX; // array of X coordinates (only two entries for vertical layout strategy, as many entries as data values being displayed for horizontal layout) 
 	hidden var labelY; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
 	hidden var numFields = 0; // this ends up being a count of the array below which is read from the app settings
-	hidden var whichFields = [1, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed ... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
+	hidden var whichFields = [1, 0, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed, position 4 - last vehicle speed... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
 	
 	hidden var testString = "8";   // start out using small text string for font layout ... change this as the counts get larger
     hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
@@ -35,7 +34,6 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	
 	// this is where all the real computational work happens - MyBikeTrafficFitConributions
 	hidden var mFitContributor; 
-	
 	
     function initialize(properties) {
         DataField.initialize();
@@ -49,13 +47,14 @@ class MyBikeTrafficView extends WatchUi.DataField {
         whichFields[1] = properties[1] ? 1 : 0;
         whichFields[2] = properties[2] ? 1 : 0;
         whichFields[3] = properties[3] ? 1 : 0;
+		whichFields[4] = properties[4] ? 1 : 0;
         
         // manually set how many and which fields visible to debug drawing the layout
-        // whichFields = [1, 1, 1, 0];
+        // whichFields = [1, 1, 1, 0, 0];
         
         // for simplicity, let's count how many fields are displayed
         var i;
-        for (i=0; i<whichFields.size(); i++) {
+        for (i=0; i<whichFields.size(); i++) {	
           numFields = numFields + whichFields[i];
         }
         
@@ -74,11 +73,12 @@ class MyBikeTrafficView extends WatchUi.DataField {
 				break;        		
         	case 3:
         	case 4:
+			case 5:
 				mLabels = mLabelsTHREE;
 				break;
 		}        		
         
-        mFitContributor = new MyBikeTrafficFitContributions(self, new AntPlus.BikeRadar(null), metric);
+        mFitContributor = new MyBikeTrafficFitContributions(self, metric);
     }
     
     function countDigits(num) {
@@ -125,6 +125,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 				case 2: labelX = [ 0.33*width, 0.67*width]; break;
 				case 3: labelX = [ 0.25*width, 0.55*width, 0.8*width]; break;
 				case 4: labelX = [ 0.2*width, 0.43*width, 0.63*width, 0.84*width]; break;
+				case 5: labelX = [ 0.12*width, 0.27*width, 0.43*width, 0.59*width, 0.84*width]; break;
 				default: break;
 			}
         } else {
@@ -142,6 +143,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 				case 2: labelY = [ top, top + dimensions[1]]; break;
 				case 3: labelY = [ top, top + dimensions[1], top + dimensions[1]*2 ]; break;
 				case 4: labelY = [ top, top + dimensions[1], top + dimensions[1]*2, top + dimensions[1]*3 ]; break;
+				case 5: labelY = [ top, top + dimensions[1], top + dimensions[1]*2, top + dimensions[1]*3, top+dimensions[1]*4 ]; break;
 				default: break;
 			}
         	vertical = true;
@@ -177,6 +179,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
     	var lapstr;
     	var spdstr;
     	var absstr;
+		var laststr;
     	var unitsstr;
     	
     	if (mFitContributor.disabled) {
@@ -184,12 +187,14 @@ class MyBikeTrafficView extends WatchUi.DataField {
     		lapstr = "--";
     		spdstr = "--";
     		absstr = "--";
+			laststr = "--";
     		unitsstr = " "; 
     	} else {
     		countstr = mFitContributor.count.format("%d");
     		lapstr = mFitContributor.lapcount.format("%d");
     		spdstr = mFitContributor.approachspd.format("%d");
     		absstr = mFitContributor.absolutespd.format("%d");
+			laststr = mFitContributor.lastspd.format("%d");
     		unitsstr = metric?"kph":"mph"; 
 		}
 		
@@ -238,6 +243,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	  		case 1: valstr = lapstr; speedflag = false; break;
 	    	  		case 2: valstr = spdstr; speedflag = true; break;
 	    	  		case 3: valstr = absstr; speedflag = true; break;
+					case 4: valstr = laststr; speedflag = true; break;
 	    	  		default: valstr = countstr; break;
 	    	  	}
 	    	    dc.drawText(labelX[1], labelY[valuei], mValueFont, valstr, Graphics.TEXT_JUSTIFY_LEFT);
@@ -272,6 +278,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	  		case 1: valstr = lapstr; speedflag = false; break;
 	    	  		case 2: valstr = spdstr; speedflag = true; break;
 	    	  		case 3: valstr = absstr; speedflag = true; break;
+					case 4: valstr = laststr; speedflag = true; break;
 	    	  		default: valstr = countstr; speedflag = false; break;
 	    	  	}
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);

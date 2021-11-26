@@ -1,11 +1,12 @@
 using Toybox.WatchUi;
 using Toybox.FitContributor;
 using Toybox.Sensor;
+using Toybox.AntPlus;
 
 class MyBikeTrafficFitContributions {
 
 	// radar related attributes
-	hidden var bikeRadar;  
+	var bikeRadar;  
 	
 	// vehicle count related attributes
 	// raw count of number of vehicles
@@ -14,6 +15,7 @@ class MyBikeTrafficFitContributions {
 	var count;
 	var approachspd; // relative speed only
 	var absolutespd; // relative speed PLUS rider speed = absolute vehicle spd
+	var lastspd;     // absolute speed only (relative + rider)... not reset between cars
 	var disabled;
 	hidden var lasttrackcnt;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
@@ -42,14 +44,15 @@ class MyBikeTrafficFitContributions {
 //	const BT_THREAT_FIELD_ID = 4;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 5; 	threat side 0-left, 1-right
 	
-    function initialize(datafield, bikeRadar, metric) {
+    function initialize(datafield, metric) {
         self.metric = metric;
-		self.bikeRadar = bikeRadar;
+		bikeRadar = new AntPlus.BikeRadar(null);
         lapcount = 0;
         count = 0;
         lasttrackcnt = 0;
         approachspd = 0;
         absolutespd = 0;
+		lastspd = 0;
         crossedthresh = false;
         disabled = true;
 		rangeDataField = datafield.createField( // 16 bytes
@@ -140,6 +143,12 @@ class MyBikeTrafficFitContributions {
 					count = count + (lasttrackcnt-trackcnt);
 					lapcount = lapcount + (lasttrackcnt-trackcnt);
 				}
+			} else {
+				// only update LAST passing speed to the current absolute speed of the closest car if it wasn't an erroneous "0" speed
+				// if this car has passed us on the next reading, it won't be updated so it will be preserved
+				if (absolutespd > 0) {
+					lastspd = absolutespd;
+				} 
 			}
 			crossedthresh = rangeInfo[0] < THRESH;
 			lasttrackcnt=trackcnt;
