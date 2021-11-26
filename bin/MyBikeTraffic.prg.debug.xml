@@ -1,559 +1,651 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <debugInfo>
-<pcToLineNum>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="3" lineNum="5" pc="268435456" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="3" lineNum="6" pc="268435460" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="4" lineNum="9" pc="268435479" symbol="onBikeRadarUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="4" lineNum="10" pc="268435483" symbol="onBikeRadarUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="45" pc="268435510" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="46" pc="268435514" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="47" pc="268435524" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="48" pc="268435534" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="49" pc="268435547" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="50" pc="268435560" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="51" pc="268435573" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="52" pc="268435586" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="53" pc="268435599" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="54" pc="268435609" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="55" pc="268435619" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="61" pc="268435705" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="67" pc="268435791" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="73" pc="268435861" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="79" pc="268435931" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="85" pc="268436001" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="91" pc="268436071" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="103" pc="268436142" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="104" pc="268436146" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="108" pc="268436165" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="109" pc="268436182" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="110" pc="268436192" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="113" pc="268436196" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="114" pc="268436207" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="115" pc="268436218" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="116" pc="268436223" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="117" pc="268436233" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="118" pc="268436254" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="120" pc="268436292" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="121" pc="268436313" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="123" pc="268436351" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="124" pc="268436435" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="125" pc="268436553" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="126" pc="268436573" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="127" pc="268436593" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="128" pc="268436619" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="130" pc="268436645" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="131" pc="268436652" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="132" pc="268436676" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="133" pc="268436696" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="136" pc="268436722" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="139" pc="268436736" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="140" pc="268436747" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="141" pc="268436775" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="144" pc="268436809" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="145" pc="268436834" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="146" pc="268436844" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="147" pc="268436870" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="148" pc="268436896" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="150" pc="268436925" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="154" pc="268436935" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="155" pc="268436956" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="156" pc="268436966" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="158" pc="268436989" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="159" pc="268437002" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="160" pc="268437022" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="161" pc="268437042" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="162" pc="268437068" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="163" pc="268437094" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="164" pc="268437120" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="165" pc="268437143" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="171" pc="268437167" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="172" pc="268437171" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="173" pc="268437184" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="174" pc="268437197" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="175" pc="268437210" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="9" lineNum="179" pc="268437221" symbol="onTimerLap"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="9" lineNum="180" pc="268437225" symbol="onTimerLap"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="9" pc="268437239" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="10" pc="268437243" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="14" pc="268437264" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="12" lineNum="17" pc="268437285" symbol="setColor"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="12" lineNum="18" pc="268437289" symbol="setColor"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="21" pc="268437300" symbol="draw"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="22" pc="268437304" symbol="draw"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="23" pc="268437336" symbol="draw"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="15" lineNum="12" pc="268437349" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="15" lineNum="13" pc="268437353" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="19" pc="268437376" symbol="onTemporalEvent"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="20" pc="268437380" symbol="onTemporalEvent"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="21" pc="268437380" symbol="onTemporalEvent"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="26" pc="268437411" symbol="onTemporalEvent"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="40" pc="268437445" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="41" pc="268437449" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="44" pc="268437467" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="45" pc="268437486" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="48" pc="268437517" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="49" pc="268437555" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="50" pc="268437593" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="51" pc="268437631" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="57" pc="268437669" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="58" pc="268437669" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="59" pc="268437699" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="64" pc="268437740" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="66" pc="268437856" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="67" pc="268437875" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="70" pc="268437888" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="71" pc="268437904" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="73" pc="268437907" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="74" pc="268437923" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="77" pc="268437926" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="78" pc="268437942" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="18" lineNum="81" pc="268437945" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="19" lineNum="84" pc="268438013" symbol="countDigits"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="19" lineNum="85" pc="268438017" symbol="countDigits"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="88" pc="268438100" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="90" pc="268438104" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="91" pc="268438104" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="93" pc="268438104" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="94" pc="268438140" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="95" pc="268438172" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="97" pc="268438203" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="100" pc="268438222" symbol="selectFont"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="106" pc="268438226" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="108" pc="268438230" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="109" pc="268438243" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="110" pc="268438256" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="114" pc="268438263" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="115" pc="268438328" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="116" pc="268438338" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="117" pc="268438345" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="118" pc="268438374" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="119" pc="268438387" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="120" pc="268438417" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="121" pc="268438442" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="123" pc="268438482" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="128" pc="268438576" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="124" pc="268438582" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="124" pc="268438612" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="125" pc="268438615" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="125" pc="268438661" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="126" pc="268438664" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="126" pc="268438726" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="127" pc="268438729" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="127" pc="268438807" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="132" pc="268438816" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="133" pc="268438823" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="134" pc="268438853" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="135" pc="268438880" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="136" pc="268438972" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="137" pc="268438997" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="140" pc="268439026" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="145" pc="268439120" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="141" pc="268439126" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="141" pc="268439150" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="142" pc="268439153" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="142" pc="268439196" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="143" pc="268439199" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="143" pc="268439267" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="144" pc="268439270" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="144" pc="268439363" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="147" pc="268439369" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="151" pc="268439379" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="152" pc="268439419" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="157" pc="268439444" symbol="onLayout"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="160" pc="268439448" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="161" pc="268439452" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="163" pc="268439472" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="164" pc="268439555" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="165" pc="268439569" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="166" pc="268439591" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="167" pc="268439613" symbol="compute"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="173" pc="268439627" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="176" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="177" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="178" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="179" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="180" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="182" pc="268439631" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="183" pc="268439648" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="184" pc="268439655" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="185" pc="268439662" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="186" pc="268439669" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="187" pc="268439676" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="189" pc="268439686" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="190" pc="268439716" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="191" pc="268439746" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="192" pc="268439776" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="193" pc="268439806" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="197" pc="268439832" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="198" pc="268439843" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="199" pc="268439853" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="203" pc="268439870" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="204" pc="268439883" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="205" pc="268439897" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="206" pc="268439911" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="207" pc="268439929" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="208" pc="268439943" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="211" pc="268439960" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="212" pc="268439976" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="215" pc="268439988" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="218" pc="268439992" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="220" pc="268440003" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="221" pc="268440029" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="222" pc="268440029" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="223" pc="268440036" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="224" pc="268440066" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="225" pc="268440086" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="226" pc="268440154" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="231" pc="268440180" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="232" pc="268440206" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="233" pc="268440213" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="234" pc="268440243" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="235" pc="268440263" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="236" pc="268440263" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="241" pc="268440351" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="241" pc="268440355" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="237" pc="268440361" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="237" pc="268440365" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="237" pc="268440369" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="238" pc="268440372" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="238" pc="268440376" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="238" pc="268440380" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="239" pc="268440383" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="239" pc="268440387" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="239" pc="268440391" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="240" pc="268440394" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="240" pc="268440398" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="240" pc="268440402" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="243" pc="268440408" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="244" pc="268440467" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="246" pc="268440472" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="247" pc="268440495" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="249" pc="268440572" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="254" pc="268440601" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="255" pc="268440627" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="256" pc="268440627" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="257" pc="268440634" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="258" pc="268440664" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="259" pc="268440684" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="260" pc="268440752" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="265" pc="268440778" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="266" pc="268440804" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="267" pc="268440811" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="268" pc="268440841" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="269" pc="268440861" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="270" pc="268440861" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="275" pc="268440949" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="275" pc="268440953" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="275" pc="268440957" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="271" pc="268440963" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="271" pc="268440967" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="271" pc="268440971" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="272" pc="268440974" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="272" pc="268440978" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="272" pc="268440982" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="273" pc="268440985" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="273" pc="268440989" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="273" pc="268440993" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="274" pc="268440996" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="274" pc="268441000" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="274" pc="268441004" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="277" pc="268441010" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="278" pc="268441069" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="280" pc="268441074" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="281" pc="268441095" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="283" pc="268441166" symbol="onUpdate"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="291" pc="268441193" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="292" pc="268441197" symbol="onTimerReset"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="296" pc="268441216" symbol="onTimerLap"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="297" pc="268441220" symbol="onTimerLap"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="27" lineNum="5" pc="268441239" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="27" lineNum="6" pc="268441243" symbol="initialize"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="28" lineNum="10" pc="268441262" symbol="onStart"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="29" lineNum="14" pc="268441267" symbol="onStop"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="30" lineNum="18" pc="268441272" symbol="getInitialView"/>
-<entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="30" lineNum="19" pc="268441276" symbol="getInitialView"/>
-<entry filename="Rez" id="36" lineNum="15" pc="268441416" symbol="MainLayout"/>
-<entry filename="Rez" id="36" lineNum="18" pc="268441428" symbol="MainLayout"/>
-<entry filename="Rez" id="36" lineNum="19" pc="268441452" symbol="MainLayout"/>
-<entry filename="Rez" id="36" lineNum="21" pc="268441597" symbol="MainLayout"/>
-</pcToLineNum>
-<symbolTable>
-<entry id="8388639" module="true" symbol="Graphics"/>
-<entry id="11" object="true" symbol="RadarBgServiceDelegate"/>
-<entry field="true" id="31" symbol="vertical"/>
-<entry field="true" id="40" symbol="mUnitsFont"/>
-<entry field="true" id="30" symbol="metric"/>
-<entry field="true" id="45" symbol="testString"/>
-<entry id="18" method="true" symbol="MainLayout"/>
-<entry id="49" method="true" symbol="countDigits"/>
-<entry id="8390643" method="true" symbol="onBikeRadarUpdate"/>
-<entry field="true" id="57" symbol="THRESH"/>
-<entry field="true" id="42" symbol="labelY"/>
-<entry field="true" id="41" symbol="labelX"/>
-<entry field="true" id="8388611" module="true" symbol="Toybox"/>
-<entry field="true" id="22" symbol="speedTitleRelative"/>
-<entry field="true" id="59" symbol="SPEEDTARGETS"/>
-<entry field="true" id="28" symbol="AppName"/>
-<entry field="true" id="61" symbol="speedDataField"/>
-<entry field="true" id="39" symbol="mValueFont"/>
-<entry id="8388772" module="true" object="true" symbol="Fonts"/>
-<entry field="true" id="70" symbol="BT_COUNT_SESSION_FIELD_ID"/>
-<entry field="true" id="27" symbol="mybiketraffic_lapcount_label"/>
-<entry id="8388648" module="true" symbol="WatchUi"/>
-<entry field="true" id="8389138" symbol="label"/>
-<entry id="8390148" method="true" symbol="onTemporalEvent"/>
-<entry id="14" object="true" symbol="MyBikeTrafficApp"/>
-<entry field="true" id="19" symbol="totalTitle"/>
-<entry id="8389410" module="true" symbol="AntPlus"/>
-<entry id="8389124" method="true" symbol="onUpdate"/>
-<entry field="true" id="8389065" symbol="locY"/>
-<entry field="true" id="8389064" symbol="locX"/>
-<entry field="true" id="8390439" symbol="disabled"/>
-<entry id="8388771" module="true" object="true" symbol="Drawables"/>
-<entry id="8389348" symbol="font"/>
-<entry field="true" id="69" symbol="BT_COUNT_FIELD_ID"/>
-<entry field="true" id="54" symbol="absolutespd"/>
-<entry id="16" module="true" symbol="Menus"/>
-<entry field="true" id="52" symbol="lapcount"/>
-<entry field="true" id="8389850" symbol="count"/>
-<entry id="8389122" method="true" symbol="onLayout"/>
-<entry field="true" id="20" symbol="mybiketraffic_units_label"/>
-<entry id="10" object="true" symbol="MyBikeTrafficFitContributions"/>
-<entry field="true" id="8389063" symbol="identifier"/>
-<entry field="true" id="72" symbol="BT_PASSINGSPEEDREL_FIELD_ID"/>
-<entry field="true" id="53" symbol="approachspd"/>
-<entry id="8389349" symbol="justification"/>
-<entry id="8389137" method="true" symbol="compute"/>
-<entry field="true" id="51" symbol="bikeRadar"/>
-<entry field="true" id="64" symbol="countLapField"/>
-<entry field="true" id="12" symbol="fonts"/>
-<entry field="true" id="25" symbol="mybiketraffic_speedabs_label"/>
-<entry id="8389131" method="true" symbol="setColor"/>
-<entry field="true" id="33" symbol="mLabelsONE"/>
-<entry field="true" id="47" symbol="needLayout"/>
-<entry field="true" id="56" symbol="crossedthresh"/>
-<entry id="8389752" method="true" symbol="onTimerReset"/>
-<entry field="true" id="38" symbol="mLabelFont"/>
-<entry field="true" id="29" symbol="mybiketraffic_speedrel_label"/>
-<entry field="true" id="73" symbol="BT_PASSINGSPEEDABS_FIELD_ID"/>
-<entry field="true" id="35" symbol="mLabelsTHREE"/>
-<entry field="true" id="67" symbol="BT_RANGE_FIELD_ID"/>
-<entry id="8388769" module="true" object="true" symbol="Rez"/>
-<entry id="50" method="true" symbol="selectFont"/>
-<entry field="true" id="43" symbol="numFields"/>
-<entry id="8390088" module="true" object="true" symbol="JsonData"/>
-<entry field="true" id="65" symbol="passingSpeedRelDataField"/>
-<entry field="true" id="48" symbol="mFitContributor"/>
-<entry field="true" id="8389130" symbol="mColor"/>
-<entry id="8389068" method="true" symbol="draw"/>
-<entry field="true" id="34" symbol="mLabelsTWO"/>
-<entry field="true" id="17" symbol="LauncherIcon"/>
-<entry id="8388643" module="true" symbol="Sensor"/>
-<entry field="true" id="24" symbol="lapTitle"/>
-<entry id="8388770" module="true" object="true" symbol="Strings"/>
-<entry id="8390146" module="true" object="true" symbol="Background"/>
-<entry id="8388702" method="true" symbol="initialize"/>
-<entry id="13" object="true" symbol="MyBikeTrafficView"/>
-<entry id="8389279" method="true" symbol="onStart"/>
-<entry id="8389780" module="true" symbol="FitContributor"/>
-<entry field="true" id="26" symbol="mybiketraffic_count_label"/>
-<entry field="true" id="36" symbol="mLabelDebug"/>
-<entry field="true" id="63" symbol="countSessionField"/>
-<entry id="8389751" method="true" symbol="onTimerLap"/>
-<entry id="8389280" method="true" symbol="getInitialView"/>
-<entry field="true" id="32" symbol="mLabels"/>
-<entry id="8389281" method="true" symbol="onStop"/>
-<entry field="true" id="37" symbol="mLabelY"/>
-<entry field="true" id="66" symbol="passingSpeedAbsDataField"/>
-<entry id="8389847" symbol="mesgType"/>
-<entry id="8389347" symbol="color"/>
-<entry field="true" id="23" symbol="speedTitleAbsolute"/>
-<entry field="true" id="46" symbol="totalDigits"/>
-<entry field="true" id="44" symbol="whichFields"/>
-<entry field="true" id="55" symbol="lasttrackcnt"/>
-<entry field="true" id="58" symbol="RANGETARGETS"/>
-<entry id="15" module="true" symbol="Layouts"/>
-<entry id="9" object="true" symbol="MyBikeRadarListener"/>
-<entry field="true" id="21" symbol="mybiketraffic_speedunits_label"/>
-<entry field="true" id="68" symbol="BT_SPEED_FIELD_ID"/>
-<entry id="8388635" module="true" symbol="Application"/>
-<entry field="true" id="71" symbol="BT_COUNT_LAP_FIELD_ID"/>
-<entry field="true" id="60" symbol="rangeDataField"/>
-<entry field="true" id="62" symbol="countDataField"/>
-</symbolTable>
-<localVars>
-<entry endPc="268435510" name="data" stackId="1" startPc="268435479"/>
-<entry endPc="268436142" name="metric" stackId="3" startPc="268435510"/>
-<entry endPc="268436142" name="datafield" stackId="1" startPc="268435510"/>
-<entry endPc="268436142" name="bikeRadar" stackId="2" startPc="268435510"/>
-<entry endPc="268436292" name="i" stackId="5" startPc="268436254"/>
-<entry endPc="268436351" name="i" stackId="6" startPc="268436313"/>
-<entry endPc="268436722" name="i" stackId="8" startPc="268436676"/>
-<entry endPc="268436922" name="trackcnt" stackId="7" startPc="268436223"/>
-<entry endPc="268436989" name="i" stackId="9" startPc="268436956"/>
-<entry endPc="268437166" name="speedInfo" stackId="4" startPc="268436146"/>
-<entry endPc="268437166" name="rangeInfo" stackId="3" startPc="268436146"/>
-<entry endPc="268437166" name="radarInfo" stackId="2" startPc="268436146"/>
-<entry endPc="268437167" name="info" stackId="1" startPc="268436142"/>
-<entry endPc="268437284" name="dictionary" stackId="1" startPc="268437243"/>
-<entry endPc="268437300" name="color" stackId="1" startPc="268437285"/>
-<entry endPc="268437349" name="dc" stackId="1" startPc="268437300"/>
-<entry endPc="268438012" name="i" stackId="3" startPc="268437449"/>
-<entry endPc="268438012" name="sys" stackId="2" startPc="268437449"/>
-<entry endPc="268438013" name="properties" stackId="1" startPc="268437445"/>
-<entry endPc="268438100" name="num" stackId="1" startPc="268438013"/>
-<entry endPc="268438225" name="fontIdx" stackId="4" startPc="268438104"/>
-<entry endPc="268438225" name="dimensions" stackId="5" startPc="268438104"/>
-<entry endPc="268438226" name="height" stackId="3" startPc="268438100"/>
-<entry endPc="268438226" name="dc" stackId="1" startPc="268438100"/>
-<entry endPc="268438226" name="width" stackId="2" startPc="268438100"/>
-<entry endPc="268438813" name="vroom" stackId="5" startPc="268438328"/>
-<entry endPc="268438813" name="hfontmax" stackId="8" startPc="268438328"/>
-<entry endPc="268438813" name="labelDim" stackId="6" startPc="268438328"/>
-<entry endPc="268438813" name="vfontmax" stackId="7" startPc="268438328"/>
-<entry endPc="268439379" name="vroom" stackId="9" startPc="268438816"/>
-<entry endPc="268439379" name="hfontmax" stackId="11" startPc="268438816"/>
-<entry endPc="268439379" name="dimensions" stackId="12" startPc="268438816"/>
-<entry endPc="268439379" name="vfontmax" stackId="10" startPc="268438816"/>
-<entry endPc="268439447" name="height" stackId="3" startPc="268438230"/>
-<entry endPc="268439447" name="width" stackId="2" startPc="268438230"/>
-<entry endPc="268439447" name="top" stackId="4" startPc="268438230"/>
-<entry endPc="268439448" name="dc" stackId="1" startPc="268438226"/>
-<entry endPc="268439626" name="newtotalDigits" stackId="2" startPc="268439452"/>
-<entry endPc="268439627" name="info" stackId="1" startPc="268439448"/>
-<entry endPc="268440569" name="dimensions" stackId="15" startPc="268440472"/>
-<entry endPc="268440582" name="valstr" stackId="14" startPc="268440263"/>
-<entry endPc="268440598" name="valuei" stackId="13" startPc="268440003"/>
-<entry endPc="268440598" name="i" stackId="11" startPc="268440003"/>
-<entry endPc="268440598" name="labeli" stackId="12" startPc="268440003"/>
-<entry endPc="268441163" name="fh" stackId="20" startPc="268441074"/>
-<entry endPc="268441176" name="valstr" stackId="19" startPc="268440861"/>
-<entry endPc="268441192" name="valuei" stackId="18" startPc="268440601"/>
-<entry endPc="268441192" name="i" stackId="16" startPc="268440601"/>
-<entry endPc="268441192" name="labeli" stackId="17" startPc="268440601"/>
-<entry endPc="268441192" name="fgColor" stackId="8" startPc="268439631"/>
-<entry endPc="268441192" name="countstr" stackId="2" startPc="268439631"/>
-<entry endPc="268441192" name="spdstr" stackId="4" startPc="268439631"/>
-<entry endPc="268441192" name="lapstr" stackId="3" startPc="268439631"/>
-<entry endPc="268441192" name="unitsstr" stackId="6" startPc="268439631"/>
-<entry endPc="268441192" name="speedflag" stackId="10" startPc="268439631"/>
-<entry endPc="268441192" name="bgColor" stackId="7" startPc="268439631"/>
-<entry endPc="268441192" name="absstr" stackId="5" startPc="268439631"/>
-<entry endPc="268441192" name="lblColor" stackId="9" startPc="268439631"/>
-<entry endPc="268441193" name="dc" stackId="1" startPc="268439627"/>
-<entry endPc="268441267" name="state" stackId="1" startPc="268441262"/>
-<entry endPc="268441272" name="state" stackId="1" startPc="268441267"/>
-<entry endPc="268441624" name="rez_cmp_local_text_label" stackId="3" startPc="268441428"/>
-<entry endPc="268441624" name="rez_cmp_local_custom_drawable_12815958291135680935" stackId="2" startPc="268441428"/>
-<entry endPc="268441625" name="dc" stackId="1" startPc="268441416"/>
-</localVars>
-<annotations/>
-<dataEntryOffsetMappings>
-<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
-<dataEntry offset="190" parentId="globals" symbolId="Background" type="class"/>
-<dataEntry offset="261" parentId="globals" symbolId="MyBikeRadarListener" type="class"/>
-<dataEntry offset="316" parentId="globals" symbolId="Rez" type="module"/>
-<dataEntry offset="395" parentId="Rez" symbolId="Drawables" type="module"/>
-<dataEntry offset="434" parentId="Rez" symbolId="Menus" type="module"/>
-<dataEntry offset="465" parentId="Rez" symbolId="Fonts" type="module"/>
-<dataEntry offset="496" parentId="Rez" symbolId="Layouts" type="module"/>
-<dataEntry offset="535" parentId="Rez" symbolId="JsonData" type="module"/>
-<dataEntry offset="566" parentId="Rez" symbolId="Strings" type="module"/>
-<dataEntry offset="693" parentId="globals" symbolId="RadarBgServiceDelegate" type="class"/>
-<dataEntry offset="748" parentId="globals" symbolId="MyBikeTrafficView" type="class"/>
-<dataEntry offset="1003" parentId="globals" symbolId="MyBikeTrafficApp" type="class"/>
-<dataEntry offset="1074" parentId="globals" symbolId="MyBikeTrafficFitContributions" type="class"/>
-</dataEntryOffsetMappings>
-<functions>
-<functionEntry accessMode="public" name="initialize" parent="MyBikeRadarListener">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onBikeRadarUpdate" parent="MyBikeRadarListener">
-<param id="data"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="initialize" parent="MyBikeTrafficFitContributions">
-<param id="datafield"/>
-<param id="bikeRadar"/>
-<param id="metric"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="compute" parent="MyBikeTrafficFitContributions">
-<param id="info"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onTimerReset" parent="MyBikeTrafficFitContributions">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onTimerLap" parent="MyBikeTrafficFitContributions">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="initialize" parent="Background">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="setColor" parent="Background">
-<param id="color"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="draw" parent="Background">
-<param id="dc"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="initialize" parent="RadarBgServiceDelegate">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onTemporalEvent" parent="RadarBgServiceDelegate">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="initialize" parent="MyBikeTrafficView">
-<param id="properties"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="countDigits" parent="MyBikeTrafficView">
-<param id="num"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="selectFont" parent="MyBikeTrafficView">
-<param id="dc"/>
-<param id="width"/>
-<param id="height"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onLayout" parent="MyBikeTrafficView">
-<param id="dc"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="compute" parent="MyBikeTrafficView">
-<param id="info"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onUpdate" parent="MyBikeTrafficView">
-<param id="dc"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onTimerReset" parent="MyBikeTrafficView">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onTimerLap" parent="MyBikeTrafficView">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="initialize" parent="MyBikeTrafficApp">
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onStart" parent="MyBikeTrafficApp">
-<param id="state"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="onStop" parent="MyBikeTrafficApp">
-<param id="state"/>
-<documentation/>
-</functionEntry>
-<functionEntry accessMode="public" name="getInitialView" parent="MyBikeTrafficApp">
-<documentation><![CDATA[<div class="description"> Return the initial view of your application here<br/></div>]]></documentation>
-</functionEntry>
-<functionEntry accessMode="public" name="MainLayout" parent="Layouts">
-<param id="dc"/>
-<documentation/>
-</functionEntry>
-</functions>
+    <manifest filename="/Users/briantoone/git/mybiketraffic/manifest.xml"/>
+    <pcToLineNum>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="1" lineNum="5" parent="globals/MyBikeRadarListener" pc="268435456" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="1" lineNum="6" parent="globals/MyBikeRadarListener" pc="268435460" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="2" lineNum="9" parent="globals/MyBikeRadarListener" pc="268435479" symbol="onBikeRadarUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="2" lineNum="10" parent="globals/MyBikeRadarListener" pc="268435483" symbol="onBikeRadarUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="3" lineNum="3" parent="globals/MyBikeRadarListener" pc="268441839" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/MyBikeRadarListener.mc" id="3" lineNum="3" parent="globals/MyBikeRadarListener" pc="268441839" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="45" parent="globals/MyBikeTrafficFitContributions" pc="268435510" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="46" parent="globals/MyBikeTrafficFitContributions" pc="268435514" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="47" parent="globals/MyBikeTrafficFitContributions" pc="268435524" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="48" parent="globals/MyBikeTrafficFitContributions" pc="268435534" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="49" parent="globals/MyBikeTrafficFitContributions" pc="268435547" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="50" parent="globals/MyBikeTrafficFitContributions" pc="268435560" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="51" parent="globals/MyBikeTrafficFitContributions" pc="268435573" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="52" parent="globals/MyBikeTrafficFitContributions" pc="268435586" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="53" parent="globals/MyBikeTrafficFitContributions" pc="268435599" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="54" parent="globals/MyBikeTrafficFitContributions" pc="268435609" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="55" parent="globals/MyBikeTrafficFitContributions" pc="268435619" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="61" parent="globals/MyBikeTrafficFitContributions" pc="268435705" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="67" parent="globals/MyBikeTrafficFitContributions" pc="268435791" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="73" parent="globals/MyBikeTrafficFitContributions" pc="268435861" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="79" parent="globals/MyBikeTrafficFitContributions" pc="268435931" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="85" parent="globals/MyBikeTrafficFitContributions" pc="268436001" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="5" lineNum="91" parent="globals/MyBikeTrafficFitContributions" pc="268436071" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="103" parent="globals/MyBikeTrafficFitContributions" pc="268436142" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="104" parent="globals/MyBikeTrafficFitContributions" pc="268436146" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="108" parent="globals/MyBikeTrafficFitContributions" pc="268436165" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="109" parent="globals/MyBikeTrafficFitContributions" pc="268436182" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="110" parent="globals/MyBikeTrafficFitContributions" pc="268436192" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="113" parent="globals/MyBikeTrafficFitContributions" pc="268436196" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="114" parent="globals/MyBikeTrafficFitContributions" pc="268436207" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="115" parent="globals/MyBikeTrafficFitContributions" pc="268436218" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="116" parent="globals/MyBikeTrafficFitContributions" pc="268436223" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="117" parent="globals/MyBikeTrafficFitContributions" pc="268436233" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="118" parent="globals/MyBikeTrafficFitContributions" pc="268436254" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="120" parent="globals/MyBikeTrafficFitContributions" pc="268436292" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="121" parent="globals/MyBikeTrafficFitContributions" pc="268436313" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="123" parent="globals/MyBikeTrafficFitContributions" pc="268436351" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="124" parent="globals/MyBikeTrafficFitContributions" pc="268436435" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="125" parent="globals/MyBikeTrafficFitContributions" pc="268436553" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="126" parent="globals/MyBikeTrafficFitContributions" pc="268436573" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="127" parent="globals/MyBikeTrafficFitContributions" pc="268436593" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="128" parent="globals/MyBikeTrafficFitContributions" pc="268436619" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="130" parent="globals/MyBikeTrafficFitContributions" pc="268436645" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="131" parent="globals/MyBikeTrafficFitContributions" pc="268436652" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="132" parent="globals/MyBikeTrafficFitContributions" pc="268436676" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="133" parent="globals/MyBikeTrafficFitContributions" pc="268436696" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="136" parent="globals/MyBikeTrafficFitContributions" pc="268436722" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="139" parent="globals/MyBikeTrafficFitContributions" pc="268436736" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="140" parent="globals/MyBikeTrafficFitContributions" pc="268436747" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="141" parent="globals/MyBikeTrafficFitContributions" pc="268436775" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="144" parent="globals/MyBikeTrafficFitContributions" pc="268436809" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="145" parent="globals/MyBikeTrafficFitContributions" pc="268436834" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="146" parent="globals/MyBikeTrafficFitContributions" pc="268436844" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="147" parent="globals/MyBikeTrafficFitContributions" pc="268436870" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="148" parent="globals/MyBikeTrafficFitContributions" pc="268436896" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="150" parent="globals/MyBikeTrafficFitContributions" pc="268436925" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="154" parent="globals/MyBikeTrafficFitContributions" pc="268436935" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="155" parent="globals/MyBikeTrafficFitContributions" pc="268436956" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="156" parent="globals/MyBikeTrafficFitContributions" pc="268436966" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="158" parent="globals/MyBikeTrafficFitContributions" pc="268436989" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="159" parent="globals/MyBikeTrafficFitContributions" pc="268437002" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="160" parent="globals/MyBikeTrafficFitContributions" pc="268437022" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="161" parent="globals/MyBikeTrafficFitContributions" pc="268437042" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="162" parent="globals/MyBikeTrafficFitContributions" pc="268437068" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="163" parent="globals/MyBikeTrafficFitContributions" pc="268437094" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="164" parent="globals/MyBikeTrafficFitContributions" pc="268437120" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="6" lineNum="165" parent="globals/MyBikeTrafficFitContributions" pc="268437143" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="171" parent="globals/MyBikeTrafficFitContributions" pc="268437167" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="172" parent="globals/MyBikeTrafficFitContributions" pc="268437171" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="173" parent="globals/MyBikeTrafficFitContributions" pc="268437184" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="174" parent="globals/MyBikeTrafficFitContributions" pc="268437197" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="7" lineNum="175" parent="globals/MyBikeTrafficFitContributions" pc="268437210" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="179" parent="globals/MyBikeTrafficFitContributions" pc="268437221" symbol="onTimerLap"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="8" lineNum="180" parent="globals/MyBikeTrafficFitContributions" pc="268437225" symbol="onTimerLap"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficFitContributions.mc" id="9" lineNum="5" parent="globals/MyBikeTrafficFitContributions" pc="268442269" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="9" parent="globals/Background" pc="268437239" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="10" parent="globals/Background" pc="268437243" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="11" lineNum="14" parent="globals/Background" pc="268437264" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="12" lineNum="17" parent="globals/Background" pc="268437285" symbol="setColor"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="12" lineNum="18" parent="globals/Background" pc="268437289" symbol="setColor"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="21" parent="globals/Background" pc="268437300" symbol="draw"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="22" parent="globals/Background" pc="268437304" symbol="draw"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="13" lineNum="23" parent="globals/Background" pc="268437336" symbol="draw"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="14" lineNum="5" parent="globals/Background" pc="268441820" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficBackground.mc" id="14" lineNum="5" parent="globals/Background" pc="268441820" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="12" parent="globals/RadarBgServiceDelegate" pc="268437349" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="16" lineNum="13" parent="globals/RadarBgServiceDelegate" pc="268437353" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="17" lineNum="19" parent="globals/RadarBgServiceDelegate" pc="268437376" symbol="onTemporalEvent"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="17" lineNum="20" parent="globals/RadarBgServiceDelegate" pc="268437380" symbol="onTemporalEvent"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="17" lineNum="21" parent="globals/RadarBgServiceDelegate" pc="268437380" symbol="onTemporalEvent"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="17" lineNum="26" parent="globals/RadarBgServiceDelegate" pc="268437411" symbol="onTemporalEvent"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="18" lineNum="10" parent="globals/RadarBgServiceDelegate" pc="268441888" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/experimental/RadarBgServiceDelegate.mc" id="18" lineNum="10" parent="globals/RadarBgServiceDelegate" pc="268441888" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="40" parent="globals/MyBikeTrafficView" pc="268437445" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="41" parent="globals/MyBikeTrafficView" pc="268437449" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="44" parent="globals/MyBikeTrafficView" pc="268437467" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="45" parent="globals/MyBikeTrafficView" pc="268437486" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="48" parent="globals/MyBikeTrafficView" pc="268437517" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="49" parent="globals/MyBikeTrafficView" pc="268437555" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="50" parent="globals/MyBikeTrafficView" pc="268437593" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="51" parent="globals/MyBikeTrafficView" pc="268437631" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="57" parent="globals/MyBikeTrafficView" pc="268437669" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="58" parent="globals/MyBikeTrafficView" pc="268437669" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="59" parent="globals/MyBikeTrafficView" pc="268437699" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="64" parent="globals/MyBikeTrafficView" pc="268437740" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="66" parent="globals/MyBikeTrafficView" pc="268437856" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="67" parent="globals/MyBikeTrafficView" pc="268437875" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="70" parent="globals/MyBikeTrafficView" pc="268437888" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="71" parent="globals/MyBikeTrafficView" pc="268437904" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="73" parent="globals/MyBikeTrafficView" pc="268437907" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="74" parent="globals/MyBikeTrafficView" pc="268437923" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="77" parent="globals/MyBikeTrafficView" pc="268437926" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="78" parent="globals/MyBikeTrafficView" pc="268437942" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="20" lineNum="81" parent="globals/MyBikeTrafficView" pc="268437945" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="84" parent="globals/MyBikeTrafficView" pc="268438013" symbol="countDigits"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="21" lineNum="85" parent="globals/MyBikeTrafficView" pc="268438017" symbol="countDigits"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="88" parent="globals/MyBikeTrafficView" pc="268438100" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="90" parent="globals/MyBikeTrafficView" pc="268438104" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="91" parent="globals/MyBikeTrafficView" pc="268438104" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="93" parent="globals/MyBikeTrafficView" pc="268438104" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="94" parent="globals/MyBikeTrafficView" pc="268438140" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="95" parent="globals/MyBikeTrafficView" pc="268438172" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="97" parent="globals/MyBikeTrafficView" pc="268438203" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="22" lineNum="100" parent="globals/MyBikeTrafficView" pc="268438222" symbol="selectFont"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="106" parent="globals/MyBikeTrafficView" pc="268438226" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="108" parent="globals/MyBikeTrafficView" pc="268438230" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="109" parent="globals/MyBikeTrafficView" pc="268438243" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="110" parent="globals/MyBikeTrafficView" pc="268438256" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="114" parent="globals/MyBikeTrafficView" pc="268438263" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="115" parent="globals/MyBikeTrafficView" pc="268438328" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="116" parent="globals/MyBikeTrafficView" pc="268438338" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="117" parent="globals/MyBikeTrafficView" pc="268438345" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="118" parent="globals/MyBikeTrafficView" pc="268438374" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="119" parent="globals/MyBikeTrafficView" pc="268438387" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="120" parent="globals/MyBikeTrafficView" pc="268438417" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="121" parent="globals/MyBikeTrafficView" pc="268438442" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="123" parent="globals/MyBikeTrafficView" pc="268438482" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="128" parent="globals/MyBikeTrafficView" pc="268438576" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="124" parent="globals/MyBikeTrafficView" pc="268438582" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="124" parent="globals/MyBikeTrafficView" pc="268438612" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="125" parent="globals/MyBikeTrafficView" pc="268438615" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="125" parent="globals/MyBikeTrafficView" pc="268438661" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="126" parent="globals/MyBikeTrafficView" pc="268438664" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="126" parent="globals/MyBikeTrafficView" pc="268438726" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="127" parent="globals/MyBikeTrafficView" pc="268438729" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="127" parent="globals/MyBikeTrafficView" pc="268438807" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="132" parent="globals/MyBikeTrafficView" pc="268438816" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="133" parent="globals/MyBikeTrafficView" pc="268438823" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="134" parent="globals/MyBikeTrafficView" pc="268438853" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="135" parent="globals/MyBikeTrafficView" pc="268438880" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="136" parent="globals/MyBikeTrafficView" pc="268438972" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="137" parent="globals/MyBikeTrafficView" pc="268438997" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="140" parent="globals/MyBikeTrafficView" pc="268439026" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="145" parent="globals/MyBikeTrafficView" pc="268439120" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="141" parent="globals/MyBikeTrafficView" pc="268439126" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="141" parent="globals/MyBikeTrafficView" pc="268439150" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="142" parent="globals/MyBikeTrafficView" pc="268439153" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="142" parent="globals/MyBikeTrafficView" pc="268439196" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="143" parent="globals/MyBikeTrafficView" pc="268439199" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="143" parent="globals/MyBikeTrafficView" pc="268439267" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="144" parent="globals/MyBikeTrafficView" pc="268439270" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="144" parent="globals/MyBikeTrafficView" pc="268439363" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="147" parent="globals/MyBikeTrafficView" pc="268439369" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="151" parent="globals/MyBikeTrafficView" pc="268439379" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="152" parent="globals/MyBikeTrafficView" pc="268439419" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="23" lineNum="157" parent="globals/MyBikeTrafficView" pc="268439444" symbol="onLayout"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="160" parent="globals/MyBikeTrafficView" pc="268439448" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="161" parent="globals/MyBikeTrafficView" pc="268439452" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="163" parent="globals/MyBikeTrafficView" pc="268439472" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="164" parent="globals/MyBikeTrafficView" pc="268439555" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="165" parent="globals/MyBikeTrafficView" pc="268439569" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="166" parent="globals/MyBikeTrafficView" pc="268439591" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="24" lineNum="167" parent="globals/MyBikeTrafficView" pc="268439613" symbol="compute"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="173" parent="globals/MyBikeTrafficView" pc="268439627" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="176" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="177" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="178" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="179" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="180" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="182" parent="globals/MyBikeTrafficView" pc="268439631" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="183" parent="globals/MyBikeTrafficView" pc="268439648" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="184" parent="globals/MyBikeTrafficView" pc="268439655" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="185" parent="globals/MyBikeTrafficView" pc="268439662" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="186" parent="globals/MyBikeTrafficView" pc="268439669" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="187" parent="globals/MyBikeTrafficView" pc="268439676" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="189" parent="globals/MyBikeTrafficView" pc="268439686" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="190" parent="globals/MyBikeTrafficView" pc="268439716" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="191" parent="globals/MyBikeTrafficView" pc="268439746" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="192" parent="globals/MyBikeTrafficView" pc="268439776" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="193" parent="globals/MyBikeTrafficView" pc="268439806" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="197" parent="globals/MyBikeTrafficView" pc="268439832" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="198" parent="globals/MyBikeTrafficView" pc="268439843" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="199" parent="globals/MyBikeTrafficView" pc="268439853" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="203" parent="globals/MyBikeTrafficView" pc="268439870" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="204" parent="globals/MyBikeTrafficView" pc="268439883" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="205" parent="globals/MyBikeTrafficView" pc="268439897" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="206" parent="globals/MyBikeTrafficView" pc="268439911" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="207" parent="globals/MyBikeTrafficView" pc="268439929" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="208" parent="globals/MyBikeTrafficView" pc="268439943" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="211" parent="globals/MyBikeTrafficView" pc="268439960" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="212" parent="globals/MyBikeTrafficView" pc="268439976" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="215" parent="globals/MyBikeTrafficView" pc="268439988" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="218" parent="globals/MyBikeTrafficView" pc="268439992" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="220" parent="globals/MyBikeTrafficView" pc="268440003" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="221" parent="globals/MyBikeTrafficView" pc="268440029" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="222" parent="globals/MyBikeTrafficView" pc="268440029" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="223" parent="globals/MyBikeTrafficView" pc="268440036" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="224" parent="globals/MyBikeTrafficView" pc="268440066" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="225" parent="globals/MyBikeTrafficView" pc="268440086" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="226" parent="globals/MyBikeTrafficView" pc="268440154" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="231" parent="globals/MyBikeTrafficView" pc="268440180" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="232" parent="globals/MyBikeTrafficView" pc="268440206" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="233" parent="globals/MyBikeTrafficView" pc="268440213" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="234" parent="globals/MyBikeTrafficView" pc="268440243" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="235" parent="globals/MyBikeTrafficView" pc="268440263" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="236" parent="globals/MyBikeTrafficView" pc="268440263" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="241" parent="globals/MyBikeTrafficView" pc="268440351" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="241" parent="globals/MyBikeTrafficView" pc="268440355" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="237" parent="globals/MyBikeTrafficView" pc="268440361" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="237" parent="globals/MyBikeTrafficView" pc="268440365" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="237" parent="globals/MyBikeTrafficView" pc="268440369" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="238" parent="globals/MyBikeTrafficView" pc="268440372" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="238" parent="globals/MyBikeTrafficView" pc="268440376" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="238" parent="globals/MyBikeTrafficView" pc="268440380" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="239" parent="globals/MyBikeTrafficView" pc="268440383" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="239" parent="globals/MyBikeTrafficView" pc="268440387" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="239" parent="globals/MyBikeTrafficView" pc="268440391" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="240" parent="globals/MyBikeTrafficView" pc="268440394" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="240" parent="globals/MyBikeTrafficView" pc="268440398" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="240" parent="globals/MyBikeTrafficView" pc="268440402" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="243" parent="globals/MyBikeTrafficView" pc="268440408" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="244" parent="globals/MyBikeTrafficView" pc="268440467" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="246" parent="globals/MyBikeTrafficView" pc="268440472" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="247" parent="globals/MyBikeTrafficView" pc="268440495" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="249" parent="globals/MyBikeTrafficView" pc="268440572" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="254" parent="globals/MyBikeTrafficView" pc="268440601" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="255" parent="globals/MyBikeTrafficView" pc="268440627" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="256" parent="globals/MyBikeTrafficView" pc="268440627" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="257" parent="globals/MyBikeTrafficView" pc="268440634" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="258" parent="globals/MyBikeTrafficView" pc="268440664" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="259" parent="globals/MyBikeTrafficView" pc="268440684" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="260" parent="globals/MyBikeTrafficView" pc="268440752" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="265" parent="globals/MyBikeTrafficView" pc="268440778" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="266" parent="globals/MyBikeTrafficView" pc="268440804" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="267" parent="globals/MyBikeTrafficView" pc="268440811" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="268" parent="globals/MyBikeTrafficView" pc="268440841" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="269" parent="globals/MyBikeTrafficView" pc="268440861" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="270" parent="globals/MyBikeTrafficView" pc="268440861" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="275" parent="globals/MyBikeTrafficView" pc="268440949" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="275" parent="globals/MyBikeTrafficView" pc="268440953" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="275" parent="globals/MyBikeTrafficView" pc="268440957" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="271" parent="globals/MyBikeTrafficView" pc="268440963" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="271" parent="globals/MyBikeTrafficView" pc="268440967" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="271" parent="globals/MyBikeTrafficView" pc="268440971" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="272" parent="globals/MyBikeTrafficView" pc="268440974" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="272" parent="globals/MyBikeTrafficView" pc="268440978" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="272" parent="globals/MyBikeTrafficView" pc="268440982" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="273" parent="globals/MyBikeTrafficView" pc="268440985" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="273" parent="globals/MyBikeTrafficView" pc="268440989" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="273" parent="globals/MyBikeTrafficView" pc="268440993" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="274" parent="globals/MyBikeTrafficView" pc="268440996" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="274" parent="globals/MyBikeTrafficView" pc="268441000" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="274" parent="globals/MyBikeTrafficView" pc="268441004" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="277" parent="globals/MyBikeTrafficView" pc="268441010" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="278" parent="globals/MyBikeTrafficView" pc="268441069" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="280" parent="globals/MyBikeTrafficView" pc="268441074" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="281" parent="globals/MyBikeTrafficView" pc="268441095" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="25" lineNum="283" parent="globals/MyBikeTrafficView" pc="268441166" symbol="onUpdate"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="26" lineNum="291" parent="globals/MyBikeTrafficView" pc="268441193" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="26" lineNum="292" parent="globals/MyBikeTrafficView" pc="268441197" symbol="onTimerReset"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="27" lineNum="296" parent="globals/MyBikeTrafficView" pc="268441216" symbol="onTimerLap"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="27" lineNum="297" parent="globals/MyBikeTrafficView" pc="268441220" symbol="onTimerLap"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="11" parent="globals/MyBikeTrafficView" pc="268441907" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="19" parent="globals/MyBikeTrafficView" pc="268441925" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="20" parent="globals/MyBikeTrafficView" pc="268441991" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="21" parent="globals/MyBikeTrafficView" pc="268442057" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="24" parent="globals/MyBikeTrafficView" pc="268442123" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="25" parent="globals/MyBikeTrafficView" pc="268442143" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="26" parent="globals/MyBikeTrafficView" pc="268442163" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="30" parent="globals/MyBikeTrafficView" pc="268442183" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="28" lineNum="11" parent="globals/MyBikeTrafficView" pc="268441907" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficView.mc" id="29" lineNum="8" parent="globals" pc="268441625" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="30" lineNum="5" parent="globals/MyBikeTrafficApp" pc="268441239" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="30" lineNum="6" parent="globals/MyBikeTrafficApp" pc="268441243" symbol="initialize"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="31" lineNum="10" parent="globals/MyBikeTrafficApp" pc="268441262" symbol="onStart"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="32" lineNum="14" parent="globals/MyBikeTrafficApp" pc="268441267" symbol="onStop"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="33" lineNum="18" parent="globals/MyBikeTrafficApp" pc="268441272" symbol="getInitialView"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="33" lineNum="19" parent="globals/MyBikeTrafficApp" pc="268441276" symbol="getInitialView"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="34" lineNum="3" parent="globals/MyBikeTrafficApp" pc="268442250" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/briantoone/git/mybiketraffic/source/MyBikeTrafficApp.mc" id="34" lineNum="3" parent="globals/MyBikeTrafficApp" pc="268442250" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="36" lineNum="2" parent="globals/Rez/Drawables" pc="268441882" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="37" lineNum="6" parent="globals/Rez/Fonts" pc="268441884" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="38" lineNum="8" parent="globals/Rez/JsonData" pc="268441886" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="39" lineNum="17" parent="globals/Rez/Layouts" pc="268441416" symbol="MainLayout"/>
+        <entry filename="Rez" id="39" lineNum="20" parent="globals/Rez/Layouts" pc="268441428" symbol="MainLayout"/>
+        <entry filename="Rez" id="39" lineNum="21" parent="globals/Rez/Layouts" pc="268441452" symbol="MainLayout"/>
+        <entry filename="Rez" id="39" lineNum="23" parent="globals/Rez/Layouts" pc="268441597" symbol="MainLayout"/>
+        <entry filename="Rez" id="40" lineNum="10" parent="globals/Rez/Layouts" pc="268441885" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="41" lineNum="28" parent="globals/Rez/Menus" pc="268441883" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="42" lineNum="30" parent="globals/Rez/Strings" pc="268441887" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="43" lineNum="1" parent="globals/Rez" pc="268441858" symbol="&lt;init&gt;"/>
+        <entry filename="Rez" id="43" lineNum="1" parent="globals/Rez" pc="268441858" symbol="&lt;init&gt;"/>
+    </pcToLineNum>
+    <symbolTable>
+        <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry id="11" object="true" symbol="RadarBgServiceDelegate"/>
+        <entry field="true" id="31" symbol="vertical"/>
+        <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+        <entry id="4" module="true" symbol="globals/Rez/Menus"/>
+        <entry field="true" id="40" symbol="mUnitsFont"/>
+        <entry field="true" id="30" symbol="metric"/>
+        <entry field="true" id="45" symbol="testString"/>
+        <entry id="18" method="true" symbol="MainLayout"/>
+        <entry id="49" method="true" symbol="countDigits"/>
+        <entry id="8390643" method="true" symbol="onBikeRadarUpdate"/>
+        <entry field="true" id="57" symbol="THRESH"/>
+        <entry field="true" id="42" symbol="labelY"/>
+        <entry field="true" id="41" symbol="labelX"/>
+        <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+        <entry field="true" id="22" symbol="speedTitleRelative"/>
+        <entry field="true" id="59" symbol="SPEEDTARGETS"/>
+        <entry field="true" id="28" symbol="AppName"/>
+        <entry field="true" id="61" symbol="speedDataField"/>
+        <entry field="true" id="39" symbol="mValueFont"/>
+        <entry id="8" module="true" symbol="globals/Rez/Strings"/>
+        <entry id="8388772" module="true" object="true" symbol="Fonts"/>
+        <entry field="true" id="70" symbol="BT_COUNT_SESSION_FIELD_ID"/>
+        <entry field="true" id="27" symbol="mybiketraffic_lapcount_label"/>
+        <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry field="true" id="8389138" symbol="label"/>
+        <entry id="2" module="true" symbol="globals/Rez"/>
+        <entry id="8390148" method="true" symbol="onTemporalEvent"/>
+        <entry id="14" object="true" symbol="MyBikeTrafficApp"/>
+        <entry field="true" id="19" symbol="totalTitle"/>
+        <entry id="8389410" module="true" symbol="AntPlus"/>
+        <entry id="8389124" method="true" symbol="onUpdate"/>
+        <entry field="true" id="8389065" symbol="locY"/>
+        <entry field="true" id="8389064" symbol="locX"/>
+        <entry field="true" id="8390439" symbol="disabled"/>
+        <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+        <entry id="8389348" symbol="font"/>
+        <entry field="true" id="69" symbol="BT_COUNT_FIELD_ID"/>
+        <entry field="true" id="54" symbol="absolutespd"/>
+        <entry id="16" module="true" symbol="Menus"/>
+        <entry id="6" module="true" symbol="globals/Rez/Layouts"/>
+        <entry field="true" id="52" symbol="lapcount"/>
+        <entry field="true" id="8389850" symbol="count"/>
+        <entry id="8389122" method="true" symbol="onLayout"/>
+        <entry field="true" id="20" symbol="mybiketraffic_units_label"/>
+        <entry id="10" object="true" symbol="MyBikeTrafficFitContributions"/>
+        <entry field="true" id="8389063" symbol="identifier"/>
+        <entry field="true" id="72" symbol="BT_PASSINGSPEEDREL_FIELD_ID"/>
+        <entry field="true" id="53" symbol="approachspd"/>
+        <entry id="8389349" symbol="justification"/>
+        <entry id="8389137" method="true" symbol="compute"/>
+        <entry field="true" id="51" symbol="bikeRadar"/>
+        <entry field="true" id="64" symbol="countLapField"/>
+        <entry field="true" id="12" symbol="fonts"/>
+        <entry field="true" id="25" symbol="mybiketraffic_speedabs_label"/>
+        <entry id="8389131" method="true" symbol="setColor"/>
+        <entry id="7" module="true" symbol="globals/Rez/JsonData"/>
+        <entry field="true" id="33" symbol="mLabelsONE"/>
+        <entry field="true" id="47" symbol="needLayout"/>
+        <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+        <entry field="true" id="56" symbol="crossedthresh"/>
+        <entry id="8389752" method="true" symbol="onTimerReset"/>
+        <entry field="true" id="38" symbol="mLabelFont"/>
+        <entry field="true" id="29" symbol="mybiketraffic_speedrel_label"/>
+        <entry field="true" id="73" symbol="BT_PASSINGSPEEDABS_FIELD_ID"/>
+        <entry field="true" id="35" symbol="mLabelsTHREE"/>
+        <entry field="true" id="67" symbol="BT_RANGE_FIELD_ID"/>
+        <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="50" method="true" symbol="selectFont"/>
+        <entry id="8388640" module="true" symbol="Lang"/>
+        <entry field="true" id="43" symbol="numFields"/>
+        <entry id="8390088" module="true" object="true" symbol="JsonData"/>
+        <entry field="true" id="65" symbol="passingSpeedRelDataField"/>
+        <entry field="true" id="48" symbol="mFitContributor"/>
+        <entry field="true" id="8389130" symbol="mColor"/>
+        <entry id="8389068" method="true" symbol="draw"/>
+        <entry field="true" id="34" symbol="mLabelsTWO"/>
+        <entry field="true" id="17" symbol="LauncherIcon"/>
+        <entry id="8388610" symbol="statics"/>
+        <entry id="8388643" module="true" symbol="Sensor"/>
+        <entry id="8389350" module="true" symbol="globals"/>
+        <entry field="true" id="24" symbol="lapTitle"/>
+        <entry id="8388770" module="true" object="true" symbol="Strings"/>
+        <entry id="8390146" module="true" object="true" symbol="Background"/>
+        <entry id="8388702" method="true" symbol="initialize"/>
+        <entry id="13" object="true" symbol="MyBikeTrafficView"/>
+        <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="8389780" module="true" symbol="FitContributor"/>
+        <entry field="true" id="26" symbol="mybiketraffic_count_label"/>
+        <entry field="true" id="36" symbol="mLabelDebug"/>
+        <entry field="true" id="63" symbol="countSessionField"/>
+        <entry id="8389751" method="true" symbol="onTimerLap"/>
+        <entry id="8389280" method="true" symbol="getInitialView"/>
+        <entry field="true" id="32" symbol="mLabels"/>
+        <entry id="8389281" method="true" symbol="onStop"/>
+        <entry field="true" id="37" symbol="mLabelY"/>
+        <entry field="true" id="66" symbol="passingSpeedAbsDataField"/>
+        <entry id="8389847" symbol="mesgType"/>
+        <entry id="8389347" symbol="color"/>
+        <entry field="true" id="23" symbol="speedTitleAbsolute"/>
+        <entry field="true" id="46" symbol="totalDigits"/>
+        <entry field="true" id="44" symbol="whichFields"/>
+        <entry field="true" id="55" symbol="lasttrackcnt"/>
+        <entry field="true" id="58" symbol="RANGETARGETS"/>
+        <entry id="15" module="true" symbol="Layouts"/>
+        <entry id="9" object="true" symbol="MyBikeRadarListener"/>
+        <entry field="true" id="21" symbol="mybiketraffic_speedunits_label"/>
+        <entry field="true" id="68" symbol="BT_SPEED_FIELD_ID"/>
+        <entry id="5" module="true" symbol="globals/Rez/Fonts"/>
+        <entry id="8388635" module="true" symbol="Application"/>
+        <entry field="true" id="71" symbol="BT_COUNT_LAP_FIELD_ID"/>
+        <entry field="true" id="60" symbol="rangeDataField"/>
+        <entry field="true" id="62" symbol="countDataField"/>
+    </symbolTable>
+    <localVars>
+        <entry arg="true" endPc="268435509" name="data" stackId="1" startPc="268435479"/>
+        <entry arg="true" endPc="268436141" name="metric" stackId="3" startPc="268435510"/>
+        <entry arg="true" endPc="268436141" name="datafield" stackId="1" startPc="268435510"/>
+        <entry arg="true" endPc="268436141" name="bikeRadar" stackId="2" startPc="268435510"/>
+        <entry endPc="268436291" name="i" stackId="5" startPc="268436254"/>
+        <entry endPc="268436350" name="i" stackId="6" startPc="268436313"/>
+        <entry endPc="268436721" name="i" stackId="8" startPc="268436676"/>
+        <entry endPc="268436921" name="trackcnt" stackId="7" startPc="268436223"/>
+        <entry endPc="268436988" name="i" stackId="9" startPc="268436956"/>
+        <entry endPc="268437165" name="speedInfo" stackId="4" startPc="268436146"/>
+        <entry endPc="268437165" name="rangeInfo" stackId="3" startPc="268436146"/>
+        <entry endPc="268437165" name="radarInfo" stackId="2" startPc="268436146"/>
+        <entry arg="true" endPc="268437166" name="info" stackId="1" startPc="268436142"/>
+        <entry endPc="268437283" name="dictionary" stackId="1" startPc="268437243"/>
+        <entry arg="true" endPc="268437299" name="color" stackId="1" startPc="268437285"/>
+        <entry arg="true" endPc="268437348" name="dc" stackId="1" startPc="268437300"/>
+        <entry endPc="268438011" name="i" stackId="3" startPc="268437449"/>
+        <entry endPc="268438011" name="sys" stackId="2" startPc="268437449"/>
+        <entry arg="true" endPc="268438012" name="properties" stackId="1" startPc="268437445"/>
+        <entry arg="true" endPc="268438099" name="num" stackId="1" startPc="268438013"/>
+        <entry endPc="268438224" name="fontIdx" stackId="4" startPc="268438104"/>
+        <entry endPc="268438224" name="dimensions" stackId="5" startPc="268438104"/>
+        <entry arg="true" endPc="268438225" name="height" stackId="3" startPc="268438100"/>
+        <entry arg="true" endPc="268438225" name="dc" stackId="1" startPc="268438100"/>
+        <entry arg="true" endPc="268438225" name="width" stackId="2" startPc="268438100"/>
+        <entry endPc="268438812" name="vroom" stackId="5" startPc="268438328"/>
+        <entry endPc="268438812" name="hfontmax" stackId="8" startPc="268438328"/>
+        <entry endPc="268438812" name="labelDim" stackId="6" startPc="268438328"/>
+        <entry endPc="268438812" name="vfontmax" stackId="7" startPc="268438328"/>
+        <entry endPc="268439378" name="vroom" stackId="9" startPc="268438816"/>
+        <entry endPc="268439378" name="hfontmax" stackId="11" startPc="268438816"/>
+        <entry endPc="268439378" name="dimensions" stackId="12" startPc="268438816"/>
+        <entry endPc="268439378" name="vfontmax" stackId="10" startPc="268438816"/>
+        <entry endPc="268439446" name="height" stackId="3" startPc="268438230"/>
+        <entry endPc="268439446" name="width" stackId="2" startPc="268438230"/>
+        <entry endPc="268439446" name="top" stackId="4" startPc="268438230"/>
+        <entry arg="true" endPc="268439447" name="dc" stackId="1" startPc="268438226"/>
+        <entry endPc="268439625" name="newtotalDigits" stackId="2" startPc="268439452"/>
+        <entry arg="true" endPc="268439626" name="info" stackId="1" startPc="268439448"/>
+        <entry endPc="268440568" name="dimensions" stackId="15" startPc="268440472"/>
+        <entry endPc="268440581" name="valstr" stackId="14" startPc="268440263"/>
+        <entry endPc="268440597" name="valuei" stackId="13" startPc="268440003"/>
+        <entry endPc="268440597" name="i" stackId="11" startPc="268440003"/>
+        <entry endPc="268440597" name="labeli" stackId="12" startPc="268440003"/>
+        <entry endPc="268441162" name="fh" stackId="20" startPc="268441074"/>
+        <entry endPc="268441175" name="valstr" stackId="19" startPc="268440861"/>
+        <entry endPc="268441191" name="valuei" stackId="18" startPc="268440601"/>
+        <entry endPc="268441191" name="i" stackId="16" startPc="268440601"/>
+        <entry endPc="268441191" name="labeli" stackId="17" startPc="268440601"/>
+        <entry endPc="268441191" name="fgColor" stackId="8" startPc="268439631"/>
+        <entry endPc="268441191" name="countstr" stackId="2" startPc="268439631"/>
+        <entry endPc="268441191" name="spdstr" stackId="4" startPc="268439631"/>
+        <entry endPc="268441191" name="lapstr" stackId="3" startPc="268439631"/>
+        <entry endPc="268441191" name="unitsstr" stackId="6" startPc="268439631"/>
+        <entry endPc="268441191" name="speedflag" stackId="10" startPc="268439631"/>
+        <entry endPc="268441191" name="bgColor" stackId="7" startPc="268439631"/>
+        <entry endPc="268441191" name="absstr" stackId="5" startPc="268439631"/>
+        <entry endPc="268441191" name="lblColor" stackId="9" startPc="268439631"/>
+        <entry arg="true" endPc="268441192" name="dc" stackId="1" startPc="268439627"/>
+        <entry arg="true" endPc="268441266" name="state" stackId="1" startPc="268441262"/>
+        <entry arg="true" endPc="268441271" name="state" stackId="1" startPc="268441267"/>
+        <entry endPc="268441623" name="rez_cmp_local_custom_drawable_18602858741517649210" stackId="2" startPc="268441428"/>
+        <entry endPc="268441623" name="rez_cmp_local_text_label" stackId="3" startPc="268441428"/>
+        <entry arg="true" endPc="268441624" name="dc" stackId="1" startPc="268441416"/>
+    </localVars>
+    <annotations>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="totalTitle"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_units_label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_speedunits_label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="speedTitleRelative"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="speedTitleAbsolute"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="lapTitle"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_speedabs_label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_count_label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_lapcount_label"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="mybiketraffic_speedrel_label"/>
+    </annotations>
+    <dataEntryOffsetMappings>
+        <dataEntry label="globals" offset="87" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/Background" offset="190" parentId="globals" symbolId="Background" type="class"/>
+        <dataEntry label="globals/MyBikeRadarListener" offset="261" parentId="globals" symbolId="MyBikeRadarListener" type="class"/>
+        <dataEntry label="globals/Rez" offset="316" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/Rez/Drawables" offset="395" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Menus" offset="434" parentId="Rez" symbolId="Menus" type="module"/>
+        <dataEntry label="globals/Rez/Fonts" offset="465" parentId="Rez" symbolId="Fonts" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="496" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/JsonData" offset="535" parentId="Rez" symbolId="JsonData" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="566" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/RadarBgServiceDelegate" offset="693" parentId="globals" symbolId="RadarBgServiceDelegate" type="class"/>
+        <dataEntry label="globals/MyBikeTrafficView" offset="748" parentId="globals" symbolId="MyBikeTrafficView" type="class"/>
+        <dataEntry label="globals/MyBikeTrafficApp" offset="1003" parentId="globals" symbolId="MyBikeTrafficApp" type="class"/>
+        <dataEntry label="globals/MyBikeTrafficFitContributions" offset="1074" parentId="globals" symbolId="MyBikeTrafficFitContributions" type="class"/>
+    </dataEntryOffsetMappings>
+    <functions>
+        <functionEntry accessMode="public" endPc="268435478" name="initialize" parent="MyBikeRadarListener" startPc="268435456">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435509" name="onBikeRadarUpdate" parent="MyBikeRadarListener" startPc="268435479">
+            <param id="data"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441857" name="&lt;init&gt;" parent="MyBikeRadarListener" startPc="268441839">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436141" name="initialize" parent="MyBikeTrafficFitContributions" startPc="268435510">
+            <param id="datafield"/>
+            <param id="bikeRadar"/>
+            <param id="metric"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437166" name="compute" parent="MyBikeTrafficFitContributions" startPc="268436142">
+            <param id="info"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437220" name="onTimerReset" parent="MyBikeTrafficFitContributions" startPc="268437167">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437238" name="onTimerLap" parent="MyBikeTrafficFitContributions" startPc="268437221">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268442269" name="&lt;init&gt;" parent="MyBikeTrafficFitContributions" startPc="268442269">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437284" name="initialize" parent="Background" startPc="268437239">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437299" name="setColor" parent="Background" startPc="268437285">
+            <param id="color"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437348" name="draw" parent="Background" startPc="268437300">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441838" name="&lt;init&gt;" parent="Background" startPc="268441820">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437375" name="initialize" parent="RadarBgServiceDelegate" startPc="268437349">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437444" name="onTemporalEvent" parent="RadarBgServiceDelegate" startPc="268437376">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441906" name="&lt;init&gt;" parent="RadarBgServiceDelegate" startPc="268441888">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438012" name="initialize" parent="MyBikeTrafficView" startPc="268437445">
+            <param id="properties"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438099" name="countDigits" parent="MyBikeTrafficView" startPc="268438013">
+            <param id="num"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438225" name="selectFont" parent="MyBikeTrafficView" startPc="268438100">
+            <param id="dc"/>
+            <param id="width"/>
+            <param id="height"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439447" name="onLayout" parent="MyBikeTrafficView" startPc="268438226">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268439626" name="compute" parent="MyBikeTrafficView" startPc="268439448">
+            <param id="info"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441192" name="onUpdate" parent="MyBikeTrafficView" startPc="268439627">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441215" name="onTimerReset" parent="MyBikeTrafficView" startPc="268441193">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441238" name="onTimerLap" parent="MyBikeTrafficView" startPc="268441216">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268442249" name="&lt;init&gt;" parent="MyBikeTrafficView" startPc="268441907">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441261" name="initialize" parent="MyBikeTrafficApp" startPc="268441239">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441266" name="onStart" parent="MyBikeTrafficApp" startPc="268441262">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441271" name="onStop" parent="MyBikeTrafficApp" startPc="268441267">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441415" name="getInitialView" parent="MyBikeTrafficApp" startPc="268441272">
+            <documentation><![CDATA[<div class="description"> Return the initial view of your application here<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268442268" name="&lt;init&gt;" parent="MyBikeTrafficApp" startPc="268442250">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441882" name="&lt;init&gt;" parent="Drawables" startPc="268441882">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441884" name="&lt;init&gt;" parent="Fonts" startPc="268441884">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441886" name="&lt;init&gt;" parent="JsonData" startPc="268441886">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268441624" name="MainLayout" parent="Layouts" startPc="268441416">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441885" name="&lt;init&gt;" parent="Layouts" startPc="268441885">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441883" name="&lt;init&gt;" parent="Menus" startPc="268441883">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441887" name="&lt;init&gt;" parent="Strings" startPc="268441887">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="protected" endPc="268441881" name="&lt;init&gt;" parent="Rez" startPc="268441858">
+            <documentation/>
+        </functionEntry>
+    </functions>
 </debugInfo>
