@@ -16,6 +16,7 @@ class MyBikeTrafficFitContributions {
 	var approachspd; // relative speed only
 	var absolutespd; // relative speed PLUS rider speed = absolute vehicle spd
 	var lastspd;     // absolute speed only (relative + rider)... not reset between cars
+	var dist;        // distance to closest car (convert to feet if not metric)
 	var disabled;
 	hidden var lasttrackcnt;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
@@ -53,6 +54,7 @@ class MyBikeTrafficFitContributions {
         approachspd = 0;
         absolutespd = 0;
 		lastspd = 0;
+		dist = 0;
         crossedthresh = false;
         disabled = true;
 		rangeDataField = datafield.createField( // 16 bytes
@@ -148,8 +150,10 @@ class MyBikeTrafficFitContributions {
 				// if this car has passed us on the next reading, it won't be updated so it will be preserved
 				if (absolutespd > 0) {
 					lastspd = absolutespd;
-				} 
+				}
 			}
+			// update dist no matter what
+			dist = metric?rangeInfo[0]:rangeInfo[0]*3.28084;
 			crossedthresh = rangeInfo[0] < THRESH;
 			lasttrackcnt=trackcnt;
 			countDataField.setData(count);			
