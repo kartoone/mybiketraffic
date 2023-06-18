@@ -106,15 +106,13 @@ class MyBikeTrafficFitContributions {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
-        var radarInfo = bikeRadar.getRadarInfo();
-
     	// do nothing if activity is not running
 		// simply set flag that radar is disabled if the timer is not running ... technically the radar MAY be enabled, but we don't care b/c we don't want to write into the FIT file while the timer is not running
 		if (info.timerState!=3) {
 			disabled = true;
 			return;  // nothing else to do, let's get out of here ... 
 		} 
-
+        var radarInfo = bikeRadar.getRadarInfo();
 		var rangeInfo = new [RANGETARGETS];
 		var speedInfo = new [SPEEDTARGETS];
         if (radarInfo) {

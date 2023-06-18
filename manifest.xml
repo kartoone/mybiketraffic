@@ -4,6 +4,8 @@
     <iq:application entry="MyBikeTrafficApp" id="c647044cc32144bbbf8a241a87a0eb2e" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.0.0" name="@Strings.AppName" type="datafield" version="2.6.2">
         <iq:products>
             <iq:product id="approachs62"/>
+            <iq:product id="approachs7042mm"/>
+            <iq:product id="approachs7047mm"/>
             <iq:product id="d2air"/>
             <iq:product id="d2airx10"/>
             <iq:product id="d2charlie"/>
@@ -23,12 +25,17 @@
             <iq:product id="edge130plus"/>
             <iq:product id="edge520plus"/>
             <iq:product id="edge530"/>
+            <iq:product id="edge540"/>
             <iq:product id="edge820"/>
             <iq:product id="edge830"/>
+            <iq:product id="edge840"/>
             <iq:product id="edgeexplore"/>
             <iq:product id="edgeexplore2"/>
             <iq:product id="enduro"/>
             <iq:product id="epix2"/>
+            <iq:product id="epix2pro42mm"/>
+            <iq:product id="epix2pro47mm"/>
+            <iq:product id="epix2pro51mm"/>
             <iq:product id="fenix5"/>
             <iq:product id="fenix5plus"/>
             <iq:product id="fenix5s"/>
@@ -41,8 +48,11 @@
             <iq:product id="fenix6spro"/>
             <iq:product id="fenix6xpro"/>
             <iq:product id="fenix7"/>
+            <iq:product id="fenix7pro"/>
             <iq:product id="fenix7s"/>
+            <iq:product id="fenix7spro"/>
             <iq:product id="fenix7x"/>
+            <iq:product id="fenix7xpro"/>
             <iq:product id="fenixchronos"/>
             <iq:product id="fr245"/>
             <iq:product id="fr245m"/>
@@ -50,6 +60,8 @@
             <iq:product id="fr255m"/>
             <iq:product id="fr255s"/>
             <iq:product id="fr255sm"/>
+            <iq:product id="fr265"/>
+            <iq:product id="fr265s"/>
             <iq:product id="fr55"/>
             <iq:product id="fr645"/>
             <iq:product id="fr645m"/>
@@ -58,6 +70,7 @@
             <iq:product id="fr945"/>
             <iq:product id="fr945lte"/>
             <iq:product id="fr955"/>
+            <iq:product id="fr965"/>
             <iq:product id="instinct2"/>
             <iq:product id="instinct2s"/>
             <iq:product id="instinctcrossover"/>
