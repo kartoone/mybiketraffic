@@ -20,7 +20,7 @@ class MyBikeTrafficFitContributions {
 	var disabled;
 	hidden var lasttrackcnt;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
-	const THRESH=30; 			// this is the threshold distance that the closest car must be in order for it to be counted
+	const THRESH=10; 			// this is the threshold distance that the closest car must be in order for it to be counted
 	const RANGETARGETS=8;
 	const SPEEDTARGETS=8;
 
@@ -124,7 +124,14 @@ class MyBikeTrafficFitContributions {
 		  	  speedInfo[i] = radarInfo[i].speed.toNumber();
 			}
 			approachspd = metric ? Math.round(speedInfo[0] * 3.6) : Math.round(speedInfo[0] * 2.23694);
-			absolutespd = approachspd > 0 ? (approachspd + (metric ? Math.round(info.currentSpeed * 3.6) : Math.round(info.currentSpeed * 2.23694))) : 0;
+			
+			// it's possible info.currentSpeed is null before sat signal established ... so let's use a local var instead of info.currentSpeed directly
+			var currentSpeed = 0;
+			if (info.currentSpeed != null) {
+			 	currentSpeed = info.currentSpeed;
+			}
+			absolutespd = approachspd > 0 ? (approachspd + (metric ? Math.round(currentSpeed * 3.6) : Math.round(currentSpeed * 2.23694))) : 0;
+
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
 			passingSpeedRelDataField.setData(approachspd);
