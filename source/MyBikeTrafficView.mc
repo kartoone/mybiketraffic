@@ -109,7 +109,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 //    	System.println("onLayout");
         var width = dc.getWidth();
         var height = dc.getHeight();
-        var top = 2;
+        var top = 5;
 //        mLabelDebug = width + " " + height + " " + top;
         
         // lots of horizontal room for number of fields we are displaying ... more room if we do horizontal layout
