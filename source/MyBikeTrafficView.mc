@@ -15,9 +15,30 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	// layout related vars
 	// cannot use the strings file when drawing directly onto dc
 	hidden var mLabels;
-	hidden var mLabelsONE = ["VehicleCount", "LapVehicleCount", "Relative Vspd", "Absolute Vspd", "Last Vspd", "Vehicle Distance"];
-	hidden var mLabelsTWO = ["VCnt", "Lap", "Rel", "Abs", "LAST", "Dist"];
-	hidden var mLabelsTHREE = ["VC", "Lap", "Rel", "Abs", "LAST", "Dist"];
+	hidden var mLabelsONE = [
+		WatchUi.loadResource($.Rez.Strings.ml1_vc), 
+		WatchUi.loadResource($.Rez.Strings.ml1_lvc), 
+		WatchUi.loadResource($.Rez.Strings.ml1_rspd), 
+		WatchUi.loadResource($.Rez.Strings.ml1_aspd), 
+		WatchUi.loadResource($.Rez.Strings.ml1_lspd), 
+		WatchUi.loadResource($.Rez.Strings.ml1_dist) 
+	];
+	hidden var mLabelsTWO = [
+		WatchUi.loadResource($.Rez.Strings.ml2_vc), 
+		WatchUi.loadResource($.Rez.Strings.ml2_lvc), 
+		WatchUi.loadResource($.Rez.Strings.ml2_rspd), 
+		WatchUi.loadResource($.Rez.Strings.ml2_aspd), 
+		WatchUi.loadResource($.Rez.Strings.ml2_lspd), 
+		WatchUi.loadResource($.Rez.Strings.ml2_dist) 
+	];
+	hidden var mLabelsTHREE = [
+		WatchUi.loadResource($.Rez.Strings.ml3_vc), 
+		WatchUi.loadResource($.Rez.Strings.ml3_lvc), 
+		WatchUi.loadResource($.Rez.Strings.ml3_rspd), 
+		WatchUi.loadResource($.Rez.Strings.ml3_aspd), 
+		WatchUi.loadResource($.Rez.Strings.ml3_lspd), 
+		WatchUi.loadResource($.Rez.Strings.ml3_dist) 
+	];
 	hidden var mLabelDebug;
     hidden var mLabelY = 2; 
     hidden var mLabelFont = Graphics.FONT_SMALL;

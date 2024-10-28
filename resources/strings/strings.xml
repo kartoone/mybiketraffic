@@ -7,4 +7,22 @@
     <string id="mybiketraffic_speedrel_label">Approach Speed (Relative)</string>
     <string id="mybiketraffic_speedabs_label">Vehicle Speed (Absolute)</string>
     <string id="mybiketraffic_speedunits_label">KPH/MPH</string>
+    <string id="ml1_vc">VehicleCount</string>
+    <string id="ml1_lvc">Lap Vehicle Count</string>
+    <string id="ml1_rspd">Relative Speed</string>
+    <string id="ml1_aspd">Absolute Speed</string>
+    <string id="ml1_lspd">Last Speed</string>
+    <string id="ml1_dist">Vehicle Distance</string>
+    <string id="ml2_vc">VCnt</string>
+    <string id="ml2_lvc">Lap</string>
+    <string id="ml2_rspd">Rel</string>
+    <string id="ml2_aspd">Abs</string>
+    <string id="ml2_lspd">LAST</string>
+    <string id="ml2_dist">Dist</string>
+    <string id="ml3_vc">VC</string>
+    <string id="ml3_lvc">Lap</string>
+    <string id="ml3_rspd">Rel</string>
+    <string id="ml3_aspd">Abs</string>
+    <string id="ml3_lspd">LAST</string>
+    <string id="ml3_dist">Dist</string>
 </strings>

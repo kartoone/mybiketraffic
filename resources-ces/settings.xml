@@ -1,0 +1,30 @@
+<resources>
+
+<properties>
+<property id="displayTotal" type="boolean">true</property>
+<property id="displayLap" type="boolean">false</property>
+<property id="displaySpeedRelative" type="boolean">false</property>
+<property id="displaySpeedAbsolute" type="boolean">false</property>
+<property id="displaySpeedLast" type="boolean">false</property>
+<property id="displayClosestDist" type="boolean">false</property>
+</properties>
+
+<strings>
+<string id="totalTitle">Display vehicle total</string>
+<string id="lapTitle">Display lap total</string>
+<string id="speedTitleRelative">Display approach speed (relative)</string>
+<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
+<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
+<string id="distanceTitle">Display closest vehicle distance</string>
+</strings>
+
+<settings>
+	<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displaySpeedRelative" title="@Strings.speedTitleRelative"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displaySpeedLast" title="@Strings.speedTitleLast"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displayClosestDist" title="@Strings.distanceTitle"><settingConfig type="boolean" /></setting>
+</settings>
+
+</resources>

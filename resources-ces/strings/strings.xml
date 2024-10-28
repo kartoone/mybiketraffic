@@ -1,10 +1,28 @@
 <strings>
     <string id="AppName">MyBikeTraffic</string>
-    <string id="label">VC</string>
-    <string id="mybiketraffic_count_label">Vehicle Count</string>
-    <string id="mybiketraffic_lapcount_label">Lap Vehicle Count</string>
+    <string id="label">Poc</string>
+    <string id="mybiketraffic_count_label">Počet vozidel</string>
+    <string id="mybiketraffic_lapcount_label">Počet kol</string>
     <string id="mybiketraffic_units_label"> </string>
-    <string id="mybiketraffic_speedrel_label">Approach Speed (Relative)</string>
-    <string id="mybiketraffic_speedabs_label">Vehicle Speed (Absolute)</string>
+    <string id="mybiketraffic_speedrel_label">Relativní rychlost</string>
+    <string id="mybiketraffic_speedabs_label">Absolutní rychlost</string>
     <string id="mybiketraffic_speedunits_label">KPH/MPH</string>
+    <string id="ml1_vc">Počet vozidel</string>
+    <string id="ml1_lvc">Počet kol</string>
+    <string id="ml1_rspd">Relativní rychlost</string>
+    <string id="ml1_aspd">Absolutní rychlost</string>
+    <string id="ml1_lspd">Poslední rychlost vozidla</string>
+    <string id="ml1_dist">Nejbližší vzdálenost</string>
+    <string id="ml2_vc">Poc</string>
+    <string id="ml2_lvc">Kol</string>
+    <string id="ml2_rspd">Rel</string>
+    <string id="ml2_aspd">Max</string>
+    <string id="ml2_lspd">POS</string>
+    <string id="ml2_dist">Min</string>
+    <string id="ml3_vc">Poc</string>
+    <string id="ml3_lvc">Kol</string>
+    <string id="ml3_rspd">Rel</string>
+    <string id="ml3_aspd">Max</string>
+    <string id="ml3_lspd">POS</string>
+    <string id="ml3_dist">Min</string>
 </strings>
