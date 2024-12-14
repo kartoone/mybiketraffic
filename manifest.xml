@@ -3,9 +3,6 @@
 <iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
     <iq:application entry="MyBikeTrafficApp" id="c647044cc32144bbbf8a241a87a0eb2e" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="3.0.0" name="@Strings.AppName" type="datafield" version="2.6.2">
         <iq:products>
-            <iq:product id="approachs62"/>
-            <iq:product id="approachs7042mm"/>
-            <iq:product id="approachs7047mm"/>
             <iq:product id="d2air"/>
             <iq:product id="d2airx10"/>
             <iq:product id="d2charlie"/>

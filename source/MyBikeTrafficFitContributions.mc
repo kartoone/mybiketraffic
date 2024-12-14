@@ -2,6 +2,7 @@ using Toybox.WatchUi;
 using Toybox.FitContributor;
 using Toybox.Sensor;
 using Toybox.AntPlus;
+using Toybox.Lang;
 
 class MyBikeTrafficFitContributions {
 
@@ -112,10 +113,10 @@ class MyBikeTrafficFitContributions {
 			disabled = true;
 			return;  // nothing else to do, let's get out of here ... 
 		} 
-        var radarInfo = bikeRadar.getRadarInfo();
-		var rangeInfo = new [RANGETARGETS];
+        var radarInfo = bikeRadar.getRadarInfo() as Lang.Array<Toybox.AntPlus.RadarTarget>;
+		var rangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
 		var speedInfo = new [SPEEDTARGETS];
-        if (radarInfo) {
+        if (radarInfo != null) {
         	disabled = false;
 			for (var i=0;i<RANGETARGETS;i++) {
 			  rangeInfo[i] = radarInfo[i].range.toNumber();
