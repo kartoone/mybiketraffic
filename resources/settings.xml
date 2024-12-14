@@ -1,30 +1,82 @@
 <resources>
+	<properties>
+		<property id="displayTotal" type="boolean">true</property>
+		<property id="displayLap" type="boolean">false</property>
+		<property id="displaySpeedRelative" type="boolean">false</property>
+		<property id="displaySpeedAbsolute" type="boolean">false</property>
+		<property id="displaySpeedLast" type="boolean">false</property>
+		<property id="displayClosestDist" type="boolean">false</property>
+		<property id="autoOrientation" type="number">-1</property>
+		<property id="autoLabelSize" type="number">-2</property>
+		<property id="autoValueSize" type="number">0</property>
+		<property id="autoUnitsSize" type="number">0</property>
+	</properties>
 
-<properties>
-<property id="displayTotal" type="boolean">true</property>
-<property id="displayLap" type="boolean">false</property>
-<property id="displaySpeedRelative" type="boolean">false</property>
-<property id="displaySpeedAbsolute" type="boolean">false</property>
-<property id="displaySpeedLast" type="boolean">false</property>
-<property id="displayClosestDist" type="boolean">false</property>
-</properties>
+	<strings>
+		<string id="groupDisplay">Choose which fields to display</string>
+		<string id="groupDisplayDescription">By default only the vehicle count is displayed. Pick other fields you would like to display within the data field.</string>
+		<string id="totalTitle">Display vehicle total</string>
+		<string id="lapTitle">Display lap total</string>
+		<string id="speedTitleRelative">Display approach speed (relative)</string>
+		<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
+		<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
+		<string id="distanceTitle">Display closest vehicle distance</string>
 
-<strings>
-<string id="totalTitle">Display vehicle total</string>
-<string id="lapTitle">Display lap total</string>
-<string id="speedTitleRelative">Display approach speed (relative)</string>
-<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
-<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
-<string id="distanceTitle">Display closest vehicle distance</string>
-</strings>
+		<string id="groupAuto">Choose font size and orientation</string>
+		<string id="groupAutoDescription">The field attempts to auto-orient and auto-size the font, but sometimes it doesn't work correctly. Choose from the options below to override the auto settings.</string>
+		<string id="autoOrientation">Orientation</string>
+		<string id="autoLabelSize">Label size</string>
+		<string id="autoValueSize">Value size</string>
+		<string id="autoUnitsSize">Units size</string>
 
-<settings>
-	<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedRelative" title="@Strings.speedTitleRelative"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedLast" title="@Strings.speedTitleLast"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displayClosestDist" title="@Strings.distanceTitle"><settingConfig type="boolean" /></setting>
-</settings>
+	 	<string id="Auto">Auto</string>
+	 	<string id="Off">Off</string>
+	 	<string id="Horizontal">Horizontal</string>
+	 	<string id="Vertical">Vertical</string>
+	 	<string id="Xtiny">Extra tiny</string>
+	 	<string id="Tiny">Tiny</string>
+	 	<string id="Small">Small</string>
+	 	<string id="Medium">Medium</string>
+	 	<string id="Large">Medium+</string>
+	 	<string id="NumMild">Large</string>
+	 	<string id="NumMedium">Large+</string>
+	 	<string id="NumHot">Extra Large</string>
+	 	<string id="NumThaiHot">Huge</string>
+	</strings>
+
+	<settings>
+	    <group id="groupAuto" title="@Strings.groupAuto" description="@Strings.groupAutoDescription">
+			<setting propertyKey="@Properties.autoOrientation" title="@Strings.autoOrientation">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-1">@Strings.Auto</listEntry>
+	 	           <listEntry value="0">@Strings.Horizontal</listEntry>
+	 	           <listEntry value="1">@Strings.Vertical</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+			<setting propertyKey="@Properties.autoLabelSize" title="@Strings.autoLabelSize">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-2">@Strings.Auto</listEntry>
+	 	           <listEntry value="-1">@Strings.Off</listEntry>
+	 	           <listEntry value="0">@Strings.Xtiny</listEntry>
+	 	           <listEntry value="1">@Strings.Tiny</listEntry>
+	 	           <listEntry value="2">@Strings.Small</listEntry>
+	 	           <listEntry value="3">@Strings.Medium</listEntry>
+	 	           <listEntry value="4">@Strings.Large</listEntry>
+	 	           <listEntry value="5">@Strings.NumMild</listEntry>
+	 	           <listEntry value="6">@Strings.NumMedium</listEntry>
+	 	           <listEntry value="7">@Strings.NumHot</listEntry>
+	 	           <listEntry value="8">@Strings.NumThaiHot</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+	    </group>
+	    <group id="groupDisplay" title="@Strings.groupDisplay" description="@Strings.groupDisplayDescription">
+			<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
+			<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
+			<setting propertyKey="@Properties.displaySpeedRelative" title="@Strings.speedTitleRelative"><settingConfig type="boolean" /></setting>
+			<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
+			<setting propertyKey="@Properties.displaySpeedLast" title="@Strings.speedTitleLast"><settingConfig type="boolean" /></setting>
+			<setting propertyKey="@Properties.displayClosestDist" title="@Strings.distanceTitle"><settingConfig type="boolean" /></setting>
+	    </group>
+	</settings>
 
 </resources>

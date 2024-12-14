@@ -1,11 +1,12 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
 using Toybox.Sensor;
+using Toybox.Lang;
 
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
 // ... so no need to reference the array (but probably should) once you have found the index for the font that fits
 var fonts = [Graphics.FONT_XTINY,Graphics.FONT_TINY,Graphics.FONT_SMALL,Graphics.FONT_MEDIUM,Graphics.FONT_LARGE,
-             Graphics.FONT_NUMBER_MILD,Graphics.FONT_NUMBER_MEDIUM,Graphics.FONT_NUMBER_HOT,Graphics.FONT_NUMBER_THAI_HOT];
+             Graphics.FONT_NUMBER_MILD,Graphics.FONT_NUMBER_MEDIUM,Graphics.FONT_NUMBER_HOT,Graphics.FONT_NUMBER_THAI_HOT] as Lang.Array<Graphics.FontType>;
              
 class MyBikeTrafficView extends WatchUi.DataField {
 
@@ -14,7 +15,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	
 	// layout related vars
 	// cannot use the strings file when drawing directly onto dc
-	hidden var mLabels;
+	hidden var mLabels as Lang.Array<Lang.String>?; // array of labels to display ... this is set based on how many fields are displayed
 	hidden var mLabelsONE = [
 		WatchUi.loadResource($.Rez.Strings.ml1_vc), 
 		WatchUi.loadResource($.Rez.Strings.ml1_lvc), 
@@ -39,24 +40,25 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		WatchUi.loadResource($.Rez.Strings.ml3_lspd), 
 		WatchUi.loadResource($.Rez.Strings.ml3_dist) 
 	];
-	hidden var mLabelDebug;
+	// hidden var mLabelDebug;
     hidden var mLabelY = 2; 
-    hidden var mLabelFont = Graphics.FONT_SMALL;
+    hidden var mLabelFont = Graphics.FONT_TINY;
     hidden var mValueFont = Graphics.FONT_MEDIUM;
     hidden var mUnitsFont = Graphics.FONT_XTINY; // always use tiny font for kph/mph
-	hidden var labelX; // array of X coordinates (only two entries for vertical layout strategy, as many entries as data values being displayed for horizontal layout) 
-	hidden var labelY; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
+	hidden var fh;
+	hidden var labelX as Lang.Array<Lang.Float or Lang.Number>?; // array of X coordinates (only two entries for vertical layout strategy, as many entries as data values being displayed for horizontal layout) 
+	hidden var labelY as Lang.Array<Lang.Float or Lang.Number>?; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
 	hidden var numFields = 0; // this ends up being a count of the array below which is read from the app settings
-	hidden var whichFields = [1, 0, 0, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed, position 4 - last vehicle speed, position 5 - closest vehicle distance... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
+	hidden var whichFields as Lang.Array<Lang.Number> = [1, 0, 0, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed, position 4 - last vehicle speed, position 5 - closest vehicle distance... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
 	
-	hidden var testString = "8";   // start out using small text string for font layout ... change this as the counts get larger
+	hidden var testString = "8" as Lang.String;   // start out using small text string for font layout ... change this as the counts get larger
     hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
     hidden var needLayout = false;  // flag to set if we need to manually re-layout b/c count has increased enough to increase number of digits
 	
 	// this is where all the real computational work happens - MyBikeTrafficFitConributions
 	hidden var mFitContributor; 
 	
-    function initialize(properties) {
+	function initialize(properties as Lang.Array<Lang.Boolean>) {
         DataField.initialize();
         
         // get device settings to determine whether metric or statue units
@@ -111,15 +113,15 @@ class MyBikeTrafficView extends WatchUi.DataField {
     function selectFont(dc, width, height) {
         //var testString = "88.88"; //Dummy string to test data width
         var fontIdx;
-        var dimensions;
         //Search through fonts from biggest to smallest
         for (fontIdx = (fonts.size() - 1); fontIdx > 0; fontIdx--) {
-            dimensions = dc.getTextDimensions(testString, fonts[fontIdx]);
-            if ((dimensions[0] <= width) && (dimensions[1] <= height)) {
+            var dimensions = dc.getTextDimensions(testString, fonts[fontIdx]) as Lang.Array<Lang.Numeric>;
+            if ((dimensions[0] <= width) && (dimensions[1] <= height+2)) {
                 //If this font fits, it is the biggest one that does
                 break;
             }
         } 
+		fh = dc.getFontHeight(mValueFont);	    	    	
         return fontIdx;
     }
 
@@ -127,11 +129,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // 	1. displaying three fields, need to stack
     // 	2. displaying one or two fields, can go side-by-side, or (three fields if wide-layout)
     function onLayout(dc) {
-//    	System.println("onLayout");
         var width = dc.getWidth();
         var height = dc.getHeight();
         var top = 5;
-//        mLabelDebug = width + " " + height + " " + top;
+        // mLabelDebug = width + " " + height + " " + top;
         
         // lots of horizontal room for number of fields we are displaying ... more room if we do horizontal layout
 		if (numFields==1 || ((numFields < 3 || width > 180) && height<150)) {
@@ -179,15 +180,22 @@ class MyBikeTrafficView extends WatchUi.DataField {
         	mLabelFont = mLabelFont - 1;
        	}
         
-//        labelView.setText(Rez.Strings.label);
-//        labelView.setText(mLabelDebug);
-//        return true;
     }
 
     function compute(info) {
+		// System.println("compute");
+
         mFitContributor.compute(info);
         // see if we need to update fonts
-        var newtotalDigits = countDigits(whichFields[0]*mFitContributor.count)+countDigits(whichFields[1]*mFitContributor.lapcount);
+
+		var newtotalDigits = 0;
+		if (vertical) {
+			// only need to count the likely widest field
+			newtotalDigits = countDigits(mFitContributor.count);
+		} else {
+			// need to count all fields ... roughly estimate based on likely widest field
+        	newtotalDigits = countDigits(mFitContributor.count*numFields);
+		}
         if (newtotalDigits > totalDigits) {
         	totalDigits = totalDigits + 1;
         	testString = testString + "8"; // concatenate a digit onto the test string
@@ -198,6 +206,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // Display the value you computed here. This will be called
     // once a second when the data field is visible.
     function onUpdate(dc) {
+		// System.println("onUpdate");
     	// before we do anything else
     	// let's prep the display strings
     	var countstr;
@@ -244,8 +253,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
             lblColor = Graphics.COLOR_LT_GRAY;
         }
         // The following two lines are probably unnecessary b/c View.onUpdate(dc) does this ... but JUST IN CASE...
-        dc.setColor(fgColor, bgColor);
-        dc.clear();
+        //dc.setColor(fgColor, bgColor);
+        //dc.clear();
         
         // flag var for displaying units at appropriate place(s)
         var speedflag = false;
@@ -258,7 +267,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	var i;
 	    	var labeli = 0;
 	    	for (i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i] == 1) {
+	    	  if (whichFields[i]==1) {
 	    	    dc.drawText(labelX[0], labelY[labeli], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_RIGHT);
 	    	    labeli = labeli + 1;
 	    	  }
@@ -267,9 +276,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	        // Now let's draw the values
 	        dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
 	        var valuei = 0;
+	    	var valstr = 0;
+			var dimensions = null;
 	        for (i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i] == 1) {
-	    	  	var valstr;
+	    	  if (whichFields[i]==1) {
 	    	  	switch(i) {
 	    	  		case 0: valstr = countstr; speedflag = false; break;
 	    	  		case 1: valstr = lapstr; speedflag = false; break;
@@ -282,12 +292,12 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	    dc.drawText(labelX[1], labelY[valuei], mValueFont, valstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately right of speed value
-				   	var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
+				   	dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
 	    	    	dc.drawText(labelX[1]+dimensions[0]+3, labelY[valuei], mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    }
 	    	    if (distflag) {
 	    	    	// calculate location for units immediately right of speed value
-				   	var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
+				   	dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
 	    	    	dc.drawText(labelX[1]+dimensions[0]+3, labelY[valuei], mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    }
 	    	    valuei = valuei + 1;
@@ -299,7 +309,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	var i;
 	    	var labeli = 0;
 	    	for (i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i] == 1) {
+	    	  if (whichFields[i]==1) {
 	    	    dc.drawText(labelX[labeli], labelY[0], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_CENTER);
 	    	    labeli = labeli + 1;
 	    	  }
@@ -308,9 +318,9 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	        // Now let's draw the values
 	        dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
 	        var valuei = 0;
+	    	var valstr = 0;
 	        for (i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i] == 1) {
-	    	  	var valstr;
+	    	  if (whichFields[i]==1) {
 	    	  	switch(i) {
 	    	  		case 0: valstr = countstr; speedflag = false; break;
 	    	  		case 1: valstr = lapstr; speedflag = false; break;
@@ -323,18 +333,17 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately below speed value
-				   	var fh = dc.getFontHeight(mValueFont);	    	    	
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    if (distflag) {
 	    	    	// calculate location for units immediately below speed value
-				   	var fh = dc.getFontHeight(mValueFont);	    	    	
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    valuei = valuei + 1;
 	    	  }
 	    	}
 	    }
+		// dc.drawText(10, labelY[1]+fh*2, Graphics.FONT_XTINY, mLabelDebug, Graphics.TEXT_JUSTIFY_LEFT);
     }
     
     // activity has ended
