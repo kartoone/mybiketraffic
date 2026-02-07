@@ -8,7 +8,7 @@
 		<property id="displayClosestDist" type="boolean">false</property>
 		<property id="autoOrientation" type="number">-1</property>
 		<property id="autoLabelSize" type="number">-2</property>
-		<property id="autoValueSize" type="number">0</property>
+		<property id="autoValueSize" type="number">-1</property>
 		<property id="autoUnitsSize" type="number">0</property>
 	</properties>
 
@@ -57,6 +57,20 @@
 	 	       <settingConfig type="list">
 	 	           <listEntry value="-2">@Strings.Auto</listEntry>
 	 	           <listEntry value="-1">@Strings.Off</listEntry>
+	 	           <listEntry value="0">@Strings.Xtiny</listEntry>
+	 	           <listEntry value="1">@Strings.Tiny</listEntry>
+	 	           <listEntry value="2">@Strings.Small</listEntry>
+	 	           <listEntry value="3">@Strings.Medium</listEntry>
+	 	           <listEntry value="4">@Strings.Large</listEntry>
+	 	           <listEntry value="5">@Strings.NumMild</listEntry>
+	 	           <listEntry value="6">@Strings.NumMedium</listEntry>
+	 	           <listEntry value="7">@Strings.NumHot</listEntry>
+	 	           <listEntry value="8">@Strings.NumThaiHot</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+			<setting propertyKey="@Properties.autoValueSize" title="@Strings.autoValueSize">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-1">@Strings.Auto</listEntry>
 	 	           <listEntry value="0">@Strings.Xtiny</listEntry>
 	 	           <listEntry value="1">@Strings.Tiny</listEntry>
 	 	           <listEntry value="2">@Strings.Small</listEntry>

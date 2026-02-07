@@ -16,7 +16,7 @@ class MyBikeTrafficApp extends Application.AppBase {
 
     //! Return the initial view of your application here
     function getInitialView() {
-        return [ new MyBikeTrafficView([Application.Properties.getValue("displayTotal"), Application.Properties.getValue("displayLap"), Application.Properties.getValue("displaySpeedRelative"), Application.Properties.getValue("displaySpeedAbsolute"), Application.Properties.getValue("displaySpeedLast"), Application.Properties.getValue("displayClosestDist")]) ];
+        return [ new MyBikeTrafficView([Application.Properties.getValue("displayTotal"), Application.Properties.getValue("displayLap"), Application.Properties.getValue("displaySpeedRelative"), Application.Properties.getValue("displaySpeedAbsolute"), Application.Properties.getValue("displaySpeedLast"), Application.Properties.getValue("displayClosestDist")], Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize")) ];
     }
 
 }
