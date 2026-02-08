@@ -54,7 +54,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var numFields = 0; // this ends up being a count of the array below which is read from the app settings
 	hidden var whichFields as Lang.Array<Lang.Number> = [1, 0, 0, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed, position 4 - last vehicle speed, position 5 - closest vehicle distance... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
 	
-	hidden var testString = "88" as Lang.String;   // start out using small text string for font layout ... change this as the counts get larger
+	hidden var testString = "888" as Lang.String;   // start out using small text string for font layout ... change this as the counts get larger
     hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
     hidden var needLayout = false;  // flag to set if we need to manually re-layout b/c count has increased enough to increase number of digits
 	
@@ -227,8 +227,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
         	newtotalDigits = countDigits(mFitContributor.count*numFields);
 		}
         if (newtotalDigits > totalDigits) {
-        	totalDigits = totalDigits + 1;
-        	testString = testString + "8"; // concatenate a digit onto the test string
+			while (totalDigits < newtotalDigits) {
+        		testString = testString + "8"; // concatenate a digit onto the test string
+				totalDigits = totalDigits + 1;
+			}
         	needLayout = true;
         }
     }
@@ -283,8 +285,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
             lblColor = Graphics.COLOR_LT_GRAY;
         }
         // The following two lines are probably unnecessary b/c View.onUpdate(dc) does this ... but JUST IN CASE...
-        //dc.setColor(fgColor, bgColor);
-        //dc.clear();
+        dc.setColor(fgColor, bgColor);
+        dc.clear();
         
         // flag var for displaying units at appropriate place(s)
         var speedflag = false;
@@ -365,6 +367,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately below speed value
+					var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
+					fh = dimensions[1];
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    if (distflag) {
