@@ -372,7 +372,9 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    if (distflag) {
-	    	    	// calculate location for units immediately below speed value
+	    	    	// calculate location for units immediately below distance value
+					var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
+					fh = dimensions[1];
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    valuei = valuei + 1;
