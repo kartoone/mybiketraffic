@@ -1,6 +1,7 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
 using Toybox.Sensor;
+using Toybox.Application;
 using Toybox.Lang;
 
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
@@ -77,7 +78,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		whichFields[5] = properties[5] ? 1 : 0;
         
         // manually set how many and which fields visible to debug drawing the layout
-        // whichFields = [1, 1, 1, 0, 0];
+        whichFields = [1, 1, 0, 1, 1, 0];
 
 		// orientation and font size settings
 		self.autoOrientation = autoOrientation;
@@ -119,7 +120,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 				break;
 		}        		
         
-        mFitContributor = new MyBikeTrafficFitContributions(self, metric);
+		mFitContributor = new MyBikeTrafficFitContributions(self, metric, Application.Properties.getValue("sensorMode"));
     }
     
     function countDigits(num) {
@@ -381,6 +382,15 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	  }
 	    	}
 	    }
+		// draw tiny sensor status indicator at bottom of field
+		var statusStr;
+		if (mFitContributor.sensorMode == 1) {
+			statusStr = mFitContributor.btRadar.getDisplayStatus();
+		} else {
+			statusStr = mFitContributor.bikeRadar.getDisplayStatus();
+		}
+		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+		dc.drawText(dc.getWidth() / 2, dc.getHeight() - dc.getFontHeight(Graphics.FONT_XTINY) - 1, Graphics.FONT_XTINY, statusStr, Graphics.TEXT_JUSTIFY_CENTER);
 		// dc.drawText(10, labelY[1]+fh*2, Graphics.FONT_XTINY, mLabelDebug, Graphics.TEXT_JUSTIFY_LEFT);
     }
     

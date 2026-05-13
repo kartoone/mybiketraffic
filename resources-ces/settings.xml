@@ -7,6 +7,7 @@
 <property id="displaySpeedAbsolute" type="boolean">false</property>
 <property id="displaySpeedLast" type="boolean">false</property>
 <property id="displayClosestDist" type="boolean">false</property>
+<property id="sensorMode" type="number">0</property>
 </properties>
 
 <strings>

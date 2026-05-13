@@ -10,6 +10,7 @@
 		<property id="autoLabelSize" type="number">-2</property>
 		<property id="autoValueSize" type="number">-1</property>
 		<property id="autoUnitsSize" type="number">0</property>
+		<property id="sensorMode" type="number">0</property>
 	</properties>
 
 	<strings>
@@ -28,6 +29,12 @@
 		<string id="autoLabelSize">Label size</string>
 		<string id="autoValueSize">Value size</string>
 		<string id="autoUnitsSize">Units size</string>
+
+		<string id="groupSensor">Sensor connection type</string>
+		<string id="groupSensorDescription">Choose whether to use ANT+ or Bluetooth to connect to your Garmin Varia radar. ANT+ is the default and most widely supported. Bluetooth requires a device with BLE support (SDK 3.2+).</string>
+		<string id="sensorModeTitle">Connection type</string>
+		<string id="sensorModeAnt">ANT+</string>
+		<string id="sensorModeBt">Bluetooth (BLE)</string>
 
 	 	<string id="Auto">Auto</string>
 	 	<string id="Off">Off</string>
@@ -83,6 +90,14 @@
 	 	       </settingConfig>
 	 		</setting>
 	    </group>
+	    <group id="groupSensor" title="@Strings.groupSensor" description="@Strings.groupSensorDescription">
+			<setting propertyKey="@Properties.sensorMode" title="@Strings.sensorModeTitle">
+				<settingConfig type="list">
+					<listEntry value="0">@Strings.sensorModeAnt</listEntry>
+					<listEntry value="1">@Strings.sensorModeBt</listEntry>
+				</settingConfig>
+			</setting>
+		</group>
 	    <group id="groupDisplay" title="@Strings.groupDisplay" description="@Strings.groupDisplayDescription">
 			<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
 			<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
