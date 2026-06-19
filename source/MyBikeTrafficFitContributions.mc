@@ -1,16 +1,12 @@
 using Toybox.WatchUi;
 using Toybox.FitContributor;
 using Toybox.Sensor;
-using Toybox.AntPlus;
-using Toybox.Application;
 using Toybox.Lang;
 
 class MyBikeTrafficFitContributions {
 
 	// radar related attributes
 	var bikeRadar;  
-	var btRadar;
-	var sensorMode; // 0 = ANT+, 1 = Bluetooth LE
 	
 	// vehicle count related attributes
 	// raw count of number of vehicles
@@ -23,8 +19,8 @@ class MyBikeTrafficFitContributions {
 	var dist;        // distance to closest car (convert to feet if not metric)
 	var disabled;
 	hidden var lasttrackcnt;
+	hidden var lastspdCandidate;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
-	hidden var mBtTrackThresh as Lang.Dictionary<Lang.Number, Lang.Boolean>; // BLE only: Dictionary { trackId => crossedThresh(Boolean) } – tracks per-car threshold state
 	const THRESH=10; 			// this is the threshold distance that the closest car must be in order for it to be counted
 	const RANGETARGETS=8;
 	const SPEEDTARGETS=8;
@@ -39,6 +35,8 @@ class MyBikeTrafficFitContributions {
 	var countLapField;
 	var passingSpeedRelDataField;
 	var passingSpeedAbsDataField;
+	hidden var mRangeInfo as Lang.Array<Lang.Number>;
+	hidden var mSpeedInfo as Lang.Array<Lang.Number>;
 
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
@@ -50,23 +48,18 @@ class MyBikeTrafficFitContributions {
 //	const BT_THREAT_FIELD_ID = 4;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 5; 	threat side 0-left, 1-right
 	
-    function initialize(datafield, metric, sensorModeParam) {
+	function initialize(datafield, metric, connectionBehaviorMode as Lang.Object or Null) {
         self.metric = metric;
-        self.sensorMode = (sensorModeParam != null) ? sensorModeParam : 0;
-        if (self.sensorMode == 1) {
-            btRadar = new MyBikeBtRadar();
-        } else {
-			bikeRadar = new MyBikeAntRadar();
-        }
+		bikeRadar = new MyBikeAntRadar(connectionBehaviorMode);
         lapcount = 0;
         count = 0;
         lasttrackcnt = 0;
         approachspd = 0;
         absolutespd = 0;
 		lastspd = 0;
+		lastspdCandidate = 0;
 		dist = 0;
         crossedthresh = false;
-        mBtTrackThresh = {} as Lang.Dictionary<Lang.Number, Lang.Boolean>;
         disabled = true;
 		rangeDataField = datafield.createField( // 16 bytes
             "radar_ranges",
@@ -110,6 +103,8 @@ class MyBikeTrafficFitContributions {
             FitContributor.DATA_TYPE_UINT8,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
+		mRangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
+		mSpeedInfo = new [SPEEDTARGETS] as Lang.Array<Lang.Number>;
     }
    
     // The given info object contains all the current workout information.
@@ -117,11 +112,7 @@ class MyBikeTrafficFitContributions {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
-		if (sensorMode == 1) {
-			btRadar.tick();
-		} else {
-			bikeRadar.tick();
-		}
+		bikeRadar.tick();
 
     	// do nothing if activity is not running
 		// simply set flag that radar is disabled if the timer is not running ... technically the radar MAY be enabled, but we don't care b/c we don't want to write into the FIT file while the timer is not running
@@ -129,18 +120,14 @@ class MyBikeTrafficFitContributions {
 			disabled = true;
 			return;  // nothing else to do, let's get out of here ... 
 		}
-		if (sensorMode == 1) {
-			_computeBt(info);
-		} else {
-			_computeAnt(info);
-		}
+		_computeAnt(info);
 	}
 
-	// ANT+ path – unchanged original logic.
+	// ANT radar path.
 	hidden function _computeAnt(info) {
 		var radarInfo = bikeRadar.getRadarInfo() as Lang.Array;
-		var rangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
-		var speedInfo = new [SPEEDTARGETS] as Lang.Array<Lang.Number>;
+		var rangeInfo = mRangeInfo;
+		var speedInfo = mSpeedInfo;
         if (radarInfo != null) {
         	disabled = false;
 			for (var i=0;i<RANGETARGETS;i++) {
@@ -175,13 +162,13 @@ class MyBikeTrafficFitContributions {
 				if (crossedthresh) {
 					count = count + (lasttrackcnt-trackcnt);
 					lapcount = lapcount + (lasttrackcnt-trackcnt);
+					lastspd = lastspdCandidate;
 				}
-			} else {
-				// only update LAST passing speed to the current absolute speed of the closest car if it wasn't an erroneous "0" speed
-				// if this car has passed us on the next reading, it won't be updated so it will be preserved
-				if (absolutespd > 0) {
-					lastspd = absolutespd;
-				}
+			} 
+			if (trackcnt > 0) {
+				lastspdCandidate = absolutespd;
+			} else if (trackcnt == 0) {
+				lastspdCandidate = 0;
 			}
 			// update dist no matter what
 			dist = metric?rangeInfo[0]:rangeInfo[0]*3.28084;
@@ -210,111 +197,14 @@ class MyBikeTrafficFitContributions {
 		}		
 	}
 
-	// Bluetooth LE path – vehicle count, distance, and approach speed are
-	// derived from the V1 threat packets decoded by MyBikeBtRadar.
-	// Speed is estimated as Δdist/Δtime across successive BLE notifications
-	// (see MyBikeBtRadar.onNotification).  Vehicle tuple layout:
-	//   [trackId(0), distM(1), speedMps(2), flag(3)]
-	hidden function _computeBt(info) {
-		var rangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
-		var speedInfo = new [SPEEDTARGETS] as Lang.Array<Lang.Number>;
-		if (btRadar.isConnected) {
-			disabled = false;
-			var vehicles = btRadar.vehicles as Lang.Array<Lang.Array>;
-			var vcnt = vehicles.size();
-
-			// Fill range/speed slots from BLE vehicle list (closest first).
-			// Slots beyond the vehicle count are set to 0 (no car).
-			// -1/255 are reserved as the "radar disabled" sentinels.
-			for (var i = 0; i < RANGETARGETS; i++) {
-				rangeInfo[i] = i < vcnt ? (vehicles[i] as Lang.Array)[1] : 0; // distM
-			}
-			for (var i = 0; i < SPEEDTARGETS; i++) {
-				// Store integer m/s in the FIT field, same as ANT+ path.
-				speedInfo[i] = i < vcnt ? ((vehicles[i] as Lang.Array)[2] as Lang.Float).toNumber() : 0;
-			}
-
-			// Use float speed of closest car for display precision.
-			var speed0Mps = vcnt > 0 ? (vehicles[0] as Lang.Array)[2] as Lang.Float : 0.0f;
-			approachspd = speed0Mps > 0.0f
-				? (metric ? Math.round(speed0Mps * 3.6f) : Math.round(speed0Mps * 2.23694f))
-				: 0;
-
-			// it's possible info.currentSpeed is null before sat signal established
-			var currentSpeed = 0;
-			if (info.currentSpeed != null) {
-				currentSpeed = info.currentSpeed;
-			}
-			absolutespd = approachspd > 0
-				? (approachspd + (metric ? Math.round(currentSpeed * 3.6) : Math.round(currentSpeed * 2.23694)))
-				: 0;
-
-			rangeDataField.setData(rangeInfo);
-			speedDataField.setData(speedInfo);
-			passingSpeedRelDataField.setData(approachspd);
-			passingSpeedAbsDataField.setData(absolutespd);
-
-			// Per-trackId counting: build a threshold dict for this frame,
-			// then count any ID that vanished after having crossed THRESH.
-			var currentThresh = {} as Lang.Dictionary<Lang.Number, Lang.Boolean>;
-			for (var i = 0; i < vcnt; i++) {
-				var v = vehicles[i] as Lang.Array;
-				var tid = v[0] as Lang.Number;
-				var distM = v[1] as Lang.Number;
-				// Sticky: once a car closes within THRESH it stays counted
-				// even if it momentarily jumps back above the threshold.
-				var prevCrossed = mBtTrackThresh.hasKey(tid) ? mBtTrackThresh[tid] as Lang.Boolean : false;
-				currentThresh[tid] = distM < THRESH || prevCrossed;
-			}
-			// Any trackId present last frame but gone now: count it if it
-			// had crossed the distance threshold before disappearing.
-			var prevIds = mBtTrackThresh.keys() as Lang.Array<Lang.Number>;
-			for (var i = 0; i < prevIds.size(); i++) {
-				var tid = prevIds[i];
-				if (!currentThresh.hasKey(tid) && (mBtTrackThresh[tid] as Lang.Boolean)) {
-					count++;
-					lapcount++;
-				}
-			}
-			mBtTrackThresh = currentThresh;
-			// Update lastspd while any car is present.
-			if (absolutespd > 0) {
-				lastspd = absolutespd;
-			}
-			// Update dist for display.
-			if (vcnt > 0) {
-				dist = metric ? rangeInfo[0] : rangeInfo[0] * 3.28084;
-			} else {
-				dist = 0;
-			}
-			countDataField.setData(count);
-			countLapField.setData(lapcount);
-			countSessionField.setData(count);
-		} else {
-			// BLE not yet connected – write bogus sentinel values so the
-			// mapping layer knows the radar was inactive for this sample.
-			disabled = true;
-			for (var i = 0; i < RANGETARGETS; i++) { rangeInfo[i] = -1; }
-			for (var i = 0; i < SPEEDTARGETS; i++) { speedInfo[i] = 255; }
-			approachspd = 0;
-			rangeDataField.setData(rangeInfo);
-			speedDataField.setData(speedInfo);
-			countDataField.setData(count);
-			countLapField.setData(lapcount);
-			countSessionField.setData(count);
-			passingSpeedRelDataField.setData(0);
-			passingSpeedAbsDataField.setData(0);
-		}
-	}
-
     // activity has ended
     // handle resetting count to 0 after activity has ended
     function onTimerReset() {
 		count=0;
 		lapcount=0;
 		lasttrackcnt=0;
+		lastspdCandidate = 0;
 		crossedthresh = false;
-		mBtTrackThresh = {} as Lang.Dictionary<Lang.Number, Lang.Boolean>;
     }
     
     // simply reset the lapcount ... lap data already written out once per second (per documentation) overwriting previous lap message ... this is the way it's supposed to work!

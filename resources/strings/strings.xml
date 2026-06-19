@@ -1,6 +1,5 @@
 <strings>
     <string id="AppName">MyBikeTraffic</string>
-    <string id="label">VC</string>
     <string id="mybiketraffic_count_label">Vehicle Count</string>
     <string id="mybiketraffic_lapcount_label">Lap Vehicle Count</string>
     <string id="mybiketraffic_units_label"> </string>
@@ -13,16 +12,16 @@
     <string id="ml1_aspd">Absolute Speed</string>
     <string id="ml1_lspd">Last Speed</string>
     <string id="ml1_dist">Vehicle Distance</string>
-    <string id="ml2_vc">VCnt</string>
-    <string id="ml2_lvc">Lap</string>
-    <string id="ml2_rspd">Rel</string>
-    <string id="ml2_aspd">Abs</string>
+    <string id="ml2_vc">VC</string>
+    <string id="ml2_lvc">LAP</string>
+    <string id="ml2_rspd">REL</string>
+    <string id="ml2_aspd">ABS</string>
     <string id="ml2_lspd">LAST</string>
-    <string id="ml2_dist">Dist</string>
+    <string id="ml2_dist">DIST</string>
     <string id="ml3_vc">VC</string>
-    <string id="ml3_lvc">Lap</string>
-    <string id="ml3_rspd">Rel</string>
-    <string id="ml3_aspd">Abs</string>
+    <string id="ml3_lvc">LAP</string>
+    <string id="ml3_rspd">REL</string>
+    <string id="ml3_aspd">ABS</string>
     <string id="ml3_lspd">LAST</string>
-    <string id="ml3_dist">Dist</string>
+    <string id="ml3_dist">DIST</string>
 </strings>

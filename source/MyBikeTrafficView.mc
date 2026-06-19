@@ -1,8 +1,8 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
 using Toybox.Sensor;
-using Toybox.Application;
 using Toybox.Lang;
+using Toybox.Time;
 
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
 // ... so no need to reference the array (but probably should) once you have found the index for the font that fits
@@ -16,34 +16,17 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var autoOrientation = -1; // -1 mean auto, 0 means force horizontal, 1 means force vertical 
 	hidden var autoLabelSize = -2; // -2 means auto with max of tiny, -1 means off (i.e., no label), 0 means xtiny, 1 means tiny, etc...
 	hidden var autoValueSize = -1; // -1 means auto with no max, 0 means xtiny, 1 means tiny, etc...
+	hidden var showDebugStatus = true;
+	hidden var mConnectionBehaviorMode = 1;
+	hidden var mStatusFont = Graphics.FONT_TINY;
+	hidden var mPendingResetTap = false;
+	hidden var mPendingResetTapDeadline as Lang.Number or Null;
+	const RESET_CONFIRM_SECONDS = 1;
 
 	// layout related vars
 	// cannot use the strings file when drawing directly onto dc
 	hidden var mLabels as Lang.Array<Lang.String>?; // array of labels to display ... this is set based on how many fields are displayed
-	hidden var mLabelsONE = [
-		WatchUi.loadResource($.Rez.Strings.ml1_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml1_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml1_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_dist) 
-	];
-	hidden var mLabelsTWO = [
-		WatchUi.loadResource($.Rez.Strings.ml2_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml2_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml2_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_dist) 
-	];
-	hidden var mLabelsTHREE = [
-		WatchUi.loadResource($.Rez.Strings.ml3_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml3_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml3_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_dist) 
-	];
+	hidden var mLabelSet = 1;
 	// hidden var mLabelDebug;
     hidden var mLabelY = 2; 
     hidden var mLabelFont = Graphics.FONT_TINY;
@@ -60,9 +43,9 @@ class MyBikeTrafficView extends WatchUi.DataField {
     hidden var needLayout = false;  // flag to set if we need to manually re-layout b/c count has increased enough to increase number of digits
 	
 	// this is where all the real computational work happens - MyBikeTrafficFitConributions
-	hidden var mFitContributor; 
+	hidden var mFitContributor as MyBikeTrafficFitContributions or Null;
 	
-	function initialize(properties as Lang.Array<Lang.Boolean>, autoOrientation as Lang.Number, autoLabelSize as Lang.Number, autoValueSize as Lang.Number) {
+	function initialize(properties as Lang.Array<Lang.Boolean>, autoOrientation as Lang.Number, autoLabelSize as Lang.Number, autoValueSize as Lang.Number, connectionBehaviorMode as Lang.Number or Null) {
         DataField.initialize();
         
         // get device settings to determine whether metric or statue units
@@ -76,9 +59,12 @@ class MyBikeTrafficView extends WatchUi.DataField {
         whichFields[3] = properties[3] ? 1 : 0;
 		whichFields[4] = properties[4] ? 1 : 0;
 		whichFields[5] = properties[5] ? 1 : 0;
-        
-        // manually set how many and which fields visible to debug drawing the layout
-        whichFields = [1, 1, 0, 1, 1, 0];
+		if (properties.size() > 6 && properties[6] != null) {
+			showDebugStatus = properties[6];
+		}
+		if (connectionBehaviorMode != null) {
+			mConnectionBehaviorMode = connectionBehaviorMode;
+		}
 
 		// orientation and font size settings
 		self.autoOrientation = autoOrientation;
@@ -107,25 +93,128 @@ class MyBikeTrafficView extends WatchUi.DataField {
         		numFields = 1;
         		// no break here so that we also setup the labels correctly by executing case 1
         	case 1:
-				mLabels = mLabelsONE;
+						mLabelSet = 1;
 				break;        		
         	case 2:
-				mLabels = mLabelsTWO;
+						mLabelSet = 2;
 				break;        		
         	case 3:
         	case 4:
 			case 5:
 			case 6:
-				mLabels = mLabelsTHREE;
+						mLabelSet = 3;
 				break;
 		}        		
-        
-		mFitContributor = new MyBikeTrafficFitContributions(self, metric, Application.Properties.getValue("sensorMode"));
+
+			mLabels = null;
+			mFitContributor = null;
     }
+
+		hidden function _loadLabels(labelSet as Lang.Number) as Lang.Array<Lang.String> {
+			switch (labelSet) {
+				case 1:
+					return [
+						WatchUi.loadResource($.Rez.Strings.ml1_vc),
+						WatchUi.loadResource($.Rez.Strings.ml1_lvc),
+						WatchUi.loadResource($.Rez.Strings.ml1_rspd),
+						WatchUi.loadResource($.Rez.Strings.ml1_aspd),
+						WatchUi.loadResource($.Rez.Strings.ml1_lspd),
+						WatchUi.loadResource($.Rez.Strings.ml1_dist)
+					];
+				case 2:
+					return [
+						WatchUi.loadResource($.Rez.Strings.ml2_vc),
+						WatchUi.loadResource($.Rez.Strings.ml2_lvc),
+						WatchUi.loadResource($.Rez.Strings.ml2_rspd),
+						WatchUi.loadResource($.Rez.Strings.ml2_aspd),
+						WatchUi.loadResource($.Rez.Strings.ml2_lspd),
+						WatchUi.loadResource($.Rez.Strings.ml2_dist)
+					];
+			}
+
+			return [
+				WatchUi.loadResource($.Rez.Strings.ml3_vc),
+				WatchUi.loadResource($.Rez.Strings.ml3_lvc),
+				WatchUi.loadResource($.Rez.Strings.ml3_rspd),
+				WatchUi.loadResource($.Rez.Strings.ml3_aspd),
+				WatchUi.loadResource($.Rez.Strings.ml3_lspd),
+				WatchUi.loadResource($.Rez.Strings.ml3_dist)
+			];
+		}
+
+		hidden function _ensureFitContributor() as MyBikeTrafficFitContributions {
+			if (mFitContributor == null) {
+				mFitContributor = new MyBikeTrafficFitContributions(self, metric, mConnectionBehaviorMode);
+			}
+			return mFitContributor;
+		}
+
+		hidden function _ensureLabels() as Lang.Array<Lang.String> {
+			if (mLabels == null) {
+				mLabels = _loadLabels(mLabelSet);
+			}
+			return mLabels;
+		}
     
     function countDigits(num) {
       	return num<1000?num<100?num<10?1:2:num<1000?3:4:5;
     }
+
+	hidden function _getStatusReserveHeight(dc) as Lang.Number {
+		if (!showDebugStatus && !mPendingResetTap) {
+			return 0;
+		}
+		return dc.getFontHeight(mStatusFont) + 2;
+	}
+
+	hidden function _nowResetTapTime() as Lang.Number or Null {
+		try {
+			return Time.now().value();
+		} catch(e) {}
+		return null;
+	}
+
+	hidden function _clearPendingResetTap() as Void {
+		mPendingResetTap = false;
+		mPendingResetTapDeadline = null;
+	}
+
+	hidden function _tickPendingResetTap() as Void {
+		if (!mPendingResetTap) {
+			return;
+		}
+
+		var now = _nowResetTapTime();
+		if (now == null || mPendingResetTapDeadline == null) {
+			_clearPendingResetTap();
+			needLayout = true;
+			return;
+		}
+
+		if (now >= mPendingResetTapDeadline) {
+			_clearPendingResetTap();
+			needLayout = true;
+		}
+	}
+
+	function handleResetTap() as Void {
+		if (!mPendingResetTap) {
+			var now = _nowResetTapTime();
+			if (now == null) {
+				return;
+			}
+			mPendingResetTap = true;
+			mPendingResetTapDeadline = now + RESET_CONFIRM_SECONDS;
+			needLayout = true;
+			return;
+		}
+
+		_clearPendingResetTap();
+		needLayout = true;
+		if (mFitContributor != null) {
+			mFitContributor.bikeRadar.requestRawWaitReset();
+		}
+	}
 
     function selectFont(dc, width, height) {
         //var testString = "88.88"; //Dummy string to test data width
@@ -139,7 +228,6 @@ class MyBikeTrafficView extends WatchUi.DataField {
             }
         } 
 		fh = dc.getFontHeight(mValueFont);	    	    	
-		System.println("selectFont: width: " + width + " height: " + height + " selected font idx: " + fontIdx + " fh: " + fh);
         return fontIdx;
     }
 
@@ -148,7 +236,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // 	2. displaying one or two fields, can go side-by-side, or (three fields if wide-layout)
     function onLayout(dc) {
         var width = dc.getWidth();
-        var height = dc.getHeight();
+		var height = dc.getHeight() - _getStatusReserveHeight(dc);
         var top = 5;
         // mLabelDebug = width + " " + height + " " + top;
         
@@ -215,17 +303,22 @@ class MyBikeTrafficView extends WatchUi.DataField {
 
     function compute(info) {
 		// System.println("compute");
+		_tickPendingResetTap();
+		if (mFitContributor == null && info.timerState != 3) {
+			return;
+		}
 
-        mFitContributor.compute(info);
+		var fitContributor = _ensureFitContributor();
+		fitContributor.compute(info);
         // see if we need to update fonts
 
 		var newtotalDigits = 0;
 		if (vertical) {
 			// only need to count the likely widest field
-			newtotalDigits = countDigits(mFitContributor.count);
+			newtotalDigits = countDigits(fitContributor.count);
 		} else {
 			// need to count all fields ... roughly estimate based on likely widest field
-        	newtotalDigits = countDigits(mFitContributor.count*numFields);
+	        	newtotalDigits = countDigits(fitContributor.count*numFields);
 		}
         if (newtotalDigits > totalDigits) {
 			while (totalDigits < newtotalDigits) {
@@ -250,8 +343,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		var diststr;
     	var unitsstr;
 		var dunitsstr;
+		var fitContributor = mFitContributor;
+		var labels = autoLabelSize != -1 ? _ensureLabels() : null;
     	
-    	if (mFitContributor.disabled) {
+	    	if (fitContributor == null || fitContributor.disabled) {
     		countstr = "--";
     		lapstr = "--";
     		spdstr = "--";
@@ -261,12 +356,12 @@ class MyBikeTrafficView extends WatchUi.DataField {
     		unitsstr = " "; 
 			dunitsstr = " ";
     	} else {
-    		countstr = mFitContributor.count.format("%d");
-    		lapstr = mFitContributor.lapcount.format("%d");
-    		spdstr = mFitContributor.approachspd.format("%d");
-    		absstr = mFitContributor.absolutespd.format("%d");
-			laststr = mFitContributor.lastspd.format("%d");
-			diststr = mFitContributor.dist.format("%d");
+	    		countstr = fitContributor.count.format("%d");
+	    		lapstr = fitContributor.lapcount.format("%d");
+	    		spdstr = fitContributor.approachspd.format("%d");
+	    		absstr = fitContributor.absolutespd.format("%d");
+			laststr = fitContributor.lastspd.format("%d");
+			diststr = fitContributor.dist.format("%d");
     		unitsstr = metric?"kph":"mph"; 
     		dunitsstr = metric?"m":"ft"; 
 		}
@@ -301,7 +396,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    		var labeli = 0;
 	    		for (var i=0; i<whichFields.size(); i++) {
 	    		  if (whichFields[i]==1) {
-	    		    dc.drawText(labelX[0], labelY[labeli], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_RIGHT);
+	    		    dc.drawText(labelX[0], labelY[labeli], mLabelFont, labels[i], Graphics.TEXT_JUSTIFY_RIGHT);
 	    		    labeli = labeli + 1;
 	    		  }
 	    		}
@@ -344,7 +439,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    		var labeli = 0;
 	    		for (var i=0; i<whichFields.size(); i++) {
 	    		  if (whichFields[i]==1) {
-	    		    dc.drawText(labelX[labeli], labelY[0], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_CENTER);
+	    		    dc.drawText(labelX[labeli], labelY[0], mLabelFont, labels[i], Graphics.TEXT_JUSTIFY_CENTER);
 	    		    labeli = labeli + 1;
 	    		  }
 				}
@@ -383,27 +478,50 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	}
 	    }
 		// draw tiny sensor status indicator at bottom of field
-		var statusStr;
-		if (mFitContributor.sensorMode == 1) {
-			statusStr = mFitContributor.btRadar.getDisplayStatus();
-		} else {
-			statusStr = mFitContributor.bikeRadar.getDisplayStatus();
+		var radarStatusText = "START";
+		if (mPendingResetTap) {
+			radarStatusText = "TAP AGAIN";
+		} else if (fitContributor != null) {
+			radarStatusText = fitContributor.bikeRadar.getDisplayStatus();
 		}
-		dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-		dc.drawText(dc.getWidth() / 2, dc.getHeight() - dc.getFontHeight(Graphics.FONT_XTINY) - 1, Graphics.FONT_XTINY, statusStr, Graphics.TEXT_JUSTIFY_CENTER);
+		var statusY = dc.getHeight() - dc.getFontHeight(mStatusFont) - 1;
+		if (showDebugStatus || mPendingResetTap) {
+			dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+			dc.drawText(dc.getWidth() / 2, statusY, mStatusFont, radarStatusText, Graphics.TEXT_JUSTIFY_CENTER);
+		}
 		// dc.drawText(10, labelY[1]+fh*2, Graphics.FONT_XTINY, mLabelDebug, Graphics.TEXT_JUSTIFY_LEFT);
     }
     
     // activity has ended
     // handle resetting count to 0 after activity has ended
     function onTimerReset() {
-    	mFitContributor.onTimerReset();
+		_clearPendingResetTap();
+	    	if (mFitContributor != null) {
+	    		mFitContributor.onTimerReset();
+	    	}
     }
     
     // simply reset the lapcount ... lap data already written out once per second (per documentation) overwriting previous lap message ... this is the way it's supposed to work!
     function onTimerLap() {
-    	mFitContributor.onTimerLap();
+	    	if (mFitContributor != null) {
+	    		mFitContributor.onTimerLap();
+	    	}
     }
     
 
+}
+
+class MyBikeTrafficViewDelegate extends WatchUi.BehaviorDelegate {
+
+	hidden var mView as MyBikeTrafficView;
+
+	function initialize(view as MyBikeTrafficView) {
+		BehaviorDelegate.initialize();
+		mView = view;
+	}
+
+	function onTap(evt as WatchUi.ClickEvent) as Lang.Boolean {
+		mView.handleResetTap();
+		return true;
+	}
 }

@@ -1,6 +1,5 @@
 <strings>
     <string id="AppName">MyBikeTraffic</string>
-    <string id="label">Poc</string>
     <string id="mybiketraffic_count_label">Počet vozidel</string>
     <string id="mybiketraffic_lapcount_label">Počet kol</string>
     <string id="mybiketraffic_units_label"> </string>
@@ -25,9 +24,4 @@
     <string id="ml3_aspd">Max</string>
     <string id="ml3_lspd">POS</string>
     <string id="ml3_dist">Min</string>
-    <string id="groupSensor">Typ připojení senzoru</string>
-    <string id="groupSensorDescription">Zvolte, zda se chcete k radaru Garmin Varia připojit přes ANT+ nebo Bluetooth. ANT+ je výchozí a nejširší podporované řešení. Bluetooth vyžaduje zařízení s podporou BLE (SDK 3.2+).</string>
-    <string id="sensorModeTitle">Typ připojení</string>
-    <string id="sensorModeAnt">ANT+</string>
-    <string id="sensorModeBt">Bluetooth (BLE)</string>
 </strings>

@@ -7,39 +7,46 @@
 <property id="displaySpeedAbsolute" type="boolean">false</property>
 <property id="displaySpeedLast" type="boolean">false</property>
 <property id="displayClosestDist" type="boolean">false</property>
-<property id="sensorMode" type="number">0</property>
+<property id="displayDebugStatus" type="boolean">true</property>
+<property id="connectionBehaviorMode" type="number">1</property>
 </properties>
 
 <strings>
-		<string id="groupDisplay">Choose which fields to display</string>
-		<string id="groupDisplayDescription">By default only the vehicle count is displayed. Pick other fields you would like to display within the data field.</string>
-		<string id="totalTitle">Display vehicle total</string>
-		<string id="lapTitle">Display lap total</string>
-		<string id="speedTitleRelative">Display approach speed (relative)</string>
-		<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
-		<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
-		<string id="distanceTitle">Display closest vehicle distance</string>
+		<string id="groupDisplay">Vyberte pole k zobrazení</string>
+		<string id="groupDisplayDescription">Výchozí je pouze celkový počet.</string>
+		<string id="totalTitle">Zobrazit celkový počet vozidel</string>
+		<string id="lapTitle">Zobrazit počet vozidel v aktuálním okruhu</string>
+		<string id="speedTitleRelative">Zobrazit přibližovací rychlost (relativní)</string>
+		<string id="speedTitleAbsolute">Zobrazit rychlost vozidla (absolutní)</string>
+		<string id="speedTitleLast">Zobrazit rychlost posledního vozidla (absolutní)</string>
+		<string id="distanceTitle">Zobrazit vzdálenost nejbližšího vozidla</string>
+		<string id="debugStatusTitle">Zobrazit stav ladění ANT</string>
+		<string id="groupConnection">Chování připojení</string>
+		<string id="groupConnectionDescription">Vyberte režim podle svého radaru.</string>
+		<string id="connectionBehaviorModeTitle">Možnosti připojení</string>
+		<string id="connectionModeAlways820">Pouze RearVue 820</string>
+		<string id="connectionModeNever820">Pouze starší radary</string>
+		<string id="connectionModeSometimes820">Přepínám mezi 820 a staršími</string>
 
-		<string id="groupAuto">Choose font size and orientation</string>
-		<string id="groupAutoDescription">The field attempts to auto-orient and auto-size the font, but sometimes it doesn't work correctly. Choose from the options below to override the auto settings.</string>
-		<string id="autoOrientation">Orientation</string>
-		<string id="autoLabelSize">Label size</string>
-		<string id="autoValueSize">Value size</string>
-		<string id="autoUnitsSize">Units size</string>
+		<string id="groupAuto">Vyberte velikost písma a orientaci</string>
+		<string id="groupAutoDescription">V případě potřeby přepište automatické rozvržení.</string>
+		<string id="autoOrientation">Orientace</string>
+		<string id="autoLabelSize">Velikost popisku</string>
+		<string id="autoValueSize">Velikost hodnoty</string>
 
-	 	<string id="Auto">Auto</string>
-	 	<string id="Off">Off</string>
-	 	<string id="Horizontal">Horizontal</string>
-	 	<string id="Vertical">Vertical</string>
-	 	<string id="Xtiny">Extra tiny</string>
-	 	<string id="Tiny">Tiny</string>
-	 	<string id="Small">Small</string>
-	 	<string id="Medium">Medium</string>
-	 	<string id="Large">Medium+</string>
-	 	<string id="NumMild">Large</string>
-	 	<string id="NumMedium">Large+</string>
-	 	<string id="NumHot">Extra Large</string>
-	 	<string id="NumThaiHot">Huge</string>
+	 	<string id="Auto">Automaticky</string>
+	 	<string id="Off">Vypnuto</string>
+	 	<string id="Horizontal">Vodorovně</string>
+	 	<string id="Vertical">Svisle</string>
+	 	<string id="Xtiny">Mimořádně malé</string>
+	 	<string id="Tiny">Velmi malé</string>
+	 	<string id="Small">Malé</string>
+	 	<string id="Medium">Střední</string>
+	 	<string id="Large">Střední+</string>
+	 	<string id="NumMild">Velké</string>
+	 	<string id="NumMedium">Velké+</string>
+	 	<string id="NumHot">Mimořádně velké</string>
+	 	<string id="NumThaiHot">Obrovské</string>
 	</strings>
 <settings>
 	<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
@@ -48,6 +55,14 @@
 	<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
 	<setting propertyKey="@Properties.displaySpeedLast" title="@Strings.speedTitleLast"><settingConfig type="boolean" /></setting>
 	<setting propertyKey="@Properties.displayClosestDist" title="@Strings.distanceTitle"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.displayDebugStatus" title="@Strings.debugStatusTitle"><settingConfig type="boolean" /></setting>
+	<setting propertyKey="@Properties.connectionBehaviorMode" title="@Strings.connectionBehaviorModeTitle">
+	 	<settingConfig type="list">
+	 		<listEntry value="0">@Strings.connectionModeAlways820</listEntry>
+	 		<listEntry value="1">@Strings.connectionModeNever820</listEntry>
+	 		<listEntry value="2">@Strings.connectionModeSometimes820</listEntry>
+	 	</settingConfig>
+	</setting>
 </settings>
 
 </resources>
