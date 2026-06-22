@@ -1,19 +1,19 @@
 <resources>
 
 <properties>
-<property id="displayTotal" type="boolean">true</property>
-<property id="displayLap" type="boolean">false</property>
-<property id="displaySpeedRelative" type="boolean">false</property>
-<property id="displaySpeedAbsolute" type="boolean">false</property>
-<property id="displaySpeedLast" type="boolean">false</property>
-<property id="displayClosestDist" type="boolean">false</property>
+<property id="displayTotalPosition" type="number">1</property>
+<property id="displayLapPosition" type="number">0</property>
+<property id="displaySpeedRelativePosition" type="number">0</property>
+<property id="displaySpeedAbsolutePosition" type="number">2</property>
+<property id="displaySpeedLastPosition" type="number">0</property>
+<property id="displayClosestDistPosition" type="number">0</property>
 <property id="displayDebugStatus" type="boolean">true</property>
 <property id="connectionBehaviorMode" type="number">1</property>
 </properties>
 
 <strings>
-		<string id="groupDisplay">Vyberte pole k zobrazení</string>
-		<string id="groupDisplayDescription">Výchozí je pouze celkový počet.</string>
+		<string id="groupDisplay">Vyberte zobrazovaná pole a jejich pořadí</string>
+		<string id="groupDisplayDescription">Vypnuto pole skryje. Čísla určují pořadí zobrazení. Výchozí je počet vozidel a pak absolutní rychlost.</string>
 		<string id="totalTitle">Zobrazit celkový počet vozidel</string>
 		<string id="lapTitle">Zobrazit počet vozidel v aktuálním okruhu</string>
 		<string id="speedTitleRelative">Zobrazit přibližovací rychlost (relativní)</string>
@@ -49,12 +49,12 @@
 	 	<string id="NumThaiHot">Obrovské</string>
 	</strings>
 <settings>
-	<setting propertyKey="@Properties.displayTotal" title="@Strings.totalTitle"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displayLap" title="@Strings.lapTitle"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedRelative" title="@Strings.speedTitleRelative"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedAbsolute" title="@Strings.speedTitleAbsolute"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displaySpeedLast" title="@Strings.speedTitleLast"><settingConfig type="boolean" /></setting>
-	<setting propertyKey="@Properties.displayClosestDist" title="@Strings.distanceTitle"><settingConfig type="boolean" /></setting>
+		<setting propertyKey="@Properties.displayTotalPosition" title="@Strings.totalTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+		<setting propertyKey="@Properties.displayLapPosition" title="@Strings.lapTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+		<setting propertyKey="@Properties.displaySpeedRelativePosition" title="@Strings.speedTitleRelative"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+		<setting propertyKey="@Properties.displaySpeedAbsolutePosition" title="@Strings.speedTitleAbsolute"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+		<setting propertyKey="@Properties.displaySpeedLastPosition" title="@Strings.speedTitleLast"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+		<setting propertyKey="@Properties.displayClosestDistPosition" title="@Strings.distanceTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
 	<setting propertyKey="@Properties.displayDebugStatus" title="@Strings.debugStatusTitle"><settingConfig type="boolean" /></setting>
 	<setting propertyKey="@Properties.connectionBehaviorMode" title="@Strings.connectionBehaviorModeTitle">
 	 	<settingConfig type="list">

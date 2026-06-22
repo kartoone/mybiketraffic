@@ -6,17 +6,17 @@ class MyBikeTrafficApp extends Application.AppBase {
         AppBase.initialize();
     }
 
-    // onStart() is called on application start up
-    function onStart(state) {
-    }
-
-    // onStop() is called when your application is exiting
-    function onStop(state) {
-    }
-
     //! Return the initial view of your application here
     function getInitialView() {
-        var view = new MyBikeTrafficView([Application.Properties.getValue("displayTotal"), Application.Properties.getValue("displayLap"), Application.Properties.getValue("displaySpeedRelative"), Application.Properties.getValue("displaySpeedAbsolute"), Application.Properties.getValue("displaySpeedLast"), Application.Properties.getValue("displayClosestDist"), Application.Properties.getValue("displayDebugStatus")], Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize"), Application.Properties.getValue("connectionBehaviorMode"));
+        var displayPositions = [
+            Application.Properties.getValue("displayTotalPosition"),
+            Application.Properties.getValue("displayLapPosition"),
+            Application.Properties.getValue("displaySpeedRelativePosition"),
+            Application.Properties.getValue("displaySpeedAbsolutePosition"),
+            Application.Properties.getValue("displaySpeedLastPosition"),
+            Application.Properties.getValue("displayClosestDistPosition")
+        ];
+        var view = new MyBikeTrafficView(displayPositions, Application.Properties.getValue("displayDebugStatus"), Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize"), Application.Properties.getValue("connectionBehaviorMode"));
         return [ view, new MyBikeTrafficViewDelegate(view) ];
     }
 

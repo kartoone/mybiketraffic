@@ -1,6 +1,4 @@
-using Toybox.WatchUi;
 using Toybox.FitContributor;
-using Toybox.Sensor;
 using Toybox.Lang;
 
 class MyBikeTrafficFitContributions {
