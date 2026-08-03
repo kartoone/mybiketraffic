@@ -443,11 +443,10 @@ class MyBikeTrafficView extends WatchUi.DataField {
         // Set the colors
         var bgColor = getBackgroundColor();
         var fgColor = Graphics.COLOR_WHITE;
-        var lblColor = Graphics.COLOR_ORANGE;
         if (bgColor == Graphics.COLOR_WHITE) {
             fgColor = Graphics.COLOR_BLACK;
-            lblColor = Graphics.COLOR_LT_GRAY;
         }
+        var lblColor = fgColor;
         // The following two lines are probably unnecessary b/c View.onUpdate(dc) does this ... but JUST IN CASE...
         dc.setColor(fgColor, bgColor);
         dc.clear();

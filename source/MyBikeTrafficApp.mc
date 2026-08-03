@@ -6,6 +6,16 @@ class MyBikeTrafficApp extends Application.AppBase {
         AppBase.initialize();
     }
 
+    (:fullRadar)
+    hidden function _getConnectionBehaviorMode() {
+        return Application.Properties.getValue("connectionBehaviorMode");
+    }
+
+    (:lowMemoryRadar)
+    hidden function _getConnectionBehaviorMode() {
+        return 1;
+    }
+
     //! Return the initial view of your application here
     function getInitialView() {
         var displayPositions = [
@@ -16,7 +26,7 @@ class MyBikeTrafficApp extends Application.AppBase {
             Application.Properties.getValue("displaySpeedLastPosition"),
             Application.Properties.getValue("displayClosestDistPosition")
         ];
-        var view = new MyBikeTrafficView(displayPositions, Application.Properties.getValue("displayDebugStatus"), Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize"), Application.Properties.getValue("connectionBehaviorMode"));
+        var view = new MyBikeTrafficView(displayPositions, Application.Properties.getValue("displayDebugStatus"), Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize"), _getConnectionBehaviorMode());
         return [ view, new MyBikeTrafficViewDelegate(view) ];
     }
 

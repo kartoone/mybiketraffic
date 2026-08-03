@@ -1,0 +1,106 @@
+<resources>
+	<properties>
+		<property id="displayTotalPosition" type="number">1</property>
+		<property id="displayLapPosition" type="number">0</property>
+		<property id="displaySpeedRelativePosition" type="number">0</property>
+		<property id="displaySpeedAbsolutePosition" type="number">2</property>
+		<property id="displaySpeedLastPosition" type="number">0</property>
+		<property id="displayClosestDistPosition" type="number">0</property>
+		<property id="displayDebugStatus" type="boolean">true</property>
+		<property id="radarCompatibilityMessage" type="string">820 advanced connection unavailable for your device</property>
+		<property id="autoOrientation" type="number">-1</property>
+		<property id="autoLabelSize" type="number">-2</property>
+		<property id="autoValueSize" type="number">-1</property>
+	</properties>
+
+	<strings>
+		<string id="groupDisplay">Choose displayed fields and their order</string>
+		<string id="groupDisplayDescription">Off hides a field. Numbers control display order. Default is vehicle count, then absolute speed.</string>
+		<string id="totalTitle">Display vehicle total</string>
+		<string id="lapTitle">Display lap total</string>
+		<string id="speedTitleRelative">Display approach speed (relative)</string>
+		<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
+		<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
+		<string id="distanceTitle">Display closest vehicle distance</string>
+		<string id="debugStatusTitle">Display connection status</string>
+		<string id="groupConnection">Radar compatibility</string>
+		<string id="groupConnectionDescription">This device build uses native radar support only. 820 advanced connection unavailable for your device.</string>
+		<string id="rearVue820Title">RearVue 820</string>
+
+		<string id="groupAuto">Choose font size and orientation</string>
+		<string id="groupAutoDescription">Override the automatic layout if needed.</string>
+		<string id="autoOrientation">Orientation</string>
+		<string id="autoLabelSize">Label size</string>
+		<string id="autoValueSize">Value size</string>
+
+	 	<string id="Auto">Auto</string>
+	 	<string id="Off">Off</string>
+	 	<string id="Horizontal">Horizontal</string>
+	 	<string id="Vertical">Vertical</string>
+	 	<string id="Xtiny">Extra tiny</string>
+	 	<string id="Tiny">Tiny</string>
+	 	<string id="Small">Small</string>
+	 	<string id="Medium">Medium</string>
+	 	<string id="Large">Medium+</string>
+	 	<string id="NumMild">Large</string>
+	 	<string id="NumMedium">Large+</string>
+	 	<string id="NumHot">Extra Large</string>
+	 	<string id="NumThaiHot">Huge</string>
+	</strings>
+
+	<settings>
+	    <group id="groupAuto" title="@Strings.groupAuto" description="@Strings.groupAutoDescription">
+			<setting propertyKey="@Properties.autoOrientation" title="@Strings.autoOrientation">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-1">@Strings.Auto</listEntry>
+	 	           <listEntry value="0">@Strings.Horizontal</listEntry>
+	 	           <listEntry value="1">@Strings.Vertical</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+			<setting propertyKey="@Properties.autoLabelSize" title="@Strings.autoLabelSize">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-2">@Strings.Auto</listEntry>
+	 	           <listEntry value="-1">@Strings.Off</listEntry>
+	 	           <listEntry value="0">@Strings.Xtiny</listEntry>
+	 	           <listEntry value="1">@Strings.Tiny</listEntry>
+	 	           <listEntry value="2">@Strings.Small</listEntry>
+	 	           <listEntry value="3">@Strings.Medium</listEntry>
+	 	           <listEntry value="4">@Strings.Large</listEntry>
+	 	           <listEntry value="5">@Strings.NumMild</listEntry>
+	 	           <listEntry value="6">@Strings.NumMedium</listEntry>
+	 	           <listEntry value="7">@Strings.NumHot</listEntry>
+	 	           <listEntry value="8">@Strings.NumThaiHot</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+			<setting propertyKey="@Properties.autoValueSize" title="@Strings.autoValueSize">
+	 	       <settingConfig type="list">
+	 	           <listEntry value="-1">@Strings.Auto</listEntry>
+	 	           <listEntry value="0">@Strings.Xtiny</listEntry>
+	 	           <listEntry value="1">@Strings.Tiny</listEntry>
+	 	           <listEntry value="2">@Strings.Small</listEntry>
+	 	           <listEntry value="3">@Strings.Medium</listEntry>
+	 	           <listEntry value="4">@Strings.Large</listEntry>
+	 	           <listEntry value="5">@Strings.NumMild</listEntry>
+	 	           <listEntry value="6">@Strings.NumMedium</listEntry>
+	 	           <listEntry value="7">@Strings.NumHot</listEntry>
+	 	           <listEntry value="8">@Strings.NumThaiHot</listEntry>
+	 	       </settingConfig>
+	 		</setting>
+	    </group>
+	    <group id="groupDisplay" title="@Strings.groupDisplay" description="@Strings.groupDisplayDescription">
+			<setting propertyKey="@Properties.displayTotalPosition" title="@Strings.totalTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displayLapPosition" title="@Strings.lapTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displaySpeedRelativePosition" title="@Strings.speedTitleRelative"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displaySpeedAbsolutePosition" title="@Strings.speedTitleAbsolute"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displaySpeedLastPosition" title="@Strings.speedTitleLast"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displayClosestDistPosition" title="@Strings.distanceTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displayDebugStatus" title="@Strings.debugStatusTitle"><settingConfig type="boolean" /></setting>
+	    </group>
+	    <group id="groupConnection" title="@Strings.groupConnection" description="@Strings.groupConnectionDescription">
+			<setting propertyKey="@Properties.radarCompatibilityMessage" title="@Strings.rearVue820Title">
+	 	       <settingConfig type="alphaNumeric" readonly="true" />
+			</setting>
+	    </group>
+	</settings>
+
+</resources>

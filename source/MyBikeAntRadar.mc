@@ -3,26 +3,46 @@ using Toybox.AntPlus;
 using Toybox.Lang;
 using Toybox.Time;
 
+(:fullRadar)
 const ANT_RADAR_DEVICE_TYPE = 40;
+(:fullRadar)
 const ANT_RADAR_MESSAGE_PERIOD = 4084;
+(:fullRadar)
 const ANT_RADAR_RADIO_FREQUENCY = 57;
+(:fullRadar)
 const ANT_RADAR_TRANSMISSION_TYPE = 0;
+(:fullRadar)
 const ANT_RADAR_SEARCH_TIMEOUT_LOW = 12;
+(:fullRadar)
 const ANT_RADAR_FALLBACK_DELAY_SOMETIMES_TICKS = 120;
 const ANT_RADAR_TARGET_SLOTS = 8;
+(:fullRadar)
 const ANT_RADAR_PAGE_TARGETS_A = 0x30;
+(:fullRadar)
 const ANT_RADAR_PAGE_TARGETS_B = 0x31;
+(:fullRadar)
 const ANT_RADAR_PAGE_DEVICE_STATUS = 0x01;
+(:fullRadar)
 const ANT_RADAR_PAGE_ERROR = 0x57;
+(:fullRadar)
 const ANT_RADAR_DEVICE_STATE_SHUTDOWN_REQUESTED = 1;
+(:fullRadar)
 const ANT_RADAR_DEVICE_STATE_SHUTDOWN_ABORTED = 2;
+(:fullRadar)
 const ANT_RADAR_DEVICE_STATE_SHUTDOWN_FORCED = 3;
+(:fullRadar)
 const ANT_RADAR_RANGE_SCALE_METERS = 3.125f;
+(:fullRadar)
 const ANT_RADAR_SPEED_SCALE_MPS = 3.04f;
+(:fullRadar)
 const ANT_RADAR_TARGET_TIMEOUT_SECONDS = 2;
+(:fullRadar)
 const ANT_RADAR_TARGETS_B_TIMEOUT_SECONDS = 1;
+(:fullRadar)
 const ANT_RADAR_RAW_RECOVERY_DELAY_TICKS = 2;
+(:fullRadar)
 const ANT_RADAR_RAW_RESTART_COOLDOWN_TICKS = 8;
+(:fullRadar)
 const ANT_RADAR_RAW_RESET_STATUS_TICKS = 3;
 
 const CONNECTION_MODE_ALWAYS_820 = 0;
@@ -51,6 +71,7 @@ class MyBikeAntRadarTarget {
 	}
 }
 
+(:fullRadar)
 class MyBikeRawAntRadarChannel extends Ant.GenericChannel {
 	hidden var mDeviceCfg;
 	hidden var mIsOpen as Lang.Boolean;
@@ -384,6 +405,7 @@ class MyBikeRawAntRadarChannel extends Ant.GenericChannel {
 	}
 }
 
+(:fullRadar)
 class MyBikeAntRadar {
 	hidden var mStatusCode as Lang.String;
 	hidden var mConnectionBehaviorMode as Lang.Number;
@@ -877,5 +899,170 @@ class MyBikeAntRadar {
 			return "PAGE";
 		}
 		return _getLiveDisplayFallback();
+	}
+}
+
+(:lowMemoryRadar)
+class MyBikeAntRadar {
+	hidden var mStatusCode as Lang.String;
+	hidden var mNativeRadar;
+	hidden var mNativeRadarAvailable as Lang.Boolean;
+	hidden var mNormalizedNativeTargets as Lang.Array<MyBikeAntRadarTarget>;
+	hidden var mResetStatusTicks as Lang.Number;
+	const LOW_MEMORY_RESET_STATUS_TICKS = 3;
+
+	function initialize(connectionBehaviorMode as Lang.Object or Null) {
+		mNativeRadar = null;
+		mNativeRadarAvailable = false;
+		mNormalizedNativeTargets = _buildEmptyTargets();
+		mResetStatusTicks = 0;
+		mStatusCode = "init";
+		_initializeNativeRadar();
+	}
+
+	hidden function _initializeNativeRadar() as Void {
+		mNativeRadar = null;
+		mNativeRadarAvailable = false;
+		if (AntPlus has :BikeRadar) {
+			try {
+				mNativeRadar = new AntPlus.BikeRadar(null);
+				mNativeRadarAvailable = true;
+				mStatusCode = "pair";
+				return;
+			} catch(e) {}
+		}
+		mStatusCode = "fallback";
+	}
+
+	hidden function _buildEmptyTargets() as Lang.Array<MyBikeAntRadarTarget> {
+		var targets = [] as Lang.Array<MyBikeAntRadarTarget>;
+		for (var i = 0; i < ANT_RADAR_TARGET_SLOTS; i++) {
+			targets.add(new MyBikeAntRadarTarget(0, 0.0f, 0));
+		}
+		return targets;
+	}
+
+	hidden function _clearNormalizedNativeTargets() as Void {
+		for (var i = 0; i < mNormalizedNativeTargets.size(); i++) {
+			mNormalizedNativeTargets[i].clear();
+		}
+	}
+
+	hidden function _getNativeState() {
+		if (!mNativeRadarAvailable || mNativeRadar == null) {
+			return null;
+		}
+
+		try {
+			return mNativeRadar.getDeviceState();
+		} catch(e) {}
+		return null;
+	}
+
+	hidden function _isNativeTracking(deviceState) as Lang.Boolean {
+		return deviceState != null &&
+			deviceState.state != null &&
+			deviceState.state == AntPlus.DEVICE_STATE_TRACKING;
+	}
+
+	hidden function _isNativeSearching(deviceState) as Lang.Boolean {
+		return deviceState != null &&
+			deviceState.state != null &&
+			deviceState.state == AntPlus.DEVICE_STATE_SEARCHING;
+	}
+
+	hidden function _normalizeNative(radarInfo as Lang.Array<AntPlus.RadarTarget> or Null) as Lang.Array<MyBikeAntRadarTarget> {
+		_clearNormalizedNativeTargets();
+		if (radarInfo == null) {
+			return mNormalizedNativeTargets;
+		}
+
+		var limit = radarInfo.size();
+		if (limit > mNormalizedNativeTargets.size()) {
+			limit = mNormalizedNativeTargets.size();
+		}
+
+		for (var i = 0; i < limit; i++) {
+			var target = radarInfo[i] as AntPlus.RadarTarget or Null;
+			if (target == null) {
+				continue;
+			}
+			mNormalizedNativeTargets[i].set(
+				target.range,
+				target.speed,
+				target.threat
+			);
+		}
+
+		return mNormalizedNativeTargets;
+	}
+
+	function tick() {
+		if (mResetStatusTicks > 0) {
+			mResetStatusTicks--;
+		}
+
+		var deviceState = _getNativeState();
+		if (_isNativeTracking(deviceState)) {
+			mStatusCode = "native";
+			return;
+		}
+		if (_isNativeSearching(deviceState)) {
+			mStatusCode = "pair";
+			return;
+		}
+		if (mNativeRadarAvailable) {
+			mStatusCode = "wait";
+			return;
+		}
+		mStatusCode = "fallback";
+	}
+
+	function getRadarInfo() {
+		if (!mNativeRadarAvailable || mNativeRadar == null) {
+			return null;
+		}
+
+		var deviceState = _getNativeState();
+		if (!_isNativeTracking(deviceState)) {
+			return null;
+		}
+
+		try {
+			return _normalizeNative(mNativeRadar.getRadarInfo());
+		} catch(e) {}
+		return null;
+	}
+
+	function isTracking() as Lang.Boolean {
+		return _isNativeTracking(_getNativeState());
+	}
+
+	function requestRawWaitReset() as Void {
+		mResetStatusTicks = LOW_MEMORY_RESET_STATUS_TICKS;
+		mStatusCode = "init";
+		_initializeNativeRadar();
+	}
+
+	function getDisplayStatus() {
+		if (mResetStatusTicks > 0) {
+			return "RESET";
+		}
+		if (mStatusCode == "init") {
+			return "INIT";
+		}
+		if (mStatusCode == "pair") {
+			return "PAIR";
+		}
+		if (mStatusCode == "native") {
+			return "PAIRED";
+		}
+		if (mStatusCode == "wait") {
+			return "WAIT";
+		}
+		if (mStatusCode == "fallback") {
+			return "FALLBACK";
+		}
+		return "RADAR";
 	}
 }
