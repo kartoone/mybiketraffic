@@ -7,7 +7,7 @@
 		<property id="displaySpeedLastPosition" type="number">0</property>
 		<property id="displayClosestDistPosition" type="number">0</property>
 		<property id="displayDebugStatus" type="boolean">true</property>
-		<property id="connectionBehaviorMode" type="number">1</property>
+		<property id="radarCompatibilityMessage" type="string">820 advanced connection unavailable for your device</property>
 		<property id="autoOrientation" type="number">-1</property>
 		<property id="autoLabelSize" type="number">-2</property>
 		<property id="autoValueSize" type="number">-1</property>
@@ -23,12 +23,9 @@
 		<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
 		<string id="distanceTitle">Display closest vehicle distance</string>
 		<string id="debugStatusTitle">Display connection status</string>
-		<string id="groupConnection">Connection behavior</string>
-		<string id="groupConnectionDescription">Choose the radar mode that matches your setup.</string>
-		<string id="connectionBehaviorModeTitle">Connection options</string>
-		<string id="connectionModeAlways820">RearVue 820 only</string>
-		<string id="connectionModeNever820">Older radars only</string>
-		<string id="connectionModeSometimes820">Switch between 820 and older</string>
+		<string id="groupConnection">Radar compatibility</string>
+		<string id="groupConnectionDescription">This device build uses native radar support only. 820 advanced connection unavailable for your device.</string>
+		<string id="rearVue820Title">RearVue 820</string>
 
 		<string id="groupAuto">Choose font size and orientation</string>
 		<string id="groupAutoDescription">Override the automatic layout if needed.</string>
@@ -100,12 +97,8 @@
 			<setting propertyKey="@Properties.displayDebugStatus" title="@Strings.debugStatusTitle"><settingConfig type="boolean" /></setting>
 	    </group>
 	    <group id="groupConnection" title="@Strings.groupConnection" description="@Strings.groupConnectionDescription">
-			<setting propertyKey="@Properties.connectionBehaviorMode" title="@Strings.connectionBehaviorModeTitle">
-	 	       <settingConfig type="list">
-	 	           <listEntry value="0">@Strings.connectionModeAlways820</listEntry>
-	 	           <listEntry value="1">@Strings.connectionModeNever820</listEntry>
-	 	           <listEntry value="2">@Strings.connectionModeSometimes820</listEntry>
-	 	       </settingConfig>
+			<setting propertyKey="@Properties.radarCompatibilityMessage" title="@Strings.rearVue820Title">
+	 	       <settingConfig type="alphaNumeric" readonly="true" />
 			</setting>
 	    </group>
 	</settings>

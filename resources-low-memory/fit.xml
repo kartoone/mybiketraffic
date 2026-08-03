@@ -1,0 +1,42 @@
+<resources>
+	<fitContributions>
+	    <fitField id="2"
+	    displayInChart="true"
+	    sortOrder = "0"
+	    chartTitle="@Strings.mybiketraffic_count_label"
+	    dataLabel="@Strings.mybiketraffic_count_label"
+	    unitLabel="@Strings.mybiketraffic_units_label"
+	    fillColor="#FF0000"
+	    />
+	    <fitField id="3"
+        displayInChart="false"
+	    displayInActivitySummary="true"
+	    sortOrder = "1"
+	    dataLabel="@Strings.mybiketraffic_count_label"
+	    unitLabel="@Strings.mybiketraffic_units_label"
+	    />
+	    <fitField id="4"
+        displayInChart="false"
+        displayInActivityLaps="true"
+	    sortOrder = "2"
+	    dataLabel="@Strings.mybiketraffic_lapcount_label"
+	    unitLabel="@Strings.mybiketraffic_units_label"
+	    />
+	    <fitField id="5"
+	    displayInChart="true"
+	    sortOrder = "3"
+	    chartTitle="@Strings.mybiketraffic_speedrel_label"
+	    dataLabel="@Strings.mybiketraffic_speedrel_label"
+	    unitLabel="@Strings.mybiketraffic_speedunits_label"
+	    fillColor="#FF0000"
+	    />
+	    <fitField id="6"
+	    displayInChart="true"
+	    sortOrder = "4"
+	    chartTitle="@Strings.mybiketraffic_speedabs_label"
+	    dataLabel="@Strings.mybiketraffic_speedabs_label"
+	    unitLabel="@Strings.mybiketraffic_speedunits_label"
+	    fillColor="#FF0000"
+	    />
+	</fitContributions>
+</resources>

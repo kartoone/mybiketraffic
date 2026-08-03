@@ -1,7 +1,4 @@
-using Toybox.WatchUi;
 using Toybox.FitContributor;
-using Toybox.Sensor;
-using Toybox.AntPlus;
 using Toybox.Lang;
 
 class MyBikeTrafficFitContributions {
@@ -20,6 +17,7 @@ class MyBikeTrafficFitContributions {
 	var dist;        // distance to closest car (convert to feet if not metric)
 	var disabled;
 	hidden var lasttrackcnt;
+	hidden var lastspdCandidate;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
 	const THRESH=10; 			// this is the threshold distance that the closest car must be in order for it to be counted
 	const RANGETARGETS=8;
@@ -35,6 +33,8 @@ class MyBikeTrafficFitContributions {
 	var countLapField;
 	var passingSpeedRelDataField;
 	var passingSpeedAbsDataField;
+	hidden var mRangeInfo as Lang.Array<Lang.Number>;
+	hidden var mSpeedInfo as Lang.Array<Lang.Number>;
 
 	const BT_RANGE_FIELD_ID = 0; // range floats
 	const BT_SPEED_FIELD_ID = 1; // speed floats
@@ -46,15 +46,16 @@ class MyBikeTrafficFitContributions {
 //	const BT_THREAT_FIELD_ID = 4;  threat level bytes, 0-no threat,1-approaching,2-fast approaching
 //	const BT_THREATSIDE_FIELD_ID = 5; 	threat side 0-left, 1-right
 	
-    function initialize(datafield, metric) {
+	function initialize(datafield, metric, connectionBehaviorMode as Lang.Object or Null) {
         self.metric = metric;
-		bikeRadar = new AntPlus.BikeRadar(null);
+		bikeRadar = new MyBikeAntRadar(connectionBehaviorMode);
         lapcount = 0;
         count = 0;
         lasttrackcnt = 0;
         approachspd = 0;
         absolutespd = 0;
 		lastspd = 0;
+		lastspdCandidate = 0;
 		dist = 0;
         crossedthresh = false;
         disabled = true;
@@ -100,6 +101,8 @@ class MyBikeTrafficFitContributions {
             FitContributor.DATA_TYPE_UINT8,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD}
         );
+		mRangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
+		mSpeedInfo = new [SPEEDTARGETS] as Lang.Array<Lang.Number>;
     }
    
     // The given info object contains all the current workout information.
@@ -107,15 +110,22 @@ class MyBikeTrafficFitContributions {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
+		bikeRadar.tick();
+
     	// do nothing if activity is not running
 		// simply set flag that radar is disabled if the timer is not running ... technically the radar MAY be enabled, but we don't care b/c we don't want to write into the FIT file while the timer is not running
 		if (info.timerState!=3) {
 			disabled = true;
 			return;  // nothing else to do, let's get out of here ... 
-		} 
-        var radarInfo = bikeRadar.getRadarInfo() as Lang.Array<Toybox.AntPlus.RadarTarget>;
-		var rangeInfo = new [RANGETARGETS] as Lang.Array<Lang.Number>;
-		var speedInfo = new [SPEEDTARGETS];
+		}
+		_computeAnt(info);
+	}
+
+	// ANT radar path.
+	hidden function _computeAnt(info) {
+		var radarInfo = bikeRadar.getRadarInfo() as Lang.Array;
+		var rangeInfo = mRangeInfo;
+		var speedInfo = mSpeedInfo;
         if (radarInfo != null) {
         	disabled = false;
 			for (var i=0;i<RANGETARGETS;i++) {
@@ -150,13 +160,13 @@ class MyBikeTrafficFitContributions {
 				if (crossedthresh) {
 					count = count + (lasttrackcnt-trackcnt);
 					lapcount = lapcount + (lasttrackcnt-trackcnt);
+					lastspd = lastspdCandidate;
 				}
-			} else {
-				// only update LAST passing speed to the current absolute speed of the closest car if it wasn't an erroneous "0" speed
-				// if this car has passed us on the next reading, it won't be updated so it will be preserved
-				if (absolutespd > 0) {
-					lastspd = absolutespd;
-				}
+			} 
+			if (trackcnt > 0) {
+				lastspdCandidate = absolutespd;
+			} else if (trackcnt == 0) {
+				lastspdCandidate = 0;
 			}
 			// update dist no matter what
 			dist = metric?rangeInfo[0]:rangeInfo[0]*3.28084;
@@ -191,6 +201,7 @@ class MyBikeTrafficFitContributions {
 		count=0;
 		lapcount=0;
 		lasttrackcnt=0;
+		lastspdCandidate = 0;
 		crossedthresh = false;
     }
     

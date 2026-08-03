@@ -1,7 +1,7 @@
 using Toybox.WatchUi;
 using Toybox.Graphics;
-using Toybox.Sensor;
 using Toybox.Lang;
+using Toybox.Time;
 
 // so there is a little bit of trickery here ... the index in the array corresponds to the font constant 
 // ... so no need to reference the array (but probably should) once you have found the index for the font that fits
@@ -15,69 +15,68 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var autoOrientation = -1; // -1 mean auto, 0 means force horizontal, 1 means force vertical 
 	hidden var autoLabelSize = -2; // -2 means auto with max of tiny, -1 means off (i.e., no label), 0 means xtiny, 1 means tiny, etc...
 	hidden var autoValueSize = -1; // -1 means auto with no max, 0 means xtiny, 1 means tiny, etc...
+	hidden var showDebugStatus = true;
+	hidden var mConnectionBehaviorMode = 1;
+	hidden var mStatusFont = Graphics.FONT_TINY;
+	hidden var mPendingResetTap = false;
+	hidden var mPendingResetTapDeadline as Lang.Number or Null;
+	const RESET_CONFIRM_SECONDS = 1;
 
 	// layout related vars
 	// cannot use the strings file when drawing directly onto dc
 	hidden var mLabels as Lang.Array<Lang.String>?; // array of labels to display ... this is set based on how many fields are displayed
-	hidden var mLabelsONE = [
-		WatchUi.loadResource($.Rez.Strings.ml1_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml1_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml1_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml1_dist) 
-	];
-	hidden var mLabelsTWO = [
-		WatchUi.loadResource($.Rez.Strings.ml2_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml2_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml2_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml2_dist) 
-	];
-	hidden var mLabelsTHREE = [
-		WatchUi.loadResource($.Rez.Strings.ml3_vc), 
-		WatchUi.loadResource($.Rez.Strings.ml3_lvc), 
-		WatchUi.loadResource($.Rez.Strings.ml3_rspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_aspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_lspd), 
-		WatchUi.loadResource($.Rez.Strings.ml3_dist) 
-	];
-	// hidden var mLabelDebug;
-    hidden var mLabelY = 2; 
+	hidden var mLabelSet = 1;
     hidden var mLabelFont = Graphics.FONT_TINY;
     hidden var mValueFont = Graphics.FONT_MEDIUM;
     hidden var mUnitsFont = Graphics.FONT_XTINY; // always use tiny font for kph/mph
 	hidden var fh;
 	hidden var labelX as Lang.Array<Lang.Float or Lang.Number>?; // array of X coordinates (only two entries for vertical layout strategy, as many entries as data values being displayed for horizontal layout) 
 	hidden var labelY as Lang.Array<Lang.Float or Lang.Number>?; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
-	hidden var numFields = 0; // this ends up being a count of the array below which is read from the app settings
-	hidden var whichFields as Lang.Array<Lang.Number> = [1, 0, 0, 0, 0, 0]; // positional array ... position 0 - total count, position 1 - lap count, position 2 - approach speed, position 3 - absolute vehicle speed, position 4 - last vehicle speed, position 5 - closest vehicle distance... 0 means don't include, 1 means include ... if ALL FOUR are zero then just display total count 
+	hidden var numFields = 0; // number of fields actively rendered after applying the ordered settings
+	hidden var fieldPositions as Lang.Array<Lang.Number> = [1, 0, 0, 2, 0, 0]; // position 0 - total count, 1 - lap count, 2 - approach speed, 3 - absolute vehicle speed, 4 - last vehicle speed, 5 - closest vehicle distance. 0 means hidden.
+	hidden var displayedFields as Lang.Array<Lang.Number> = [0]; // ordered list of field ids to render
+	hidden var mCachedValueNumbers as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1];
+	hidden var mCachedValueStrings as Lang.Array<Lang.String> = ["", "", "", "", "", ""];
+	hidden var mCachedValueWidths as Lang.Array<Lang.Number> = [0, 0, 0, 0, 0, 0];
+	hidden var mCachedValueFonts as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1];
 	
 	hidden var testString = "888" as Lang.String;   // start out using small text string for font layout ... change this as the counts get larger
     hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
     hidden var needLayout = false;  // flag to set if we need to manually re-layout b/c count has increased enough to increase number of digits
 	
 	// this is where all the real computational work happens - MyBikeTrafficFitConributions
-	hidden var mFitContributor; 
+	hidden var mFitContributor as MyBikeTrafficFitContributions or Null;
+	const FIELD_TOTAL = 0;
+	const FIELD_LAP = 1;
+	const FIELD_SPEED_RELATIVE = 2;
+	const FIELD_SPEED_ABSOLUTE = 3;
+	const FIELD_SPEED_LAST = 4;
+	const FIELD_DISTANCE_CLOSEST = 5;
 	
-	function initialize(properties as Lang.Array<Lang.Boolean>, autoOrientation as Lang.Number, autoLabelSize as Lang.Number, autoValueSize as Lang.Number) {
+	function initialize(displayPositions as Lang.Array, debugStatus as Lang.Boolean or Null, autoOrientation as Lang.Number, autoLabelSize as Lang.Number, autoValueSize as Lang.Number, connectionBehaviorMode as Lang.Number or Null) {
         DataField.initialize();
         
         // get device settings to determine whether metric or statue units
         var sys = System.getDeviceSettings();
         metric = sys.distanceUnits != System.UNIT_STATUTE;
 
-        // get app settings (passed from the Application class when constructing this view) to determine which fields to display
-        whichFields[0] = properties[0] ? 1 : 0;
-        whichFields[1] = properties[1] ? 1 : 0;
-        whichFields[2] = properties[2] ? 1 : 0;
-        whichFields[3] = properties[3] ? 1 : 0;
-		whichFields[4] = properties[4] ? 1 : 0;
-		whichFields[5] = properties[5] ? 1 : 0;
-        
-        // manually set how many and which fields visible to debug drawing the layout
-        // whichFields = [1, 1, 1, 0, 0];
+		// get app settings (passed from the Application class when constructing this view) to determine which fields to display and in what order
+		for (var i = 0; i < fieldPositions.size() && i < displayPositions.size(); i++) {
+			if (displayPositions[i] != null) {
+				fieldPositions[i] = displayPositions[i];
+			}
+		}
+		if (debugStatus != null) {
+			showDebugStatus = debugStatus;
+		}
+		if (connectionBehaviorMode != null) {
+			mConnectionBehaviorMode = connectionBehaviorMode;
+		}
+		// Preserve direct-on-device test overrides when settings are not reachable.
+		//fieldPositions = [1, 2, 0, 3, 4, 5];
+		//showDebugStatus = true;
+		//mConnectionBehaviorMode = 1; // 0 - always 820, 1 - never 820, 2 - auto-detect
+		_rebuildDisplayedFields();
 
 		// orientation and font size settings
 		self.autoOrientation = autoOrientation;
@@ -92,39 +91,203 @@ class MyBikeTrafficView extends WatchUi.DataField {
 			mValueFont = fonts[autoValueSize];
 		}
 
-        // for simplicity, let's count how many fields are displayed
-        var i;
-        for (i=0; i<whichFields.size(); i++) {	
-          numFields = numFields + whichFields[i];
-        }
-        
-        // if no fields selected, then force the total count to be displayed
-        // setup the labels based on how many fields displayed
+		// setup the labels based on how many fields are displayed
         switch (numFields) {
-        	case 0:
-        		whichFields[0] = 1;
-        		numFields = 1;
-        		// no break here so that we also setup the labels correctly by executing case 1
         	case 1:
-				mLabels = mLabelsONE;
+				mLabelSet = 1;
 				break;        		
         	case 2:
-				mLabels = mLabelsTWO;
+				mLabelSet = 2;
 				break;        		
         	case 3:
         	case 4:
 			case 5:
 			case 6:
-				mLabels = mLabelsTHREE;
+				mLabelSet = 3;
 				break;
 		}        		
-        
-        mFitContributor = new MyBikeTrafficFitContributions(self, metric);
+
+		mLabels = null;
+		mFitContributor = null;
     }
+
+	hidden function _rebuildDisplayedFields() as Void {
+		displayedFields = [] as Lang.Array<Lang.Number>;
+
+		for (var slot = 1; slot <= fieldPositions.size(); slot++) {
+			for (var fieldIndex = 0; fieldIndex < fieldPositions.size(); fieldIndex++) {
+				if (fieldPositions[fieldIndex] == slot) {
+					displayedFields.add(fieldIndex);
+				}
+			}
+		}
+
+		for (var fieldIndex = 0; fieldIndex < fieldPositions.size(); fieldIndex++) {
+			if (fieldPositions[fieldIndex] > fieldPositions.size()) {
+				displayedFields.add(fieldIndex);
+			}
+		}
+
+		if (displayedFields.size() == 0) {
+			displayedFields.add(FIELD_TOTAL);
+		}
+
+		numFields = displayedFields.size();
+	}
+
+	hidden function _loadLabels(labelSet as Lang.Number) as Lang.Array<Lang.String> {
+		switch (labelSet) {
+			case 1:
+				return [
+					WatchUi.loadResource($.Rez.Strings.ml1_vc),
+					WatchUi.loadResource($.Rez.Strings.ml1_lvc),
+					WatchUi.loadResource($.Rez.Strings.ml1_rspd),
+					WatchUi.loadResource($.Rez.Strings.ml1_aspd),
+					WatchUi.loadResource($.Rez.Strings.ml1_lspd),
+					WatchUi.loadResource($.Rez.Strings.ml1_dist)
+				];
+			case 2:
+				return [
+					WatchUi.loadResource($.Rez.Strings.ml2_vc),
+					WatchUi.loadResource($.Rez.Strings.ml2_lvc),
+					WatchUi.loadResource($.Rez.Strings.ml2_rspd),
+					WatchUi.loadResource($.Rez.Strings.ml2_aspd),
+					WatchUi.loadResource($.Rez.Strings.ml2_lspd),
+					WatchUi.loadResource($.Rez.Strings.ml2_dist)
+				];
+		}
+
+		return [
+			WatchUi.loadResource($.Rez.Strings.ml3_vc),
+			WatchUi.loadResource($.Rez.Strings.ml3_lvc),
+			WatchUi.loadResource($.Rez.Strings.ml3_rspd),
+			WatchUi.loadResource($.Rez.Strings.ml3_aspd),
+			WatchUi.loadResource($.Rez.Strings.ml3_lspd),
+			WatchUi.loadResource($.Rez.Strings.ml3_dist)
+		];
+	}
+
+	hidden function _ensureFitContributor() as MyBikeTrafficFitContributions {
+		if (mFitContributor == null) {
+			mFitContributor = new MyBikeTrafficFitContributions(self, metric, mConnectionBehaviorMode);
+		}
+		return mFitContributor;
+	}
+
+	hidden function _ensureLabels() as Lang.Array<Lang.String> {
+		if (mLabels == null) {
+			mLabels = _loadLabels(mLabelSet);
+		}
+		return mLabels;
+	}
+
+	hidden function _getFieldValue(fieldIndex as Lang.Number, countstr as Lang.String, lapstr as Lang.String, spdstr as Lang.String, absstr as Lang.String, laststr as Lang.String, diststr as Lang.String) as Lang.String {
+		switch (fieldIndex) {
+			case FIELD_TOTAL: return countstr;
+			case FIELD_LAP: return lapstr;
+			case FIELD_SPEED_RELATIVE: return spdstr;
+			case FIELD_SPEED_ABSOLUTE: return absstr;
+			case FIELD_SPEED_LAST: return laststr;
+			case FIELD_DISTANCE_CLOSEST: return diststr;
+		}
+
+		return countstr;
+	}
+
+	hidden function _showsSpeedUnits(fieldIndex as Lang.Number) as Lang.Boolean {
+		return fieldIndex == FIELD_SPEED_RELATIVE || fieldIndex == FIELD_SPEED_ABSOLUTE || fieldIndex == FIELD_SPEED_LAST;
+	}
+
+	hidden function _showsDistanceUnits(fieldIndex as Lang.Number) as Lang.Boolean {
+		return fieldIndex == FIELD_DISTANCE_CLOSEST;
+	}
+
+	hidden function _getCachedUnavailableValue(fieldIndex as Lang.Number) as Lang.String {
+		if (mCachedValueNumbers[fieldIndex] != -1 || mCachedValueStrings[fieldIndex] != "--") {
+			mCachedValueNumbers[fieldIndex] = -1;
+			mCachedValueStrings[fieldIndex] = "--";
+			mCachedValueFonts[fieldIndex] = -1;
+		}
+		return mCachedValueStrings[fieldIndex];
+	}
+
+	hidden function _getCachedFormattedValue(fieldIndex as Lang.Number, value as Lang.Number) as Lang.String {
+		if (mCachedValueNumbers[fieldIndex] != value || mCachedValueStrings[fieldIndex] == "" || mCachedValueStrings[fieldIndex] == "--") {
+			mCachedValueNumbers[fieldIndex] = value;
+			mCachedValueStrings[fieldIndex] = value.format("%d");
+			mCachedValueFonts[fieldIndex] = -1;
+		}
+		return mCachedValueStrings[fieldIndex];
+	}
+
+	hidden function _getCachedValueWidth(dc, fieldIndex as Lang.Number, valueString as Lang.String) as Lang.Number {
+		if (mCachedValueFonts[fieldIndex] != mValueFont || mCachedValueStrings[fieldIndex] != valueString) {
+			mCachedValueStrings[fieldIndex] = valueString;
+			mCachedValueFonts[fieldIndex] = mValueFont;
+			mCachedValueWidths[fieldIndex] = (dc.getTextDimensions(valueString, mValueFont) as Lang.Array<Lang.Numeric>)[0];
+		}
+		return mCachedValueWidths[fieldIndex];
+	}
     
     function countDigits(num) {
       	return num<1000?num<100?num<10?1:2:num<1000?3:4:5;
     }
+
+	hidden function _getStatusReserveHeight(dc) as Lang.Number {
+		if (!showDebugStatus && !mPendingResetTap) {
+			return 0;
+		}
+		return dc.getFontHeight(mStatusFont) + 2;
+	}
+
+	hidden function _nowResetTapTime() as Lang.Number or Null {
+		try {
+			return Time.now().value();
+		} catch(e) {}
+		return null;
+	}
+
+	hidden function _clearPendingResetTap() as Void {
+		mPendingResetTap = false;
+		mPendingResetTapDeadline = null;
+	}
+
+	hidden function _tickPendingResetTap() as Void {
+		if (!mPendingResetTap) {
+			return;
+		}
+
+		var now = _nowResetTapTime();
+		if (now == null || mPendingResetTapDeadline == null) {
+			_clearPendingResetTap();
+			needLayout = true;
+			return;
+		}
+
+		if (now >= mPendingResetTapDeadline) {
+			_clearPendingResetTap();
+			needLayout = true;
+		}
+	}
+
+	function handleResetTap() as Void {
+		if (!mPendingResetTap) {
+			var now = _nowResetTapTime();
+			if (now == null) {
+				return;
+			}
+			mPendingResetTap = true;
+			mPendingResetTapDeadline = now + RESET_CONFIRM_SECONDS;
+			needLayout = true;
+			return;
+		}
+
+		_clearPendingResetTap();
+		needLayout = true;
+		if (mFitContributor != null) {
+			mFitContributor.bikeRadar.requestRawWaitReset();
+		}
+	}
 
     function selectFont(dc, width, height) {
         //var testString = "88.88"; //Dummy string to test data width
@@ -138,7 +301,6 @@ class MyBikeTrafficView extends WatchUi.DataField {
             }
         } 
 		fh = dc.getFontHeight(mValueFont);	    	    	
-		System.println("selectFont: width: " + width + " height: " + height + " selected font idx: " + fontIdx + " fh: " + fh);
         return fontIdx;
     }
 
@@ -147,25 +309,23 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // 	2. displaying one or two fields, can go side-by-side, or (three fields if wide-layout)
     function onLayout(dc) {
         var width = dc.getWidth();
-        var height = dc.getHeight();
+		var height = dc.getHeight() - _getStatusReserveHeight(dc);
         var top = 5;
-        // mLabelDebug = width + " " + height + " " + top;
         
         // lots of horizontal room for number of fields we are displaying ... more room if we do horizontal layout
 		// -1 for auto orientation, 1 for force vertical, 0 for force horizontal 
 		if (autoOrientation == 0 || autoOrientation == -1 && (numFields < 3 || width > 180)) {
 			vertical = false;
 			var vroom = height - top;
-			var labelDim = autoLabelSize!=-1 ? dc.getTextDimensions(testString, mLabelFont) : [top,top]; // use [0, 0] if label is off
-			var vfontmax = vroom - labelDim[1];
+			var labelHeight = autoLabelSize != -1 ? dc.getFontHeight(mLabelFont) : top;
+			var vfontmax = vroom - labelHeight;
 			var hfontmax = Math.round(width/numFields);
 			if (autoValueSize == -1) {
 				mValueFont = selectFont(dc, hfontmax, vfontmax);
 			} else {
-        		var dimensions = dc.getTextDimensions(testString, mValueFont);
-				fh = dimensions[1];
+				fh = dc.getFontHeight(mValueFont);
 			}
-			labelY = [ top, labelDim[1] ];
+			labelY = [ top, labelHeight ];
 			// silly, but easiest way to do this is to simply handle all scenarios (1 field, 2 field, 3 fields, etc...) manually
 			switch (numFields) {
 				case 1: labelX = [ 0.5*width ]; break;
@@ -186,19 +346,18 @@ class MyBikeTrafficView extends WatchUi.DataField {
 			if (autoValueSize == -1) {
 				mValueFont = selectFont(dc, hfontmax, vfontmax);
 			} else {
-        		var dimensions = dc.getTextDimensions(testString, mValueFont);
-				fh = dimensions[1];
+				fh = dc.getFontHeight(mValueFont);
 			}
-        	var dimensions = dc.getTextDimensions(testString, mValueFont); 
-        	// dimensions[1] will have the height we need to space things out by
+	        	var valueHeight = dc.getFontHeight(mValueFont); 
+	        	// valueHeight will have the height we need to space things out by
 			// silly, but easiest way to do this is to simply handle all scenarios (1 field, 2 field, 3 fields, etc...) manually
 			switch (numFields) {
 				case 1: labelY = [ top ]; break;
-				case 2: labelY = [ top, top + dimensions[1]]; break;
-				case 3: labelY = [ top, top + dimensions[1], top + dimensions[1]*2 ]; break;
-				case 4: labelY = [ top, top + dimensions[1], top + dimensions[1]*2, top + dimensions[1]*3 ]; break;
-				case 5: labelY = [ top, top + dimensions[1], top + dimensions[1]*2, top + dimensions[1]*3, top+dimensions[1]*4 ]; break;
-				case 6: labelY = [ top, top + dimensions[1], top + dimensions[1]*2, top + dimensions[1]*3, top+dimensions[1]*4, top+dimensions[1]*5 ]; break;
+				case 2: labelY = [ top, top + valueHeight]; break;
+				case 3: labelY = [ top, top + valueHeight, top + valueHeight*2 ]; break;
+				case 4: labelY = [ top, top + valueHeight, top + valueHeight*2, top + valueHeight*3 ]; break;
+				case 5: labelY = [ top, top + valueHeight, top + valueHeight*2, top + valueHeight*3, top+valueHeight*4 ]; break;
+				case 6: labelY = [ top, top + valueHeight, top + valueHeight*2, top + valueHeight*3, top+valueHeight*4, top+valueHeight*5 ]; break;
 				default: break;
 			}
         	vertical = true;
@@ -213,18 +372,22 @@ class MyBikeTrafficView extends WatchUi.DataField {
     }
 
     function compute(info) {
-		// System.println("compute");
+		_tickPendingResetTap();
+		if (mFitContributor == null && info.timerState != 3) {
+			return;
+		}
 
-        mFitContributor.compute(info);
+		var fitContributor = _ensureFitContributor();
+		fitContributor.compute(info);
         // see if we need to update fonts
 
 		var newtotalDigits = 0;
 		if (vertical) {
 			// only need to count the likely widest field
-			newtotalDigits = countDigits(mFitContributor.count);
+			newtotalDigits = countDigits(fitContributor.count);
 		} else {
 			// need to count all fields ... roughly estimate based on likely widest field
-        	newtotalDigits = countDigits(mFitContributor.count*numFields);
+	        	newtotalDigits = countDigits(fitContributor.count*numFields);
 		}
         if (newtotalDigits > totalDigits) {
 			while (totalDigits < newtotalDigits) {
@@ -238,7 +401,6 @@ class MyBikeTrafficView extends WatchUi.DataField {
     // Display the value you computed here. This will be called
     // once a second when the data field is visible.
     function onUpdate(dc) {
-		// System.println("onUpdate");
     	// before we do anything else
     	// let's prep the display strings
     	var countstr;
@@ -249,41 +411,42 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		var diststr;
     	var unitsstr;
 		var dunitsstr;
+		var fitContributor = mFitContributor;
+		var labels = autoLabelSize != -1 ? _ensureLabels() : null;
     	
-    	if (mFitContributor.disabled) {
-    		countstr = "--";
-    		lapstr = "--";
-    		spdstr = "--";
-    		absstr = "--";
-			laststr = "--";
-			diststr = "--";
+	    if (fitContributor == null || fitContributor.disabled) {
+	    	countstr = _getCachedUnavailableValue(FIELD_TOTAL);
+	    	lapstr = _getCachedUnavailableValue(FIELD_LAP);
+	    	spdstr = _getCachedUnavailableValue(FIELD_SPEED_RELATIVE);
+	    	absstr = _getCachedUnavailableValue(FIELD_SPEED_ABSOLUTE);
+			laststr = _getCachedUnavailableValue(FIELD_SPEED_LAST);
+			diststr = _getCachedUnavailableValue(FIELD_DISTANCE_CLOSEST);
     		unitsstr = " "; 
 			dunitsstr = " ";
     	} else {
-    		countstr = mFitContributor.count.format("%d");
-    		lapstr = mFitContributor.lapcount.format("%d");
-    		spdstr = mFitContributor.approachspd.format("%d");
-    		absstr = mFitContributor.absolutespd.format("%d");
-			laststr = mFitContributor.lastspd.format("%d");
-			diststr = mFitContributor.dist.format("%d");
+	    	countstr = _getCachedFormattedValue(FIELD_TOTAL, fitContributor.count);
+	    	lapstr = _getCachedFormattedValue(FIELD_LAP, fitContributor.lapcount);
+	    	spdstr = _getCachedFormattedValue(FIELD_SPEED_RELATIVE, fitContributor.approachspd);
+	    	absstr = _getCachedFormattedValue(FIELD_SPEED_ABSOLUTE, fitContributor.absolutespd);
+			laststr = _getCachedFormattedValue(FIELD_SPEED_LAST, fitContributor.lastspd);
+			diststr = _getCachedFormattedValue(FIELD_DISTANCE_CLOSEST, fitContributor.dist);
     		unitsstr = metric?"kph":"mph"; 
     		dunitsstr = metric?"m":"ft"; 
 		}
 		
 		// see if we need to redo the layout (b/c font size needs to change)
 		if (needLayout) {
-		  needLayout = false;
-		  onLayout(dc);
+			needLayout = false;
+			onLayout(dc);
 		}    	
 
         // Set the colors
         var bgColor = getBackgroundColor();
         var fgColor = Graphics.COLOR_WHITE;
-        var lblColor = Graphics.COLOR_ORANGE;
         if (bgColor == Graphics.COLOR_WHITE) {
             fgColor = Graphics.COLOR_BLACK;
-            lblColor = Graphics.COLOR_LT_GRAY;
         }
+        var lblColor = fgColor;
         // The following two lines are probably unnecessary b/c View.onUpdate(dc) does this ... but JUST IN CASE...
         dc.setColor(fgColor, bgColor);
         dc.clear();
@@ -297,103 +460,104 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	// labels first
 			if (autoLabelSize != -1) {
 	    		dc.setColor(lblColor, Graphics.COLOR_TRANSPARENT);
-	    		var labeli = 0;
-	    		for (var i=0; i<whichFields.size(); i++) {
-	    		  if (whichFields[i]==1) {
-	    		    dc.drawText(labelX[0], labelY[labeli], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_RIGHT);
-	    		    labeli = labeli + 1;
-	    		  }
+	    		for (var labeli = 0; labeli < displayedFields.size(); labeli++) {
+	    			var fieldIndex = displayedFields[labeli];
+	    			dc.drawText(labelX[0], labelY[labeli], mLabelFont, labels[fieldIndex], Graphics.TEXT_JUSTIFY_RIGHT);
 	    		}
 			}
 	        
 	        // Now let's draw the values
 	        dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
-	        var valuei = 0;
 	    	var valstr = 0;
-			var dimensions = null;
-	        for (var i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i]==1) {
-	    	  	switch(i) {
-	    	  		case 0: valstr = countstr; speedflag = false; break;
-	    	  		case 1: valstr = lapstr; speedflag = false; break;
-	    	  		case 2: valstr = spdstr; speedflag = true; break;
-	    	  		case 3: valstr = absstr; speedflag = true; break;
-					case 4: valstr = laststr; speedflag = true; break;
-					case 5: valstr = diststr; speedflag = false; distflag = true; break;
-	    	  		default: valstr = countstr; break;
-	    	  	}
+	        for (var valuei = 0; valuei < displayedFields.size(); valuei++) {
+	    		var fieldIndex = displayedFields[valuei];
+	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr);
+	    		speedflag = _showsSpeedUnits(fieldIndex);
+	    		distflag = _showsDistanceUnits(fieldIndex);
 	    	    dc.drawText(labelX[1], labelY[valuei], mValueFont, valstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately right of speed value
-				   	dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
-	    	    	dc.drawText(labelX[1]+dimensions[0]+3, labelY[valuei], mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_LEFT);
+	    	    	dc.drawText(labelX[1]+_getCachedValueWidth(dc, fieldIndex, valstr)+3, labelY[valuei], mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    }
 	    	    if (distflag) {
-	    	    	// calculate location for units immediately right of speed value
-				   	dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
-	    	    	dc.drawText(labelX[1]+dimensions[0]+3, labelY[valuei], mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_LEFT);
+	    	    	// calculate location for units immediately right of distance value
+	    	    	dc.drawText(labelX[1]+_getCachedValueWidth(dc, fieldIndex, valstr)+3, labelY[valuei], mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_LEFT);
 	    	    }
-	    	    valuei = valuei + 1;
-	    	  }
 	    	}
 	    } else {
 	    	// labels first
 	    	dc.setColor(lblColor, Graphics.COLOR_TRANSPARENT);
 			if (autoLabelSize != -1) {
-	    		var labeli = 0;
-	    		for (var i=0; i<whichFields.size(); i++) {
-	    		  if (whichFields[i]==1) {
-	    		    dc.drawText(labelX[labeli], labelY[0], mLabelFont, mLabels[i], Graphics.TEXT_JUSTIFY_CENTER);
-	    		    labeli = labeli + 1;
-	    		  }
+	    		for (var labeli = 0; labeli < displayedFields.size(); labeli++) {
+	    			var fieldIndex = displayedFields[labeli];
+	    			dc.drawText(labelX[labeli], labelY[0], mLabelFont, labels[fieldIndex], Graphics.TEXT_JUSTIFY_CENTER);
 				}
 			}
 	        
 	        // Now let's draw the values
 	        dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
-	        var valuei = 0;
+			fh = dc.getFontHeight(mValueFont);
 	    	var valstr = 0;
-	        for (var i=0; i<whichFields.size(); i++) {
-	    	  if (whichFields[i]==1) {
-	    	  	switch(i) {
-	    	  		case 0: valstr = countstr; speedflag = false; break;
-	    	  		case 1: valstr = lapstr; speedflag = false; break;
-	    	  		case 2: valstr = spdstr; speedflag = true; break;
-	    	  		case 3: valstr = absstr; speedflag = true; break;
-					case 4: valstr = laststr; speedflag = true; break;
-					case 5: valstr = diststr; speedflag = false; distflag = true; break;
-	    	  		default: valstr = countstr; speedflag = false; break;
-	    	  	}
+	        for (var valuei = 0; valuei < displayedFields.size(); valuei++) {
+	    		var fieldIndex = displayedFields[valuei];
+	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr);
+	    		speedflag = _showsSpeedUnits(fieldIndex);
+	    		distflag = _showsDistanceUnits(fieldIndex);
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    if (speedflag) {
 	    	    	// calculate location for units immediately below speed value
-					var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
-					fh = dimensions[1];
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, unitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
 	    	    if (distflag) {
 	    	    	// calculate location for units immediately below distance value
-					var dimensions = dc.getTextDimensions(valstr, mValueFont);	    	    	
-					fh = dimensions[1];
 	    	    	dc.drawText(labelX[valuei], labelY[1] + fh - 5, mUnitsFont, dunitsstr, Graphics.TEXT_JUSTIFY_CENTER);
 	    	    }
-	    	    valuei = valuei + 1;
-	    	  }
 	    	}
 	    }
-		// dc.drawText(10, labelY[1]+fh*2, Graphics.FONT_XTINY, mLabelDebug, Graphics.TEXT_JUSTIFY_LEFT);
+		// draw tiny sensor status indicator at bottom of field
+		var radarStatusText = "START";
+		if (mPendingResetTap) {
+			radarStatusText = "TAP AGAIN";
+		} else if (fitContributor != null) {
+			radarStatusText = fitContributor.bikeRadar.getDisplayStatus();
+		}
+		var statusY = dc.getHeight() - dc.getFontHeight(mStatusFont) - 1;
+		if (showDebugStatus || mPendingResetTap) {
+			dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+			dc.drawText(dc.getWidth() / 2, statusY, mStatusFont, radarStatusText, Graphics.TEXT_JUSTIFY_CENTER);
+		}
     }
     
     // activity has ended
     // handle resetting count to 0 after activity has ended
     function onTimerReset() {
-    	mFitContributor.onTimerReset();
+		_clearPendingResetTap();
+	    	if (mFitContributor != null) {
+	    		mFitContributor.onTimerReset();
+	    	}
     }
     
     // simply reset the lapcount ... lap data already written out once per second (per documentation) overwriting previous lap message ... this is the way it's supposed to work!
     function onTimerLap() {
-    	mFitContributor.onTimerLap();
+	    	if (mFitContributor != null) {
+	    		mFitContributor.onTimerLap();
+	    	}
     }
     
 
+}
+
+class MyBikeTrafficViewDelegate extends WatchUi.BehaviorDelegate {
+
+	hidden var mView as MyBikeTrafficView;
+
+	function initialize(view as MyBikeTrafficView) {
+		BehaviorDelegate.initialize();
+		mView = view;
+	}
+
+	function onTap(evt as WatchUi.ClickEvent) as Lang.Boolean {
+		mView.handleResetTap();
+		return true;
+	}
 }
