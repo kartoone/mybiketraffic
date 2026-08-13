@@ -6,6 +6,7 @@
 		<property id="displaySpeedAbsolutePosition" type="number">2</property>
 		<property id="displaySpeedLastPosition" type="number">0</property>
 		<property id="displayClosestDistPosition" type="number">0</property>
+		<property id="displaySpeedTrendPosition" type="number">0</property>
 		<property id="displayDebugStatus" type="boolean">true</property>
 		<property id="connectionBehaviorMode" type="number">1</property>
 		<property id="autoOrientation" type="number">-1</property>
@@ -22,6 +23,7 @@
 		<string id="speedTitleAbsolute">Display vehicle speed (absolute)</string>
 		<string id="speedTitleLast">Display last vehicle speed (absolute)</string>
 		<string id="distanceTitle">Display closest vehicle distance</string>
+		<string id="speedTitleTrend">Display closest vehicle speed trend</string>
 		<string id="debugStatusTitle">Display connection status</string>
 		<string id="groupConnection">Connection behavior</string>
 		<string id="groupConnectionDescription">Choose the radar mode that matches your setup.</string>
@@ -97,6 +99,7 @@
 			<setting propertyKey="@Properties.displaySpeedAbsolutePosition" title="@Strings.speedTitleAbsolute"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
 			<setting propertyKey="@Properties.displaySpeedLastPosition" title="@Strings.speedTitleLast"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
 			<setting propertyKey="@Properties.displayClosestDistPosition" title="@Strings.distanceTitle"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
+			<setting propertyKey="@Properties.displaySpeedTrendPosition" title="@Strings.speedTitleTrend"><settingConfig type="list"><listEntry value="0">@Strings.Off</listEntry><listEntry value="1">1</listEntry><listEntry value="2">2</listEntry><listEntry value="3">3</listEntry><listEntry value="4">4</listEntry><listEntry value="5">5</listEntry><listEntry value="6">6</listEntry></settingConfig></setting>
 			<setting propertyKey="@Properties.displayDebugStatus" title="@Strings.debugStatusTitle"><settingConfig type="boolean" /></setting>
 	    </group>
 	    <group id="groupConnection" title="@Strings.groupConnection" description="@Strings.groupConnectionDescription">

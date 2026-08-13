@@ -16,12 +16,17 @@ class MyBikeTrafficFitContributions {
 	var lastspd;     // absolute speed only (relative + rider)... not reset between cars
 	var dist;        // distance to closest car (convert to feet if not metric)
 	var disabled;
+	var speedTrend;  // -1 braking, 0 steady/no car, 1 accelerating (closest car only)
 	hidden var lasttrackcnt;
 	hidden var lastspdCandidate;
 	hidden var crossedthresh;  // this is a flag to indicate that the closest car has approached within THRESH distance and should be counted when it disappears off radar 
+	hidden var mPrevAbsoluteSpd; // absolutespd from the previous tick for the closest car, null if no car was tracked then
+	hidden var mTrendCandidateSign; // sign of the most recently observed delta, pending confirmation
+	hidden var mTrendStreak; // consecutive ticks the candidate sign has persisted
 	const THRESH=10; 			// this is the threshold distance that the closest car must be in order for it to be counted
 	const RANGETARGETS=8;
 	const SPEEDTARGETS=8;
+	const TREND_CONFIRM_TICKS=2; // consecutive seconds a delta must persist before speedTrend changes
 
 	hidden var metric = true;
 
@@ -59,6 +64,10 @@ class MyBikeTrafficFitContributions {
 		dist = 0;
         crossedthresh = false;
         disabled = true;
+		speedTrend = 0;
+		mPrevAbsoluteSpd = null;
+		mTrendCandidateSign = 0;
+		mTrendStreak = 0;
 		rangeDataField = datafield.createField( // 16 bytes
             "radar_ranges",
             BT_RANGE_FIELD_ID,
@@ -143,6 +152,8 @@ class MyBikeTrafficFitContributions {
 			}
 			absolutespd = approachspd > 0 ? (approachspd + (metric ? Math.round(currentSpeed * 3.6) : Math.round(currentSpeed * 2.23694))) : 0;
 
+			_updateSpeedTrend(radarInfo[0].threat);
+
 			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
 			passingSpeedRelDataField.setData(approachspd);
@@ -184,8 +195,7 @@ class MyBikeTrafficFitContributions {
 			  rangeInfo[i] = -1;  // can keep this one as signed since taking up two bytes anyway ... so -1 still the "bogus" radar disabled value
 			  speedInfo[i] = 255;
 			}
-			approachspd = 0;
-			rangeDataField.setData(rangeInfo);
+			approachspd = 0;			_resetSpeedTrend();			rangeDataField.setData(rangeInfo);
 			speedDataField.setData(speedInfo);
 			countDataField.setData(count);	
 			countLapField.setData(lapcount);			
@@ -203,7 +213,50 @@ class MyBikeTrafficFitContributions {
 		lasttrackcnt=0;
 		lastspdCandidate = 0;
 		crossedthresh = false;
+		_resetSpeedTrend();
     }
+
+	// resets closest-car speed trend tracking (e.g. car left radar range, or radar disabled)
+	hidden function _resetSpeedTrend() as Void {
+		speedTrend = 0;
+		mPrevAbsoluteSpd = null;
+		mTrendCandidateSign = 0;
+		mTrendStreak = 0;
+	}
+
+	// tracks whether the closest car (radar slot 0) is accelerating/braking, based on absolutespd deltas over consecutive ticks
+	hidden function _updateSpeedTrend(closestThreat) as Void {
+		if (closestThreat == 0) {
+			_resetSpeedTrend();
+			return;
+		}
+		if (mPrevAbsoluteSpd == null) {
+			// car just (re)appeared in slot 0 ... need a prior sample before a delta means anything
+			mPrevAbsoluteSpd = absolutespd;
+			return;
+		}
+
+		var delta = absolutespd - mPrevAbsoluteSpd;
+		var threshold = metric ? 3 : 2;
+		var candidateSign = 0;
+		if (delta > threshold) {
+			candidateSign = 1;
+		} else if (delta < -threshold) {
+			candidateSign = -1;
+		}
+
+		if (candidateSign == mTrendCandidateSign) {
+			mTrendStreak = mTrendStreak + 1;
+		} else {
+			mTrendCandidateSign = candidateSign;
+			mTrendStreak = 1;
+		}
+		if (mTrendStreak >= TREND_CONFIRM_TICKS) {
+			speedTrend = mTrendCandidateSign;
+		}
+
+		mPrevAbsoluteSpd = absolutespd;
+	}
     
     // simply reset the lapcount ... lap data already written out once per second (per documentation) overwriting previous lap message ... this is the way it's supposed to work!
     function onTimerLap() {

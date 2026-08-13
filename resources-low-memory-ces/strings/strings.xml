@@ -14,6 +14,7 @@
     <string id="speedTitleAbsolute">Zobrazit rychlost vozidla (absolutní)</string>
     <string id="speedTitleLast">Zobrazit rychlost posledního vozidla (absolutní)</string>
     <string id="distanceTitle">Zobrazit vzdálenost nejbližšího vozidla</string>
+    <string id="speedTitleTrend">Zobrazit trend rychlosti nejbližšího vozidla</string>
     <string id="debugStatusTitle">Zobrazit stav připojení</string>
     <string id="groupConnection">Kompatibilita radaru</string>
     <string id="groupConnectionDescription">Tato verze zařízení používá pouze nativní podporu radaru. Pokročilé připojení 820 není pro vaše zařízení k dispozici.</string>
@@ -46,16 +47,19 @@
     <string id="ml1_aspd">Absolutní rychlost</string>
     <string id="ml1_lspd">Poslední rychlost vozidla</string>
     <string id="ml1_dist">Nejbližší vzdálenost</string>
+    <string id="ml1_trend">Trend rychlosti</string>
     <string id="ml2_vc">Poc</string>
     <string id="ml2_lvc">Kol</string>
     <string id="ml2_rspd">Rel</string>
     <string id="ml2_aspd">Max</string>
     <string id="ml2_lspd">POS</string>
     <string id="ml2_dist">Min</string>
+    <string id="ml2_trend">Tre</string>
     <string id="ml3_vc">Poc</string>
     <string id="ml3_lvc">Kol</string>
     <string id="ml3_rspd">Rel</string>
     <string id="ml3_aspd">Max</string>
     <string id="ml3_lspd">POS</string>
     <string id="ml3_dist">Min</string>
+    <string id="ml3_trend">Tre</string>
 </strings>

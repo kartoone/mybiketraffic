@@ -12,16 +12,19 @@
     <string id="ml1_aspd">Absolute Speed</string>
     <string id="ml1_lspd">Last Speed</string>
     <string id="ml1_dist">Vehicle Distance</string>
+    <string id="ml1_trend">Speed Trend</string>
     <string id="ml2_vc">VC</string>
     <string id="ml2_lvc">LAP</string>
     <string id="ml2_rspd">REL</string>
     <string id="ml2_aspd">ABS</string>
     <string id="ml2_lspd">LAST</string>
     <string id="ml2_dist">DIST</string>
+    <string id="ml2_trend">TRND</string>
     <string id="ml3_vc">VC</string>
     <string id="ml3_lvc">LAP</string>
     <string id="ml3_rspd">REL</string>
     <string id="ml3_aspd">ABS</string>
     <string id="ml3_lspd">LAST</string>
     <string id="ml3_dist">DIST</string>
+    <string id="ml3_trend">TRND</string>
 </strings>

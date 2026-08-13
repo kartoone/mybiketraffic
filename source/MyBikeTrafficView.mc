@@ -33,12 +33,13 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden var labelX as Lang.Array<Lang.Float or Lang.Number>?; // array of X coordinates (only two entries for vertical layout strategy, as many entries as data values being displayed for horizontal layout) 
 	hidden var labelY as Lang.Array<Lang.Float or Lang.Number>?; // array of Y coordinates (only two entries for horizontal layout strategy, as many entries as data values being displayed for horizontal layout)
 	hidden var numFields = 0; // number of fields actively rendered after applying the ordered settings
-	hidden var fieldPositions as Lang.Array<Lang.Number> = [1, 0, 0, 2, 0, 0]; // position 0 - total count, 1 - lap count, 2 - approach speed, 3 - absolute vehicle speed, 4 - last vehicle speed, 5 - closest vehicle distance. 0 means hidden.
+	const MAX_DISPLAY_SLOTS = 6; // max number of fields shown at once, fixed by screen space (independent of how many field types are configurable)
+	hidden var fieldPositions as Lang.Array<Lang.Number> = [1, 0, 0, 2, 0, 0, 0]; // position 0 - total count, 1 - lap count, 2 - approach speed, 3 - absolute vehicle speed, 4 - last vehicle speed, 5 - closest vehicle distance, 6 - speed trend. 0 means hidden.
 	hidden var displayedFields as Lang.Array<Lang.Number> = [0]; // ordered list of field ids to render
-	hidden var mCachedValueNumbers as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1];
-	hidden var mCachedValueStrings as Lang.Array<Lang.String> = ["", "", "", "", "", ""];
-	hidden var mCachedValueWidths as Lang.Array<Lang.Number> = [0, 0, 0, 0, 0, 0];
-	hidden var mCachedValueFonts as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1];
+	hidden var mCachedValueNumbers as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1, -1];
+	hidden var mCachedValueStrings as Lang.Array<Lang.String> = ["", "", "", "", "", "", ""];
+	hidden var mCachedValueWidths as Lang.Array<Lang.Number> = [0, 0, 0, 0, 0, 0, 0];
+	hidden var mCachedValueFonts as Lang.Array<Lang.Number> = [-1, -1, -1, -1, -1, -1, -1];
 	
 	hidden var testString = "888" as Lang.String;   // start out using small text string for font layout ... change this as the counts get larger
     hidden var totalDigits = 2; 	// this is the total digit count for both the vehicle count field and lap count field ... assume 4
@@ -52,6 +53,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	const FIELD_SPEED_ABSOLUTE = 3;
 	const FIELD_SPEED_LAST = 4;
 	const FIELD_DISTANCE_CLOSEST = 5;
+	const FIELD_SPEED_TREND = 6;
 	
 	function initialize(displayPositions as Lang.Array, debugStatus as Lang.Boolean or Null, autoOrientation as Lang.Number, autoLabelSize as Lang.Number, autoValueSize as Lang.Number, connectionBehaviorMode as Lang.Number or Null) {
         DataField.initialize();
@@ -114,7 +116,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	hidden function _rebuildDisplayedFields() as Void {
 		displayedFields = [] as Lang.Array<Lang.Number>;
 
-		for (var slot = 1; slot <= fieldPositions.size(); slot++) {
+		for (var slot = 1; slot <= MAX_DISPLAY_SLOTS; slot++) {
 			for (var fieldIndex = 0; fieldIndex < fieldPositions.size(); fieldIndex++) {
 				if (fieldPositions[fieldIndex] == slot) {
 					displayedFields.add(fieldIndex);
@@ -123,7 +125,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		}
 
 		for (var fieldIndex = 0; fieldIndex < fieldPositions.size(); fieldIndex++) {
-			if (fieldPositions[fieldIndex] > fieldPositions.size()) {
+			if (fieldPositions[fieldIndex] > MAX_DISPLAY_SLOTS) {
 				displayedFields.add(fieldIndex);
 			}
 		}
@@ -144,7 +146,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
 					WatchUi.loadResource($.Rez.Strings.ml1_rspd),
 					WatchUi.loadResource($.Rez.Strings.ml1_aspd),
 					WatchUi.loadResource($.Rez.Strings.ml1_lspd),
-					WatchUi.loadResource($.Rez.Strings.ml1_dist)
+					WatchUi.loadResource($.Rez.Strings.ml1_dist),
+					WatchUi.loadResource($.Rez.Strings.ml1_trend)
 				];
 			case 2:
 				return [
@@ -153,7 +156,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
 					WatchUi.loadResource($.Rez.Strings.ml2_rspd),
 					WatchUi.loadResource($.Rez.Strings.ml2_aspd),
 					WatchUi.loadResource($.Rez.Strings.ml2_lspd),
-					WatchUi.loadResource($.Rez.Strings.ml2_dist)
+					WatchUi.loadResource($.Rez.Strings.ml2_dist),
+					WatchUi.loadResource($.Rez.Strings.ml2_trend)
 				];
 		}
 
@@ -163,7 +167,8 @@ class MyBikeTrafficView extends WatchUi.DataField {
 			WatchUi.loadResource($.Rez.Strings.ml3_rspd),
 			WatchUi.loadResource($.Rez.Strings.ml3_aspd),
 			WatchUi.loadResource($.Rez.Strings.ml3_lspd),
-			WatchUi.loadResource($.Rez.Strings.ml3_dist)
+			WatchUi.loadResource($.Rez.Strings.ml3_dist),
+			WatchUi.loadResource($.Rez.Strings.ml3_trend)
 		];
 	}
 
@@ -181,7 +186,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 		return mLabels;
 	}
 
-	hidden function _getFieldValue(fieldIndex as Lang.Number, countstr as Lang.String, lapstr as Lang.String, spdstr as Lang.String, absstr as Lang.String, laststr as Lang.String, diststr as Lang.String) as Lang.String {
+	hidden function _getFieldValue(fieldIndex as Lang.Number, countstr as Lang.String, lapstr as Lang.String, spdstr as Lang.String, absstr as Lang.String, laststr as Lang.String, diststr as Lang.String, trendstr as Lang.String) as Lang.String {
 		switch (fieldIndex) {
 			case FIELD_TOTAL: return countstr;
 			case FIELD_LAP: return lapstr;
@@ -189,6 +194,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 			case FIELD_SPEED_ABSOLUTE: return absstr;
 			case FIELD_SPEED_LAST: return laststr;
 			case FIELD_DISTANCE_CLOSEST: return diststr;
+			case FIELD_SPEED_TREND: return trendstr;
 		}
 
 		return countstr;
@@ -227,6 +233,25 @@ class MyBikeTrafficView extends WatchUi.DataField {
 			mCachedValueWidths[fieldIndex] = (dc.getTextDimensions(valueString, mValueFont) as Lang.Array<Lang.Numeric>)[0];
 		}
 		return mCachedValueWidths[fieldIndex];
+	}
+
+	hidden function _getCachedStringValue(fieldIndex as Lang.Number, value as Lang.String) as Lang.String {
+		if (mCachedValueStrings[fieldIndex] != value) {
+			mCachedValueNumbers[fieldIndex] = -1;
+			mCachedValueStrings[fieldIndex] = value;
+			mCachedValueFonts[fieldIndex] = -1;
+		}
+		return mCachedValueStrings[fieldIndex];
+	}
+
+	hidden function _trendSymbol(trendValue as Lang.Number) as Lang.String {
+		if (trendValue == 1) {
+			return "+";
+		}
+		if (trendValue == -1) {
+			return "-";
+		}
+		return "=";
 	}
     
     function countDigits(num) {
@@ -409,6 +434,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
     	var absstr;
 		var laststr;
 		var diststr;
+		var trendstr;
     	var unitsstr;
 		var dunitsstr;
 		var fitContributor = mFitContributor;
@@ -421,6 +447,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	absstr = _getCachedUnavailableValue(FIELD_SPEED_ABSOLUTE);
 			laststr = _getCachedUnavailableValue(FIELD_SPEED_LAST);
 			diststr = _getCachedUnavailableValue(FIELD_DISTANCE_CLOSEST);
+			trendstr = _getCachedUnavailableValue(FIELD_SPEED_TREND);
     		unitsstr = " "; 
 			dunitsstr = " ";
     	} else {
@@ -430,6 +457,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	absstr = _getCachedFormattedValue(FIELD_SPEED_ABSOLUTE, fitContributor.absolutespd);
 			laststr = _getCachedFormattedValue(FIELD_SPEED_LAST, fitContributor.lastspd);
 			diststr = _getCachedFormattedValue(FIELD_DISTANCE_CLOSEST, fitContributor.dist);
+			trendstr = _getCachedStringValue(FIELD_SPEED_TREND, _trendSymbol(fitContributor.speedTrend));
     		unitsstr = metric?"kph":"mph"; 
     		dunitsstr = metric?"m":"ft"; 
 		}
@@ -471,7 +499,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	var valstr = 0;
 	        for (var valuei = 0; valuei < displayedFields.size(); valuei++) {
 	    		var fieldIndex = displayedFields[valuei];
-	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr);
+	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr, trendstr);
 	    		speedflag = _showsSpeedUnits(fieldIndex);
 	    		distflag = _showsDistanceUnits(fieldIndex);
 	    	    dc.drawText(labelX[1], labelY[valuei], mValueFont, valstr, Graphics.TEXT_JUSTIFY_LEFT);
@@ -500,7 +528,7 @@ class MyBikeTrafficView extends WatchUi.DataField {
 	    	var valstr = 0;
 	        for (var valuei = 0; valuei < displayedFields.size(); valuei++) {
 	    		var fieldIndex = displayedFields[valuei];
-	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr);
+	    		valstr = _getFieldValue(fieldIndex, countstr, lapstr, spdstr, absstr, laststr, diststr, trendstr);
 	    		speedflag = _showsSpeedUnits(fieldIndex);
 	    		distflag = _showsDistanceUnits(fieldIndex);
 	    	    dc.drawText(labelX[valuei], labelY[1], mValueFont, valstr, Graphics.TEXT_JUSTIFY_CENTER);

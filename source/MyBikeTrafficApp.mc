@@ -24,7 +24,8 @@ class MyBikeTrafficApp extends Application.AppBase {
             Application.Properties.getValue("displaySpeedRelativePosition"),
             Application.Properties.getValue("displaySpeedAbsolutePosition"),
             Application.Properties.getValue("displaySpeedLastPosition"),
-            Application.Properties.getValue("displayClosestDistPosition")
+            Application.Properties.getValue("displayClosestDistPosition"),
+            Application.Properties.getValue("displaySpeedTrendPosition")
         ];
         var view = new MyBikeTrafficView(displayPositions, Application.Properties.getValue("displayDebugStatus"), Application.Properties.getValue("autoOrientation"), Application.Properties.getValue("autoLabelSize"), Application.Properties.getValue("autoValueSize"), _getConnectionBehaviorMode());
         return [ view, new MyBikeTrafficViewDelegate(view) ];
